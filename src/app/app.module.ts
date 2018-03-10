@@ -11,30 +11,54 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { storage,initializeApp } from 'firebase';
+import { Camera } from '@ionic-native/camera';
+//import { ImageProvider } from '../providers/image/image';
+
+export const FIREBASE_CONFIG =
+ {
+    apiKey: "AIzaSyAwzSQGq1EYiVTEAKlTlNHFtbm1IrZYbtg",
+    authDomain: "myapp-b575c.firebaseapp.com",
+    databaseURL: "https://myapp-b575c.firebaseio.com",
+    projectId: "myapp-b575c",
+    storageBucket: "myapp-b575c.appspot.com",
+    messagingSenderId: "68982032969"
+  };
+
 @NgModule({
   declarations: [
     MyApp,
     AboutPage,
     ContactPage,
-    HomePage,
-    TabsPage
+    TabsPage,
+
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     AboutPage,
     ContactPage,
-    HomePage,
     TabsPage
   ],
   providers: [
+    Camera,
+    AngularFireAuth,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    
   ]
 })
-export class AppModule {}
+
+export class AppModule {
+}
+
+

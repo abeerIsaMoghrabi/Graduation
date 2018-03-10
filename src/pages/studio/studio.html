@@ -1,0 +1,529 @@
+<!--
+  Generated template for the StudioPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+<ion-content onload="ff()">
+
+<div class="container-fluid header-div">
+    <div class="container">
+        <!--<div class="row" >-->
+           <div class="logo "><a href="#">STORY</a></div>
+    <div class="float-right list-div ">
+        <!--col-sm-6 offset-4-->
+        <ul >
+            <li class="log-btn  float-right header-li" onclick="store()">sign out</li>
+            <li class=" header-li float-right"><a   full [navPush]="userProf">Profile</a></li>
+            <li class=" header-li float-right"><a href="#">Studio</a></li>
+            <li class=" header-li float-right"><a href="#">Home</a></li>
+
+
+
+        </ul>
+
+    </div>
+    <div class="clearfix"></div>
+    <!--</div>-->
+    </div>
+</div>
+<!-- <img  id="river" src="../../assets/imgs/1c_burned.png" height="100" width="200" > -->
+<div class="container-fluid">
+  <div class="container">
+
+    <div class="left-side side float-left" >
+
+      <div class="obj-container" style="display: none;">
+        <div class="objt" style="background-image: url('../../assets/imgs/b2c.jpeg');">
+          <div class="obj-label">background</div>
+        </div>
+        <div class="objt" style="background-image: url('../../assets/imgs/b1c.jpeg');">
+          <div class="obj-label">objects</div>
+        </div>
+
+        <div class="objt" style="background-image: url('../../assets/imgs/t2c.jpeg');">
+          <div class="obj-label">youser toys</div>
+        </div>
+      </div>
+
+      <!--  <div class="obj-container">
+      <div class="objt">
+        <img   class="obj_img" id="river" src="../../assets/imgs/1c_burned.png"   draggable="true" ondragstart="drag(event)"    >
+          <div class="obj-label">hill</div>
+        
+                  </div>
+        
+        
+
+        <div class="objt">
+        <img  class="obj_img" id="hill" src="../../assets/imgs/2c_burned.png"    draggable="true" ondragstart="drag(event)">
+          <div class="obj-label">hill</div>
+        
+                  </div>
+
+                    <div class="objt">
+        <img class="obj_img" id="sun" src="../../assets/imgs/1.png"   draggable="true" ondragstart="drag(event)"    >
+          <div class="obj-label">river</div>
+        </div>
+
+
+          <div class="objt">
+        <img class="obj_img" id="sky" src="../../assets/imgs/2.jpg"   draggable="true" ondragstart="drag(event)"    >
+          <div class="obj-label">river</div>
+        </div>
+
+
+          <div class="objt">
+        <img class="obj_img" id="boat" src="../../assets/imgs/1c.png"   draggable="true" ondragstart="drag(event)"    >
+          <div class="obj-label">river</div>
+        </div>
+
+
+
+        
+      </div> -->
+
+        <div class="obj-container" >
+        
+
+
+<div padding>
+  <ion-segment [(ngModel)]="pet">
+    <ion-segment-button value="b1">
+      1
+    </ion-segment-button>
+    <ion-segment-button value="b2">
+      2
+    </ion-segment-button>
+    <ion-segment-button value="b3">
+      3
+    </ion-segment-button>
+
+  </ion-segment>
+</div>
+
+<div [ngSwitch]="pet">
+
+
+  <ion-list *ngSwitchCase="'b1'">
+       <h3>BackGround</h3>
+    <ion-item>
+      <ion-thumbnail item-start>
+
+     <!--  we must but id for each image (very important) -->
+        <img src="../../assets/imgs/b1c.jpeg" draggable="true" id='1'ondragstart="drag(event)" >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource2}} >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource3}} >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource4}} >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource5}} >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource6}} >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource7}} >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource8}} >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource9}} >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource10}} >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource11}} >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource12}} >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource13}} >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource14}} >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource15}} >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource16}} >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource17}} >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource18}} >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource19}} >
+      </ion-thumbnail>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource20}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource21}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource22}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource23}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource24}} >
+      </ion-thumbnail>
+    </ion-item>
+<ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource25}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource26}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource27}} >
+      </ion-thumbnail>
+    </ion-item>
+   
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'b2'">
+  <h3><span>&#8203;</span><span>&#8203;</span> <span>&#8203;</span> <span>&#8203;</span> <span>&#8203;</span>  Objects </h3>
+  <ion-item>
+    <ion-thumbnail item-start>
+        <img src="../../assets/imgs/b1c.jpeg" draggable="true" id='2' ondragstart="drag(event)" >
+      </ion-thumbnail>
+    </ion-item>
+<ion-item>
+    <ion-thumbnail item-start>
+        <img src= {{imgSource29}} >
+      </ion-thumbnail>
+    </ion-item>
+<ion-item>
+    <ion-thumbnail item-start>
+        <img src= {{imgSource30}} >
+      </ion-thumbnail>
+    </ion-item>
+<ion-item>
+<ion-thumbnail item-start>
+        <img src= {{imgSource31}} >
+      </ion-thumbnail>
+    </ion-item>
+<ion-item>
+    <ion-thumbnail item-start>
+        <img src= {{imgSource32}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+    <ion-thumbnail item-start>
+        <img src= {{imgSource33}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+    <ion-thumbnail item-start>
+        <img src= {{imgSource34}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+    <ion-thumbnail item-start>
+        <img src= {{imgSource35}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+<ion-thumbnail item-start>
+        <img src= {{imgSource36}} >
+      </ion-thumbnail>
+    </ion-item>
+<ion-item>
+<ion-thumbnail item-start>
+        <img src= {{imgSource37}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+<ion-thumbnail item-start>
+        <img src= {{imgSource38}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+<ion-thumbnail item-start>
+        <img src= {{imgSource39}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+<ion-thumbnail item-start>
+        <img src= {{imgSource40}} >
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+<ion-thumbnail item-start>
+        <img src= {{imgSource41}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+<ion-thumbnail item-start>
+        <img src= {{imgSource42}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+<ion-thumbnail item-start>
+        <img src= {{imgSource43}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+<ion-thumbnail item-start>
+        <img src= {{imgSource44}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+<ion-thumbnail item-start>
+        <img src= {{imgSource45}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+<ion-thumbnail item-start>
+        <img src= {{imgSource46}} >
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+<ion-thumbnail item-start>
+        <img src= {{imgSource47}} >
+      </ion-thumbnail>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'b3'">
+  <h3><span>&#8203;</span><span>&#8203;</span> <span>&#8203;</span> Your Toys</h3>
+    <ion-item>
+    
+      <ion-thumbnail item-start>
+        <img src="../../assets/imgs/b1c.jpeg" draggable="true" id='3' ondragstart="drag(event)" >
+      </ion-thumbnail>
+      
+    </ion-item>
+
+
+    
+  </ion-list>
+</div>
+
+      </div>
+
+
+      
+    </div>
+    
+    <div class="canvas-div" >
+      <div  id="game" style ="width:800px;height:480px"ondrop="drop(event)"  ondragover="allowDrop(event)"  ></div>
+    </div>
+
+
+    <div class="right-side side float-right">
+    <!--  <div id='obj_info' style="display: none;">
+      <div class="main " ><span class="arrow"></span><span class="arrow-obj" id="objName"></span></div>
+    <div>
+      <div class=" main1" ><span class="arrow1"></span><span class="arrow-obj" id='objW'></span> 
+        <div class="main2"><ion-icon name="add" onclick="changeD(1)"></ion-icon> </div>
+        <div class="main2"> <ion-icon name="remove" onclick="changeD(2)"></ion-icon></div>
+      </div>
+      <div class=" main1" ><span class="arrow1"></span><span class="arrow-obj" id='objH'></span>
+               <div class="main2"><ion-icon name="add" onclick="changeD(3)"></ion-icon> </div>
+        <div class="main2"> <ion-icon name="remove" onclick="changeD(4)"></ion-icon></div>
+      </div>
+
+    </div>
+         </div>
+
+
+            <div  >
+      <div class="main " ><span class="arrow"></span><span class="arrow-obj" id='map'>map width</span></div>
+    <div>
+      <div class=" main1" > 
+        <div class="main2"><ion-icon name="add" onclick="changeD(5)"></ion-icon> </div>
+        <div class="main2"> <ion-icon name="remove" onclick="changeD(6)"></ion-icon></div>
+      </div>
+      
+
+    </div>
+         </div> -->
+
+      
+<div style="width: 80%; margin:auto;">
+<div style="background-color: #0FB1B3 ; margin-top: 40px; width: 100%; " >
+<div class="myCarousel">
+    <div >
+<div>
+    <div id='red' style="width: 40px ; height: 40px ; display: inline-block;  background-color: red;border-radius: 50% " onclick="setBackColor('red')"></div>
+</div>
+</div>
+<div >
+<div>
+    <div style="width: 40px ; height: 40px ; display: inline-block;  background-color: #ffff00;border-radius: 50% " 
+    onclick="setBackColor('#ffff00')"></div>
+</div>
+
+</div>
+<div >
+<div>
+     <div style="width: 40px ; height: 40px ; display: inline-block; background-color: #66ff33;border-radius: 50% "
+     onclick="setBackColor('#66ff33')"></div>
+</div>
+
+</div>
+<div >
+<div>
+     <div style="width: 40px ; height: 40px ; display: inline-block; background-color: #00ccff;border-radius: 50% "
+     onclick="setBackColor('#00ccff')"></div>
+</div>
+
+</div>
+
+    <div >
+<div>
+    <div style="width: 40px ; height: 40px ; display: inline-block;  background-color: #ff0066;border-radius: 50% "
+    onclick="setBackColor('#ff0066')"></div>
+</div>
+</div>
+<div >
+<div>
+    <div style="width: 40px ; height: 40px ; display: inline-block;  background-color: #9900cc;border-radius: 50% "
+    onclick="setBackColor('#9900cc')"></div>
+</div>
+
+</div>
+<div >
+<div>
+     <div style="width: 40px ; height: 40px ; display: inline-block; background-color: #663300;border-radius: 50% "
+     onclick="setBackColor('#663300')"></div>
+</div>
+
+</div>
+<div >
+<div>
+     <div style="width: 40px ; height: 40px ; display: inline-block; background-color: #ff9900;border-radius: 50% "
+     onclick="setBackColor('#ff9900')"></div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="text-part">
+<span class="create-icon"> <ion-icon name="create"></ion-icon></span> 
+<span class="create-icon">Add Text</span>
+<input type="color">
+</div>
+
+<!-- <div class="time-test">
+  
+<span class="time">0:0</span>
+<div class="test"><ion-icon name="play">test</ion-icon></div>
+
+</div> -->
+
+
+<div>
+  
+    <ul >
+            <li class="right-side-btn" >clear</li>
+          
+            <li class="right-side-btn" >finish</li>
+
+
+        </ul>
+</div>
+
+
+
+    </div>
+  
+  </div>
+<div class="clearfix"></div>
+</div>
+
+</ion-content>
