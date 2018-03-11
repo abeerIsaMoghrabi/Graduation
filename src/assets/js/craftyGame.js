@@ -907,3 +907,27 @@ function modalPlugin(){
 // // close modal
 // modal.close();
 }
+
+
+// 
+function move(){
+
+	//////////move action/////////////
+
+}
+function jump(){
+
+
+}
+function fly(){
+
+}
+function fall(){
+
+}
+function dissapear(){
+
+}
+function growing(){
+
+}
