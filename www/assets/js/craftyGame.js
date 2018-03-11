@@ -28,8 +28,13 @@ var bg;
 var expandFlag=false;
 var collisionFlag=false;
 var freezFlag=false;
+var initHeight=480;
+var initWidht=800;
 
-function ff(){
+
+//function ff(){
+
+  //alert(Game);
  Game=document.getElementById('game');
  Crafty.init(800,480, document.getElementById('game'));
   selectedEntity=Crafty.e('2D,DOM').attr({
@@ -37,8 +42,6 @@ function ff(){
 	h:0
 
 });
-  //alert(Game);
-
 
   Game.addEventListener("contextmenu",function(){
 
@@ -49,7 +52,7 @@ function ff(){
      
 });
 
-}
+//}
 
 
 function allowDrop(ev) {
@@ -80,9 +83,9 @@ var ele= document.getElementById(data);
 
     console.log("****************");
   
-    console.log(ele.naturalHeight);
+    console.log(ele);
 
-    ff();
+  // getInit();
     Crafty.sprite(ele.naturalWidth,ele.naturalHeight, ele.src, {flower:[0,0]});
 var bg = Crafty.e("2D, DOM, flower,Mouse").attr({
 	w:200,
@@ -325,7 +328,7 @@ circles.length=0;
 //////////////////////////////////////background color//////////////////////
 
  function setBackColor(col){
- 	ff();
+ 	//getInit();
 
  	  Crafty.background(col);
  	  //document.getElementById(col).style.border(2px solid white);

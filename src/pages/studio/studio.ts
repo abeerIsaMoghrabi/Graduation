@@ -90,7 +90,7 @@ export class StudioPage {
   constructor(public camera: Camera, public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
 
   this.getMyURL();
-
+this.loadScript();
   }
 
   getMyURL(){
@@ -325,6 +325,22 @@ this.navCtrl.push('CharsPage');
   async e2() {
 this.navCtrl.push('BackgroundPage');
   }
+
+    ngOnInit() {
+    $('.myCarousel').slick({
+      dots: true,
+      centerMode: true,
+      infinite: false,
+      centerPadding: '60px',
+      slidesToShow: 1
+    });
+  }
+
+
+  loadScript () { var script = document.createElement('script');
+   script.type = 'text/javascript'; 
+   script.src = 'assets/js/craftyGame.js'; 
+   document.body.appendChild(script); };
 
    
 }
