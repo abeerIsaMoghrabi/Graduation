@@ -1,4 +1,4 @@
-#Tue Feb 20 17:55:12 IST 2018
-base.0=/Users/macbook/myApp/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
+#Sun Mar 11 17:23:30 GMT+02:00 2018
+base.0=C\:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 renamed.0=classes.dex
-file.0=/Users/macbook/myApp/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex
+file.0=C\:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0\\classes.dex

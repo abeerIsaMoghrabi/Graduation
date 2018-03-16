@@ -44,6 +44,17 @@ try {
   }
 
   async register() {
-this.navCtrl.push('RegisterPage');
+//this.navCtrl.push('RegisterPage');
+
+    try {
+      const result = await this.aFAuth.auth.createUserWithEmailAndPassword(
+       this.user.email, this.user.password
+      );
+      if (result) {
+        this.navCtrl.setRoot('HomePage');
+      }
+    } catch (e) {
+      console.error(e);
+    }
   }
 }

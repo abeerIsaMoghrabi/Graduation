@@ -1,3 +1,105 @@
-page-home {
+
+.Profile-header{
+background-image: url('../../assets/imgs/profileImg1.jpg');
+background-size: cover;
+background-position: center;
+height: 470px;
+position: relative;
+opacity: 1 !important;
+background-attachment:fixed;
+opacity: 0.5;
+
 
 }
+
+.profile-img{
+	    width: 220px;
+    height: 220px;
+    border: 3px solid #b3b3b3;
+    border-radius: 14px;
+    display: inline-block;
+    position: absolute;
+    top: 340px;
+    left: 76px;
+    background-image: url('../../assets/imgs/profileImg2.jpg');
+background-size: cover;
+background-position: center;
+}
+.user-name{
+	color: white;
+	width: 100%;
+	height: 50px;
+	background-color: black;
+	opacity: 0.6;
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	border-bottom-left-radius: 14px;
+	border-bottom-right-radius: 14px;
+	text-align: center;
+	font-size: 18px;
+}
+
+.profile-icon{
+	width: 50%;
+	color: #0FB1B3;
+	font-size: 18px;
+	text-align: left;
+	margin-right: 167px;
+	
+}
+
+
+.circle{
+	display: inline-block;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	border: 2px solid #0FB1B3;
+	text-align: center;
+	    padding-top: 23px;
+	       margin: -10px 15px;
+
+}
+
+.stories{
+	margin: auto;
+	width: 80%;
+	margin-top: 78px;
+	margin-bottom: 40px;
+	
+
+}
+
+.story{
+	width: 210px;
+	height: 220px;
+
+	position: relative;
+
+	border: 1px solid #0FB1B3;
+	border-radius: 14px;
+	display: inline-block;
+	margin: 20px 13px;
+
+}
+
+
+.story-label{
+	position: absolute;
+	width: 100%;
+	height: 50px;
+	bottom: 0px;
+	left: 0px;
+	opacity: 0.6;
+	background-color: #0FB1B3;
+	border-bottom-left-radius: 14px;
+	border-bottom-right-radius: 14px;
+	color: white;
+	font-weight: 17px;
+	font-size: 17px;
+	text-align: center;
+	padding-top: 10px;
+
+}
+

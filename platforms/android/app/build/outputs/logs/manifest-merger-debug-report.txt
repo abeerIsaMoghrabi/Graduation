@@ -1,116 +1,182 @@
 -- Merging decision tree log ---
 provider#android.support.v4.content.FileProvider
-INJECTED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:12:9-14:20
+INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:12:9-14:20
 	android:grantUriPermissions
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:12:92-126
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:12:92-126
 	android:authorities
-		INJECTED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:12:19-66
+		INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:12:19-66
 	android:exported
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:12:67-91
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:12:67-91
 	android:name
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:12:127-181
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:12:127-181
 manifest
-ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:2:1-18:12
-INJECTED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:2:1-18:12
-INJECTED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:2:1-18:12
-INJECTED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:2:1-18:12
-MERGED from [com.android.support:support-v4:24.1.1] /Users/macbook/.gradle/caches/transforms-1/files-1.1/support-v4-24.1.1.aar/4eb05619f49e70ec723abcd5da7c6653/AndroidManifest.xml:17:1-27:12
-MERGED from [:CordovaLib] /Users/macbook/myApp/platforms/android/CordovaLib/build/intermediates/manifests/full/debug/AndroidManifest.xml:20:1-27:12
-INJECTED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:2:1-18:12
-INJECTED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:2:1-18:12
-INJECTED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:2:1-18:12
+ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
+MERGED from [com.android.support:appcompat-v7:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\09bc24de20bed83e18ad16e6eb8701ae\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-v4:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-v4-25.4.0.aar\d21c5bb63b344c7b56f64ce9c52608b0\AndroidManifest.xml:17:1-31:12
+MERGED from [:CordovaLib] C:\Users\Moghrabi\Graduation\platforms\android\CordovaLib\build\intermediates\manifests\full\debug\AndroidManifest.xml:20:1-27:12
+MERGED from [com.android.support:animated-vector-drawable:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.4.0.aar\2ba2bef22acf7ac6fa464798703e469f\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-vector-drawable:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.4.0.aar\35e48436189c0c92688641d7a3243a9d\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-fragment:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-fragment-25.4.0.aar\a98ed89d890ede14ef7f751ae160d556\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.4.0.aar\c09e098ea9a76772ce3a55b42a01b9ca\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-media-compat:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.4.0.aar\7d0c562a4f6835ef79dde7e11628496e\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.4.0.aar\fca0b6bb2e52fc698c963f82a365465c\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-compat-25.4.0.aar\271e62b3f5a0388f645eee2e67bb26f5\AndroidManifest.xml:17:1-31:12
+INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
 	package
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:2:98-124
-		INJECTED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:98-124
+		INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml
 	android:versionName
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:2:70-97
-		INJECTED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:70-97
+		INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml
 	android:hardwareAccelerated
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:2:11-45
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:11-45
 	xmlns:android
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:2:125-183
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:125-183
 	android:versionCode
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:2:46-69
-		INJECTED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:46-69
+		INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml
 supports-screens
-ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:3:5-191
+ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:3:5-191
 	android:largeScreens
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:3:49-76
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:3:49-76
 	android:smallScreens
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:3:132-159
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:3:132-159
 	android:normalScreens
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:3:77-105
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:3:77-105
 	android:xlargeScreens
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:3:160-188
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:3:160-188
 	android:resizeable
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:3:106-131
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:3:106-131
 	android:anyDensity
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:3:23-48
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:3:23-48
 uses-permission#android.permission.INTERNET
-ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:4:5-67
+ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:4:5-67
 	android:name
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:4:22-64
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:4:22-64
 application
-ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:5:5-15:19
-MERGED from [com.android.support:support-v4:24.1.1] /Users/macbook/.gradle/caches/transforms-1/files-1.1/support-v4-24.1.1.aar/4eb05619f49e70ec723abcd5da7c6653/AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-v4:24.1.1] /Users/macbook/.gradle/caches/transforms-1/files-1.1/support-v4-24.1.1.aar/4eb05619f49e70ec723abcd5da7c6653/AndroidManifest.xml:25:5-20
+ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:5:5-15:19
+MERGED from [com.android.support:appcompat-v7:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\09bc24de20bed83e18ad16e6eb8701ae\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\09bc24de20bed83e18ad16e6eb8701ae\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-v4-25.4.0.aar\d21c5bb63b344c7b56f64ce9c52608b0\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-v4-25.4.0.aar\d21c5bb63b344c7b56f64ce9c52608b0\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:animated-vector-drawable:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.4.0.aar\2ba2bef22acf7ac6fa464798703e469f\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:animated-vector-drawable:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.4.0.aar\2ba2bef22acf7ac6fa464798703e469f\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.4.0.aar\35e48436189c0c92688641d7a3243a9d\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.4.0.aar\35e48436189c0c92688641d7a3243a9d\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-fragment:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-fragment-25.4.0.aar\a98ed89d890ede14ef7f751ae160d556\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-fragment-25.4.0.aar\a98ed89d890ede14ef7f751ae160d556\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.4.0.aar\c09e098ea9a76772ce3a55b42a01b9ca\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.4.0.aar\c09e098ea9a76772ce3a55b42a01b9ca\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.4.0.aar\7d0c562a4f6835ef79dde7e11628496e\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.4.0.aar\7d0c562a4f6835ef79dde7e11628496e\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.4.0.aar\fca0b6bb2e52fc698c963f82a365465c\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.4.0.aar\fca0b6bb2e52fc698c963f82a365465c\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-compat-25.4.0.aar\271e62b3f5a0388f645eee2e67bb26f5\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-compat-25.4.0.aar\271e62b3f5a0388f645eee2e67bb26f5\AndroidManifest.xml:25:5-29:19
 	android:supportsRtl
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:5:114-140
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:5:114-140
 	android:label
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:5:81-113
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:5:81-113
 	android:hardwareAccelerated
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:5:18-52
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:5:18-52
 	android:icon
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:5:53-80
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:5:53-80
 activity#io.ionic.starter.MainActivity
-ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:6:9-11:20
+ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:6:9-11:20
 	android:label
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:6:97-134
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:6:97-134
 	android:launchMode
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:6:135-165
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:6:135-165
 	android:windowSoftInputMode
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:6:257-299
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:6:257-299
 	android:configChanges
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:6:19-96
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:6:19-96
 	android:theme
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:6:194-256
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:6:194-256
 	android:name
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:6:166-193
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:6:166-193
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:7:13-10:29
+ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:7:13-10:29
 	android:label
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:7:28-65
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:7:28-65
 action#android.intent.action.MAIN
-ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:8:17-69
+ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:8:17-69
 	android:name
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:8:25-66
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:8:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:9:17-77
+ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:9:17-77
 	android:name
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:9:27-74
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:9:27-74
 uses-sdk
-ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:16:5-74
-MERGED from [com.android.support:support-v4:24.1.1] /Users/macbook/.gradle/caches/transforms-1/files-1.1/support-v4-24.1.1.aar/4eb05619f49e70ec723abcd5da7c6653/AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-v4:24.1.1] /Users/macbook/.gradle/caches/transforms-1/files-1.1/support-v4-24.1.1.aar/4eb05619f49e70ec723abcd5da7c6653/AndroidManifest.xml:21:5-23:54
-MERGED from [:CordovaLib] /Users/macbook/myApp/platforms/android/CordovaLib/build/intermediates/manifests/full/debug/AndroidManifest.xml:25:5-44
-MERGED from [:CordovaLib] /Users/macbook/myApp/platforms/android/CordovaLib/build/intermediates/manifests/full/debug/AndroidManifest.xml:25:5-44
+ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:16:5-74
+MERGED from [com.android.support:appcompat-v7:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\09bc24de20bed83e18ad16e6eb8701ae\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\09bc24de20bed83e18ad16e6eb8701ae\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:support-v4:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-v4-25.4.0.aar\d21c5bb63b344c7b56f64ce9c52608b0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-v4-25.4.0.aar\d21c5bb63b344c7b56f64ce9c52608b0\AndroidManifest.xml:21:5-23:54
+MERGED from [:CordovaLib] C:\Users\Moghrabi\Graduation\platforms\android\CordovaLib\build\intermediates\manifests\full\debug\AndroidManifest.xml:25:5-44
+MERGED from [:CordovaLib] C:\Users\Moghrabi\Graduation\platforms\android\CordovaLib\build\intermediates\manifests\full\debug\AndroidManifest.xml:25:5-44
+MERGED from [com.android.support:animated-vector-drawable:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.4.0.aar\2ba2bef22acf7ac6fa464798703e469f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.4.0.aar\2ba2bef22acf7ac6fa464798703e469f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.4.0.aar\35e48436189c0c92688641d7a3243a9d\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-vector-drawable:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.4.0.aar\35e48436189c0c92688641d7a3243a9d\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-fragment:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-fragment-25.4.0.aar\a98ed89d890ede14ef7f751ae160d556\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-fragment-25.4.0.aar\a98ed89d890ede14ef7f751ae160d556\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-ui:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.4.0.aar\c09e098ea9a76772ce3a55b42a01b9ca\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.4.0.aar\c09e098ea9a76772ce3a55b42a01b9ca\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-media-compat:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.4.0.aar\7d0c562a4f6835ef79dde7e11628496e\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.4.0.aar\7d0c562a4f6835ef79dde7e11628496e\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-utils:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.4.0.aar\fca0b6bb2e52fc698c963f82a365465c\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.4.0.aar\fca0b6bb2e52fc698c963f82a365465c\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-compat-25.4.0.aar\271e62b3f5a0388f645eee2e67bb26f5\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-compat-25.4.0.aar\271e62b3f5a0388f645eee2e67bb26f5\AndroidManifest.xml:21:5-23:58
 	tools:overrideLibrary
-		ADDED from [com.android.support:support-v4:24.1.1] /Users/macbook/.gradle/caches/transforms-1/files-1.1/support-v4-24.1.1.aar/4eb05619f49e70ec723abcd5da7c6653/AndroidManifest.xml:23:9-51
+		ADDED from [com.android.support:appcompat-v7:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\09bc24de20bed83e18ad16e6eb8701ae\AndroidManifest.xml:23:9-75
 	android:targetSdkVersion
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:16:42-71
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:16:42-71
 	android:minSdkVersion
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:16:15-41
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:16:15-41
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:17:5-81
+ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:17:5-81
 	android:name
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:17:22-78
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:17:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:18:5-80
+	android:name
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:18:22-77
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:13:13-116
+ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:13:13-116
 	android:resource
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:13:75-113
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:13:75-113
 	android:name
-		ADDED from /Users/macbook/myApp/platforms/android/app/src/main/AndroidManifest.xml:13:24-74
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:13:24-74
+meta-data#android.support.VERSION
+ADDED from [com.android.support:appcompat-v7:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\09bc24de20bed83e18ad16e6eb8701ae\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-v4:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-v4-25.4.0.aar\d21c5bb63b344c7b56f64ce9c52608b0\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-v4:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-v4-25.4.0.aar\d21c5bb63b344c7b56f64ce9c52608b0\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:animated-vector-drawable:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.4.0.aar\2ba2bef22acf7ac6fa464798703e469f\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:animated-vector-drawable:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.4.0.aar\2ba2bef22acf7ac6fa464798703e469f\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.4.0.aar\35e48436189c0c92688641d7a3243a9d\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.4.0.aar\35e48436189c0c92688641d7a3243a9d\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-fragment:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-fragment-25.4.0.aar\a98ed89d890ede14ef7f751ae160d556\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-fragment-25.4.0.aar\a98ed89d890ede14ef7f751ae160d556\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.4.0.aar\c09e098ea9a76772ce3a55b42a01b9ca\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.4.0.aar\c09e098ea9a76772ce3a55b42a01b9ca\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.4.0.aar\7d0c562a4f6835ef79dde7e11628496e\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.4.0.aar\7d0c562a4f6835ef79dde7e11628496e\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.4.0.aar\fca0b6bb2e52fc698c963f82a365465c\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.4.0.aar\fca0b6bb2e52fc698c963f82a365465c\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-compat-25.4.0.aar\271e62b3f5a0388f645eee2e67bb26f5\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-compat-25.4.0.aar\271e62b3f5a0388f645eee2e67bb26f5\AndroidManifest.xml:26:9-28:38
+	android:value
+		ADDED from [com.android.support:appcompat-v7:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\09bc24de20bed83e18ad16e6eb8701ae\AndroidManifest.xml:28:13-35
+	android:name
+		ADDED from [com.android.support:appcompat-v7:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\09bc24de20bed83e18ad16e6eb8701ae\AndroidManifest.xml:27:13-51

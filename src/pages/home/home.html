@@ -6,21 +6,153 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
+  <!-- <ion-navbar color="primary">
     <ion-title>Home</ion-title>
-  </ion-navbar >
+  </ion-navbar > -->
 
 </ion-header>
 
 
 
 
-<ion-content padding>
+<ion-content >
+<!-- <div>{{userInfo}}</div> -->
+<div style="background-color: black;">
+<div class='Profile-header'>
 
-  <img src={{currentPhoto}} />
+<div class="container-fluid header-div " >
+    <div class="container">
+        <!--<div class="row" >-->
+           <div class="logo "><a href="#">STORY</a></div>
+    <div class="float-right list-div ">
+        <!--col-sm-6 offset-4-->
+        <ul >
+            <li class="log-btn  float-right header-li" onclick="store()">sign out</li>
+            <li class=" header-li float-right"><a   full [navPush]="userProf">Profile</a></li>
+            <li class=" header-li float-right"><a href="#">Studio</a></li>
+            <li class=" header-li float-right"><a href="#">Home</a></li>
+
+
+
+        </ul>
+
+    </div>
+    <div class="clearfix"></div>
+
+
+    <!--</div>-->
+    </div>
+</div>
+
+<div class="profile-img">
+  <div class="user-name">Abeer Moghrabi</div>
+</div>
+
+
+
+
+</div>
+</div>
+
+
+<div class="container-fluid">
+  <div class="container">
+    
+<ul class="profile-icon float-right">
+<li class="circle">
+  <ion-icon name="person"></ion-icon>
+</li>
+
+<li class="circle" (click)="b1()"><ion-icon name="camera"></ion-icon>
+</li>
+<li class="circle" (click)="b2()"><ion-icon name="film"></ion-icon></li>
+    
+     
+      
+
+
+</ul>
+<div class="clearfix"></div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+  <div class="container">
+    <div class="stories">
+
+
+      <div class="story" >
+        <div class="story-label">
+          story name
+        </div>
+      </div>
+
+
+<div class="story" >
+        <div class="story-label">
+          story name
+
+        </div>
+      </div>
+
+
+
+      <div class="story" >
+        <div class="story-label">
+          story name
+
+        </div>
+      </div>
+
+
+
+      <div class="story" >
+        <div class="story-label">
+          story name
+
+        </div>
+      </div>
+
+
+
+      <div class="story" >
+        <div class="story-label">
+          story name
+
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+<div class="container-fluid" style="background-color: #1e231f; height: 200px;">
+  <div class="container">
+    
+
+  </div>
+
+
+</div>
+
+
+
+
+<!--   <img src={{currentPhoto}} />
+
   <button ion-button (click)="b1()" >Studio</button>
   <button ion-button (click)="b2()" >Viewer</button>
-  <img src={{imgSource}} />
+  <img src={{imgSource}} /> -->
+
 </ion-content>
 
 

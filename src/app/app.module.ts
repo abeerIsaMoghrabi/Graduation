@@ -15,7 +15,12 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { storage,initializeApp } from 'firebase';
 import { Camera } from '@ionic-native/camera';
-//import { ImageProvider } from '../providers/image/image';
+import { ImageProvider } from '../providers/image/image';
+
+import { File } from '@ionic-native/file';
+import { Transfer } from '@ionic-native/transfer';
+import { FilePath } from '@ionic-native/file-path';
+
 
 export const FIREBASE_CONFIG =
  {
@@ -53,6 +58,10 @@ export const FIREBASE_CONFIG =
     AngularFireAuth,
     StatusBar,
     SplashScreen,
+    File,
+    Transfer,
+    Camera,
+    FilePath,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     
   ]

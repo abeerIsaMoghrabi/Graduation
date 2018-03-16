@@ -1,14 +1,14 @@
 webpackJsonp([0],{
 
-/***/ 472:
+/***/ 475:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StudioPageModule", function() { return StudioPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__studio__ = __webpack_require__(480);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__studio__ = __webpack_require__(483);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -27,7 +27,7 @@ var StudioPageModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2__studio__["a" /* StudioPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__studio__["a" /* StudioPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__studio__["a" /* StudioPage */]),
             ],
         })
     ], StudioPageModule);
@@ -38,7 +38,7 @@ var StudioPageModule = (function () {
 
 /***/ }),
 
-/***/ 474:
+/***/ 477:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10410,21 +10410,20 @@ return jQuery;
 
 /***/ }),
 
-/***/ 480:
+/***/ 483:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export FIREBASE_CONFIG */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StudioPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase_app__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase_app__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(474);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_slick_carousel_slick_slick__ = __webpack_require__(481);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_slick_carousel_slick_slick___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_slick_carousel_slick_slick__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase_app__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase_app__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery__ = __webpack_require__(477);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_slick_carousel_slick_slick__ = __webpack_require__(484);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_slick_carousel_slick_slick___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_slick_carousel_slick_slick__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10474,7 +10473,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
-
 /**
  * Generated class for the StudioPage page.
  *
@@ -10490,205 +10488,159 @@ var FIREBASE_CONFIG = {
     messagingSenderId: "68982032969"
 };
 var StudioPage = (function () {
-    function StudioPage(camera, navCtrl, navParams, loadingCtrl) {
-        var _this = this;
-        this.camera = camera;
+    function StudioPage(navCtrl, navParams, loadingCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.loadingCtrl = loadingCtrl;
-        this.onSuccess = function (snapshot) {
-            _this.currentPhoto = snapshot.downloadURL;
-            _this.loading.dismiss();
-        };
-        this.onErrors = function (error) {
-            console.log(error);
-            _this.loading.dismiss();
-        };
         this.getMyURL();
         this.loadScript();
     }
     StudioPage.prototype.getMyURL = function () {
         var _this = this;
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/t1.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/t1.png').getDownloadURL().then(function (url) {
             _this.imgSource = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/t2.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/t2.png').getDownloadURL().then(function (url) {
             _this.imgSource2 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/t3.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/t3.png').getDownloadURL().then(function (url) {
             _this.imgSource3 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/t4.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/t4.png').getDownloadURL().then(function (url) {
             _this.imgSource4 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/t5.jpg').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/t5.jpg').getDownloadURL().then(function (url) {
             _this.imgSource5 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/t6.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/t6.png').getDownloadURL().then(function (url) {
             _this.imgSource6 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/t7.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/t7.png').getDownloadURL().then(function (url) {
             _this.imgSource7 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/t8.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/t8.png').getDownloadURL().then(function (url) {
             _this.imgSource8 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/t9.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/t9.png').getDownloadURL().then(function (url) {
             _this.imgSource9 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/m1.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/m1.png').getDownloadURL().then(function (url) {
             _this.imgSource10 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/m2.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/m2.png').getDownloadURL().then(function (url) {
             _this.imgSource11 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/m3.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/m3.png').getDownloadURL().then(function (url) {
             _this.imgSource12 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/m4.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/m4.png').getDownloadURL().then(function (url) {
             _this.imgSource13 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/g1.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/g1.png').getDownloadURL().then(function (url) {
             _this.imgSource14 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/g2.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/g2.png').getDownloadURL().then(function (url) {
             _this.imgSource15 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/g3.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/g3.png').getDownloadURL().then(function (url) {
             _this.imgSource16 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/g4.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/g4.png').getDownloadURL().then(function (url) {
             _this.imgSource17 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/g5.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/g5.png').getDownloadURL().then(function (url) {
             _this.imgSource18 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/g6.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/g6.png').getDownloadURL().then(function (url) {
             _this.imgSource19 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/f1.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/f1.png').getDownloadURL().then(function (url) {
             _this.imgSource20 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/f2.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/f2.png').getDownloadURL().then(function (url) {
             _this.imgSource21 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/f3.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/f3.png').getDownloadURL().then(function (url) {
             _this.imgSource22 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/f4.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/f4.png').getDownloadURL().then(function (url) {
             _this.imgSource23 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/f5.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/f5.png').getDownloadURL().then(function (url) {
             _this.imgSource24 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/mo1.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/mo1.png').getDownloadURL().then(function (url) {
             _this.imgSource25 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/mo2.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/mo2.png').getDownloadURL().then(function (url) {
             _this.imgSource26 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('bg/s1.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('bg/s1.png').getDownloadURL().then(function (url) {
             _this.imgSource27 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/a1.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/a1.png').getDownloadURL().then(function (url) {
             _this.imgSource28 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/a2.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/a2.png').getDownloadURL().then(function (url) {
             _this.imgSource29 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/a3.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/a3.png').getDownloadURL().then(function (url) {
             _this.imgSource30 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/a4.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/a4.png').getDownloadURL().then(function (url) {
             _this.imgSource31 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/a5.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/a5.png').getDownloadURL().then(function (url) {
             _this.imgSource32 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/a6.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/a6.png').getDownloadURL().then(function (url) {
             _this.imgSource33 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/a7.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/a7.png').getDownloadURL().then(function (url) {
             _this.imgSource34 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/a8.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/a8.png').getDownloadURL().then(function (url) {
             _this.imgSource35 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/a9.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/a9.png').getDownloadURL().then(function (url) {
             _this.imgSource36 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/a10.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/a10.png').getDownloadURL().then(function (url) {
             _this.imgSource37 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/a11.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/a11.png').getDownloadURL().then(function (url) {
             _this.imgSource38 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/a12.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/a12.png').getDownloadURL().then(function (url) {
             _this.imgSource39 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/a13.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/a13.png').getDownloadURL().then(function (url) {
             _this.imgSource40 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/o1.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/o1.png').getDownloadURL().then(function (url) {
             _this.imgSource41 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/o2.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/o2.png').getDownloadURL().then(function (url) {
             _this.imgSource42 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/o3.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/o3.png').getDownloadURL().then(function (url) {
             _this.imgSource43 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/o4.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/o4.png').getDownloadURL().then(function (url) {
             _this.imgSource44 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/o5.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/o5.png').getDownloadURL().then(function (url) {
             _this.imgSource45 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/o6.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/o6.png').getDownloadURL().then(function (url) {
             _this.imgSource46 = url;
         });
-        __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('obj/o7.png').getDownloadURL().then(function (url) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('obj/o7.png').getDownloadURL().then(function (url) {
             _this.imgSource47 = url;
         });
     };
     StudioPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad StudioPage');
-    };
-    StudioPage.prototype.takePhoto = function () {
-        var _this = this;
-        var options = {
-            quality: 100,
-            targetHeight: 200,
-            targetWidth: 200,
-            destinationType: this.camera.DestinationType.DATA_URL,
-            encodingType: this.camera.EncodingType.JPEG,
-            mediaType: this.camera.MediaType.PICTURE
-        };
-        this.camera.getPicture(options).then(function (imageData) {
-            _this.loading = _this.loadingCtrl.create({
-                content: "Taking photo wait ...."
-            });
-            _this.loading.present();
-            _this.mySelectedPhoto =
-                _this.dataURLtoBlob('data:image/jpeg;base64,' + imageData);
-            _this.upload();
-        }, function (err) {
-            // Handle error
-        });
-    };
-    StudioPage.prototype.dataURLtoBlob = function (myURL) {
-        var binary = atob(myURL.split(',')[1]);
-        var array = [];
-        for (var i = 0; i < binary.length; i++) {
-            array.push(binary.charCodeAt(i));
-        }
-        return new Blob([new Uint8Array(array)], { type: 'image/jpeg' });
-    };
-    StudioPage.prototype.upload = function () {
-        if (this.mySelectedPhoto) {
-            var uploadTask = __WEBPACK_IMPORTED_MODULE_3_firebase_app__["storage"]().ref().child('images/myphoto.jpg').put(this.mySelectedPhoto);
-            uploadTask.then(this.onSuccess, this.onErrors);
-        }
     };
     StudioPage.prototype.e1 = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -10707,7 +10659,7 @@ var StudioPage = (function () {
         });
     };
     StudioPage.prototype.ngOnInit = function () {
-        __WEBPACK_IMPORTED_MODULE_4_jquery__('.myCarousel').slick({
+        __WEBPACK_IMPORTED_MODULE_3_jquery__('.myCarousel').slick({
             dots: true,
             centerMode: true,
             infinite: false,
@@ -10724,9 +10676,9 @@ var StudioPage = (function () {
     ;
     StudioPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-studio',template:/*ion-inline-start:"C:\Users\Moghrabi\Graduation\src\pages\studio\studio.html"*/'<!--\n\n  Generated template for the StudioPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n\n\n\n\n<ion-content >\n\n\n\n<div class="container-fluid header-div">\n\n    <div class="container">\n\n        <!--<div class="row" >-->\n\n           <div class="logo "><a href="#">STORY</a></div>\n\n    <div class="float-right list-div ">\n\n        <!--col-sm-6 offset-4-->\n\n        <ul >\n\n            <li class="log-btn  float-right header-li" onclick="store()">sign out</li>\n\n            <li class=" header-li float-right"><a   full [navPush]="userProf">Profile</a></li>\n\n            <li class=" header-li float-right"><a href="#">Studio</a></li>\n\n            <li class=" header-li float-right"><a href="#">Home</a></li>\n\n\n\n\n\n\n\n        </ul>\n\n\n\n    </div>\n\n    <div class="clearfix"></div>\n\n    <!--</div>-->\n\n    </div>\n\n</div>\n\n<!-- <img  id="river" src="../../assets/imgs/1c_burned.png" height="100" width="200" > -->\n\n<div class="container-fluid">\n\n  <div class="container">\n\n\n\n    <div class="left-side side float-left" >\n\n\n\n      <div class="obj-container" style="display: none;">\n\n        <div class="objt" style="background-image: url(\'../../assets/imgs/b2c.jpeg\');">\n\n          <div class="obj-label">background</div>\n\n        </div>\n\n        <div class="objt" style="background-image: url(\'../../assets/imgs/b1c.jpeg\');">\n\n          <div class="obj-label">objects</div>\n\n        </div>\n\n\n\n        <div class="objt" style="background-image: url(\'../../assets/imgs/t2c.jpeg\');">\n\n          <div class="obj-label">youser toys</div>\n\n        </div>\n\n      </div>\n\n\n\n      <!--  <div class="obj-container">\n\n      <div class="objt">\n\n        <img   class="obj_img" id="river" src="../../assets/imgs/1c_burned.png"   draggable="true" ondragstart="drag(event)"    >\n\n          <div class="obj-label">hill</div>\n\n        \n\n                  </div>\n\n        \n\n        \n\n\n\n        <div class="objt">\n\n        <img  class="obj_img" id="hill" src="../../assets/imgs/2c_burned.png"    draggable="true" ondragstart="drag(event)">\n\n          <div class="obj-label">hill</div>\n\n        \n\n                  </div>\n\n\n\n                    <div class="objt">\n\n        <img class="obj_img" id="sun" src="../../assets/imgs/1.png"   draggable="true" ondragstart="drag(event)"    >\n\n          <div class="obj-label">river</div>\n\n        </div>\n\n\n\n\n\n          <div class="objt">\n\n        <img class="obj_img" id="sky" src="../../assets/imgs/2.jpg"   draggable="true" ondragstart="drag(event)"    >\n\n          <div class="obj-label">river</div>\n\n        </div>\n\n\n\n\n\n          <div class="objt">\n\n        <img class="obj_img" id="boat" src="../../assets/imgs/1c.png"   draggable="true" ondragstart="drag(event)"    >\n\n          <div class="obj-label">river</div>\n\n        </div>\n\n\n\n\n\n\n\n        \n\n      </div> -->\n\n\n\n        <div class="obj-container" >\n\n        \n\n\n\n\n\n<div padding>\n\n  <ion-segment [(ngModel)]="pet">\n\n    <ion-segment-button value="b1">\n\n      1\n\n    </ion-segment-button>\n\n    <ion-segment-button value="b2">\n\n      2\n\n    </ion-segment-button>\n\n    <ion-segment-button value="b3">\n\n      3\n\n    </ion-segment-button>\n\n\n\n  </ion-segment>\n\n</div>\n\n\n\n<div [ngSwitch]="pet">\n\n\n\n\n\n  <ion-list *ngSwitchCase="\'b1\'">\n\n       <h3>BackGround</h3>\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n\n\n     <!--  we must but id for each image (very important) -->\n\n         <img src= {{imgSource1}} draggable="true" id=\'1\'ondragstart="drag(event)" >\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource2}} draggable="true" id=\'2\'ondragstart="drag(event)" >\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource3}} draggable="true" id=\'3\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource4}} draggable="true" id=\'4\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource5}} draggable="true" id=\'5\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource6}} draggable="true" id=\'6\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource7}} draggable="true" id=\'7\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource8}} draggable="true" id=\'8\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource9}} draggable="true" id=\'9\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource10}} draggable="true" id=\'10\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource11}} draggable="true" id=\'11\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource12}} draggable="true" id=\'12\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource13}} draggable="true" id=\'13\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource14}} draggable="true" id=\'14\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource15}} draggable="true" id=\'15\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource16}} draggable="true" id=\'16\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource17}} draggable="true" id=\'17\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource18}} draggable="true" id=\'18\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource19}} draggable="true" id=\'19\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource20}} draggable="true" id=\'20\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource21}} draggable="true" id=\'21\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource22}} draggable="true" id=\'22\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource23}} draggable="true" id=\'23\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource24}} draggable="true" id=\'24\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n<ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource25}} draggable="true" id=\'25\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource26}} draggable="true" id=\'26\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource27}} draggable="true" id=\'27\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n   \n\n  </ion-list>\n\n\n\n  <ion-list *ngSwitchCase="\'b2\'">\n\n  <h3><span>&#8203;</span><span>&#8203;</span> <span>&#8203;</span> <span>&#8203;</span> <span>&#8203;</span>  Objects </h3>\n\n  <ion-item>\n\n    <ion-thumbnail item-start>\n\n      <img src= {{imgSource28}} draggable="true" id=\'28\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n<ion-item>\n\n    <ion-thumbnail item-start>\n\n        <img src= {{imgSource29}} draggable="true" id=\'29\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n<ion-item>\n\n    <ion-thumbnail item-start>\n\n        <img src= {{imgSource30}} draggable="true" id=\'30\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n<ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource31}} draggable="true" id=\'31\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n<ion-item>\n\n    <ion-thumbnail item-start>\n\n        <img src= {{imgSource32}} draggable="true" id=\'32\'ondragstart="drag(event)" >\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n    <ion-thumbnail item-start>\n\n        <img src= {{imgSource33}} draggable="true" id=\'33\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n    <ion-thumbnail item-start>\n\n        <img src= {{imgSource34}} draggable="true" id=\'34\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n    <ion-thumbnail item-start>\n\n        <img src= {{imgSource35}} draggable="true" id=\'35\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource36}} draggable="true" id=\'36\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n<ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource37}} draggable="true" id=\'37\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource38}} draggable="true" id=\'38\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource39}} draggable="true" id=\'39\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource40}} draggable="true" id=\'40\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource41}} draggable="true" id=\'41\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource42}} draggable="true" id=\'42\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource43}} draggable="true" id=\'43\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource44}} draggable="true" id=\'44\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource45}} draggable="true" id=\'45\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource46}} draggable="true" id=\'46\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource47}} draggable="true" id=\'47\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n  </ion-list>\n\n\n\n  <ion-list *ngSwitchCase="\'b3\'">\n\n  <h3><span>&#8203;</span><span>&#8203;</span> <span>&#8203;</span> Your Toys</h3>\n\n    <ion-item>\n\n    \n\n      <ion-thumbnail item-start>\n\n        <img src="../../assets/imgs/b1c.jpeg" draggable="true" id=\'48\' ondragstart="drag(event)" >\n\n      </ion-thumbnail>\n\n      \n\n    </ion-item>\n\n\n\n\n\n    \n\n  </ion-list>\n\n</div>\n\n\n\n      </div>\n\n\n\n\n\n      \n\n    </div>\n\n    <div class="center-div">\n\n      <div class="action-bar">\n\n        <div class="action-block" style="   background-image: url(../../assets/imgs/move.jpg);">\n\n          <div class="action-block-lable">move</div>\n\n        </div>\n\n\n\n        <div class="action-block" style="   background-image: url(../../assets/imgs/jump.png);">\n\n          <div class="action-block-lable">jump</div>\n\n        </div>\n\n\n\n         <div class="action-block" style="   background-image: url(../../assets/imgs/fly.png);">\n\n          <div class="action-block-lable">fly</div>\n\n        </div>\n\n       <div class="action-block" style="   background-image: url(../../assets/imgs/fall.png);">\n\n          <div class="action-block-lable">fall</div>\n\n        </div>\n\n       <div class="action-block" style="   background-image: url(../../assets/imgs/dissapear1.png);">\n\n          <div class="action-block-lable">dissap</div>\n\n        </div>\n\n         <div class="action-block" style="   background-image: url(../../assets/imgs/growing1.png);">\n\n          <div class="action-block-lable">growing</div>\n\n        </div>\n\n\n\n\n\n      </div>\n\n    <div class="canvas-div" >\n\n      \n\n      <div  id="game" style =" " ondrop="drop(event)"  ondragover="allowDrop(event)"  ></div>\n\n\n\n    \n\n    </div>\n\n</div>\n\n\n\n    <div class="right-side side float-right">\n\n    <!--  <div id=\'obj_info\' style="display: none;">\n\n      <div class="main " ><span class="arrow"></span><span class="arrow-obj" id="objName"></span></div>\n\n    <div>\n\n      <div class=" main1" ><span class="arrow1"></span><span class="arrow-obj" id=\'objW\'></span> \n\n        <div class="main2"><ion-icon name="add" onclick="changeD(1)"></ion-icon> </div>\n\n        <div class="main2"> <ion-icon name="remove" onclick="changeD(2)"></ion-icon></div>\n\n      </div>\n\n      <div class=" main1" ><span class="arrow1"></span><span class="arrow-obj" id=\'objH\'></span>\n\n               <div class="main2"><ion-icon name="add" onclick="changeD(3)"></ion-icon> </div>\n\n        <div class="main2"> <ion-icon name="remove" onclick="changeD(4)"></ion-icon></div>\n\n      </div>\n\n\n\n    </div>\n\n         </div>\n\n\n\n\n\n            <div  >\n\n      <div class="main " ><span class="arrow"></span><span class="arrow-obj" id=\'map\'>map width</span></div>\n\n    <div>\n\n      <div class=" main1" > \n\n        <div class="main2"><ion-icon name="add" onclick="changeD(5)"></ion-icon> </div>\n\n        <div class="main2"> <ion-icon name="remove" onclick="changeD(6)"></ion-icon></div>\n\n      </div>\n\n      \n\n\n\n    </div>\n\n         </div> -->\n\n\n\n      \n\n<div style="width: 80%; margin:auto;">\n\n<div style="background-color: #0FB1B3 ; margin-top: 40px; width: 100%; " >\n\n<div class="myCarousel">\n\n    <div >\n\n<div>\n\n    <div id=\'red\' style="width: 40px ; height: 40px ; display: inline-block;  background-color: red;border-radius: 50% " onclick="setBackColor(\'red\')"></div>\n\n</div>\n\n</div>\n\n<div >\n\n<div>\n\n    <div style="width: 40px ; height: 40px ; display: inline-block;  background-color: #ffff00;border-radius: 50% " \n\n    onclick="setBackColor(\'#ffff00\')"></div>\n\n</div>\n\n\n\n</div>\n\n<div >\n\n<div>\n\n     <div style="width: 40px ; height: 40px ; display: inline-block; background-color: #66ff33;border-radius: 50% "\n\n     onclick="setBackColor(\'#66ff33\')"></div>\n\n</div>\n\n\n\n</div>\n\n<div >\n\n<div>\n\n     <div style="width: 40px ; height: 40px ; display: inline-block; background-color: #00ccff;border-radius: 50% "\n\n     onclick="setBackColor(\'#00ccff\')"></div>\n\n</div>\n\n\n\n</div>\n\n\n\n    <div >\n\n<div>\n\n    <div style="width: 40px ; height: 40px ; display: inline-block;  background-color: #ff0066;border-radius: 50% "\n\n    onclick="setBackColor(\'#ff0066\')"></div>\n\n</div>\n\n</div>\n\n<div >\n\n<div>\n\n    <div style="width: 40px ; height: 40px ; display: inline-block;  background-color: #9900cc;border-radius: 50% "\n\n    onclick="setBackColor(\'#9900cc\')"></div>\n\n</div>\n\n\n\n</div>\n\n<div >\n\n<div>\n\n     <div style="width: 40px ; height: 40px ; display: inline-block; background-color: #663300;border-radius: 50% "\n\n     onclick="setBackColor(\'#663300\')"></div>\n\n</div>\n\n\n\n</div>\n\n<div >\n\n<div>\n\n     <div style="width: 40px ; height: 40px ; display: inline-block; background-color: #ff9900;border-radius: 50% "\n\n     onclick="setBackColor(\'#ff9900\')"></div>\n\n</div>\n\n\n\n</div>\n\n</div>\n\n</div>\n\n</div>\n\n\n\n<div class="text-part">\n\n<span class="create-icon"> <ion-icon name="create"></ion-icon></span> \n\n<span class="create-icon">Add Text</span>\n\n<input type="color">\n\n</div>\n\n\n\n<!-- <div class="time-test">\n\n  \n\n<span class="time">0:0</span>\n\n<div class="test"><ion-icon name="play">test</ion-icon></div>\n\n\n\n</div> -->\n\n\n\n\n\n<div>\n\n  \n\n    <ul >\n\n            <li class="right-side-btn" >clear</li>\n\n          \n\n            <li class="right-side-btn" >finish</li>\n\n\n\n\n\n        </ul>\n\n</div>\n\n\n\n\n\n\n\n    </div>\n\n  \n\n  </div>\n\n<div class="clearfix"></div>\n\n</div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Moghrabi\Graduation\src\pages\studio\studio.html"*/,
+            selector: 'page-studio',template:/*ion-inline-start:"C:\Users\Moghrabi\Graduation\src\pages\studio\studio.html"*/' <!--\n\n  Generated template for the StudioPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n\n\n\n\n<ion-content >\n\n\n\n<div class="container-fluid header-div">\n\n    <div class="container">\n\n        <!--<div class="row" >-->\n\n           <div class="logo "><a href="#">STORY</a></div>\n\n    <div class="float-right list-div ">\n\n        <!--col-sm-6 offset-4-->\n\n        <ul >\n\n            <li class="log-btn  float-right header-li" onclick="store()">sign out</li>\n\n            <li class=" header-li float-right"><a   full [navPush]="userProf">Profile</a></li>\n\n            <li class=" header-li float-right"><a href="#">Studio</a></li>\n\n            <li class=" header-li float-right"><a href="#">Home</a></li>\n\n\n\n\n\n\n\n        </ul>\n\n\n\n    </div>\n\n    <div class="clearfix"></div>\n\n    <!--</div>-->\n\n    </div>\n\n</div>\n\n<!-- <img  id="river" src="../../assets/imgs/1c_burned.png" height="100" width="200" > -->\n\n<div class="container-fluid">\n\n  <div class="container">\n\n\n\n    <div class="left-side side float-left" >\n\n\n\n      <div class="obj-container" style="display: none;">\n\n        <div class="objt" style="background-image: url(\'../../assets/imgs/b2c.jpeg\');">\n\n          <div class="obj-label">background</div>\n\n        </div>\n\n        <div class="objt" style="background-image: url(\'../../assets/imgs/b1c.jpeg\');">\n\n          <div class="obj-label">objects</div>\n\n        </div>\n\n\n\n        <div class="objt" style="background-image: url(\'../../assets/imgs/t2c.jpeg\');">\n\n          <div class="obj-label">youser toys</div>\n\n        </div>\n\n      </div>\n\n\n\n      <!--  <div class="obj-container">\n\n      <div class="objt">\n\n        <img   class="obj_img" id="river" src="../../assets/imgs/1c_burned.png"   draggable="true" ondragstart="drag(event)"    >\n\n          <div class="obj-label">hill</div>\n\n        \n\n                  </div>\n\n        \n\n        \n\n\n\n        <div class="objt">\n\n        <img  class="obj_img" id="hill" src="../../assets/imgs/2c_burned.png"    draggable="true" ondragstart="drag(event)">\n\n          <div class="obj-label">hill</div>\n\n        \n\n                  </div>\n\n\n\n                    <div class="objt">\n\n        <img class="obj_img" id="sun" src="../../assets/imgs/1.png"   draggable="true" ondragstart="drag(event)"    >\n\n          <div class="obj-label">river</div>\n\n        </div>\n\n\n\n\n\n          <div class="objt">\n\n        <img class="obj_img" id="sky" src="../../assets/imgs/2.jpg"   draggable="true" ondragstart="drag(event)"    >\n\n          <div class="obj-label">river</div>\n\n        </div>\n\n\n\n\n\n          <div class="objt">\n\n        <img class="obj_img" id="boat" src="../../assets/imgs/1c.png"   draggable="true" ondragstart="drag(event)"    >\n\n          <div class="obj-label">river</div>\n\n        </div>\n\n\n\n\n\n\n\n        \n\n      </div> -->\n\n\n\n        <div class="obj-container" >\n\n        \n\n\n\n\n\n<div padding>\n\n  <ion-segment [(ngModel)]="pet">\n\n    <ion-segment-button value="b1">\n\n      1\n\n    </ion-segment-button>\n\n    <ion-segment-button value="b2">\n\n      2\n\n    </ion-segment-button>\n\n    <ion-segment-button value="b3">\n\n      3\n\n    </ion-segment-button>\n\n\n\n  </ion-segment>\n\n</div>\n\n\n\n<div [ngSwitch]="pet">\n\n\n\n\n\n  <ion-list *ngSwitchCase="\'b1\'">\n\n       <h3>BackGround</h3>\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n\n\n     <!--  we must but id for each image (very important) -->\n\n         <img src= {{imgSource1}} draggable="true" id=\'1\'ondragstart="drag(event)" >\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource2}} draggable="true" id=\'2\'ondragstart="drag(event)" >\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource3}} draggable="true" id=\'3\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource4}} draggable="true" id=\'4\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource5}} draggable="true" id=\'5\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource6}} draggable="true" id=\'6\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource7}} draggable="true" id=\'7\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource8}} draggable="true" id=\'8\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource9}} draggable="true" id=\'9\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource10}} draggable="true" id=\'10\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource11}} draggable="true" id=\'11\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource12}} draggable="true" id=\'12\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource13}} draggable="true" id=\'13\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource14}} draggable="true" id=\'14\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource15}} draggable="true" id=\'15\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource16}} draggable="true" id=\'16\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource17}} draggable="true" id=\'17\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource18}} draggable="true" id=\'18\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource19}} draggable="true" id=\'19\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource20}} draggable="true" id=\'20\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource21}} draggable="true" id=\'21\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource22}} draggable="true" id=\'22\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource23}} draggable="true" id=\'23\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource24}} draggable="true" id=\'24\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n<ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource25}} draggable="true" id=\'25\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource26}} draggable="true" id=\'26\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-thumbnail item-start>\n\n        <img src= {{imgSource27}} draggable="true" id=\'27\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n   \n\n  </ion-list>\n\n\n\n  <ion-list *ngSwitchCase="\'b2\'">\n\n  <h3><span>&#8203;</span><span>&#8203;</span> <span>&#8203;</span> <span>&#8203;</span> <span>&#8203;</span>  Objects </h3>\n\n  <ion-item>\n\n    <ion-thumbnail item-start>\n\n      <img src= {{imgSource28}} draggable="true" id=\'28\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n<ion-item>\n\n    <ion-thumbnail item-start>\n\n        <img src= {{imgSource29}} draggable="true" id=\'29\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n<ion-item>\n\n    <ion-thumbnail item-start>\n\n        <img src= {{imgSource30}} draggable="true" id=\'30\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n<ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource31}} draggable="true" id=\'31\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n<ion-item>\n\n    <ion-thumbnail item-start>\n\n        <img src= {{imgSource32}} draggable="true" id=\'32\'ondragstart="drag(event)" >\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n    <ion-thumbnail item-start>\n\n        <img src= {{imgSource33}} draggable="true" id=\'33\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n    <ion-thumbnail item-start>\n\n        <img src= {{imgSource34}} draggable="true" id=\'34\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n    <ion-thumbnail item-start>\n\n        <img src= {{imgSource35}} draggable="true" id=\'35\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource36}} draggable="true" id=\'36\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n<ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource37}} draggable="true" id=\'37\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource38}} draggable="true" id=\'38\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource39}} draggable="true" id=\'39\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource40}} draggable="true" id=\'40\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource41}} draggable="true" id=\'41\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource42}} draggable="true" id=\'42\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource43}} draggable="true" id=\'43\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource44}} draggable="true" id=\'44\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource45}} draggable="true" id=\'45\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource46}} draggable="true" id=\'46\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n    <ion-item>\n\n<ion-thumbnail item-start>\n\n        <img src= {{imgSource47}} draggable="true" id=\'47\'ondragstart="drag(event)">\n\n      </ion-thumbnail>\n\n    </ion-item>\n\n\n\n  </ion-list>\n\n\n\n  <ion-list *ngSwitchCase="\'b3\'" id="yourObjList">\n\n  <h3><span>&#8203;</span><span>&#8203;</span> <span>&#8203;</span> Your Toys</h3>\n\n    <ion-item>\n\n    \n\n      <ion-thumbnail item-start>\n\n        <img src="../../assets/imgs/b1c.jpeg" draggable="true" id=\'48\' ondragstart="drag(event)" >\n\n      </ion-thumbnail>\n\n      \n\n    </ion-item>\n\n\n\n <ion-item>\n\n    \n\n      <ion-thumbnail item-start>\n\n        <img  draggable="true" id=\'49\' ondragstart="drag(event)" onclick =" document.getElementById(49).src=toyObj[0]; ">\n\n        \n\n      </ion-thumbnail>\n\n      \n\n    </ion-item>\n\n    \n\n  </ion-list>\n\n</div>\n\n\n\n      </div>\n\n\n\n\n\n      \n\n    </div>\n\n    <div class="center-div">\n\n      <div class="action-bar">\n\n        <div class="action-block"  id=\'move\' style="   background-image: url(../../assets/imgs/move.jpg);" onclick="move()">\n\n          <div class="action-block-lable">move</div>\n\n        </div>\n\n\n\n        <div class="action-block"  id=\'jump\' style="   background-image: url(../../assets/imgs/jump.png);" onclick="jump()">\n\n          <div class="action-block-lable">jump</div>\n\n        </div>\n\n\n\n         <div class="action-block" id=\'fly\' style="   background-image: url(../../assets/imgs/fly.png);" onclick="fly()">\n\n          <div class="action-block-lable">fly</div>\n\n        </div>\n\n       <div class="action-block" id=\'fall\' style="   background-image: url(../../assets/imgs/fall.png);" onclick="fall()">\n\n          <div class="action-block-lable">fall</div>\n\n        </div>\n\n       <div class="action-block" id=\'dissapear\' style="   background-image: url(../../assets/imgs/dissapear1.png);" onclick="dissapear()">\n\n          <div class="action-block-lable">dissap</div>\n\n        </div>\n\n         <div class="action-block" id=\'growing\' style="   background-image: url(../../assets/imgs/growing1.png);" onclick="growing()">\n\n          <div class="action-block-lable">growing</div>\n\n        </div>\n\n\n\n\n\n      </div>\n\n    <div class="canvas-div" >\n\n      \n\n      <div  id="game" style =" " ondrop="drop(event)"  ondragover="allowDrop(event)"  ></div>\n\n\n\n    \n\n    </div>\n\n</div>\n\n\n\n    <div class="right-side side float-right">\n\n    <!--  <div id=\'obj_info\' style="display: none;">\n\n      <div class="main " ><span class="arrow"></span><span class="arrow-obj" id="objName"></span></div>\n\n    <div>\n\n      <div class=" main1" ><span class="arrow1"></span><span class="arrow-obj" id=\'objW\'></span> \n\n        <div class="main2"><ion-icon name="add" onclick="changeD(1)"></ion-icon> </div>\n\n        <div class="main2"> <ion-icon name="remove" onclick="changeD(2)"></ion-icon></div>\n\n      </div>\n\n      <div class=" main1" ><span class="arrow1"></span><span class="arrow-obj" id=\'objH\'></span>\n\n               <div class="main2"><ion-icon name="add" onclick="changeD(3)"></ion-icon> </div>\n\n        <div class="main2"> <ion-icon name="remove" onclick="changeD(4)"></ion-icon></div>\n\n      </div>\n\n\n\n    </div>\n\n         </div>\n\n\n\n\n\n            <div  >\n\n      <div class="main " ><span class="arrow"></span><span class="arrow-obj" id=\'map\'>map width</span></div>\n\n    <div>\n\n      <div class=" main1" > \n\n        <div class="main2"><ion-icon name="add" onclick="changeD(5)"></ion-icon> </div>\n\n        <div class="main2"> <ion-icon name="remove" onclick="changeD(6)"></ion-icon></div>\n\n      </div>\n\n      \n\n\n\n    </div>\n\n         </div> -->\n\n\n\n      \n\n<div style="width: 80%; margin:auto;">\n\n<div style="background-color: #0FB1B3 ; margin-top: 40px; width: 100%; " >\n\n<div class="myCarousel">\n\n    <div >\n\n<div>\n\n    <div id=\'red\' style="width: 40px ; height: 40px ; display: inline-block;  background-color: red;border-radius: 50% " onclick="setBackColor(\'red\')"></div>\n\n</div>\n\n</div>\n\n<div >\n\n<div>\n\n    <div style="width: 40px ; height: 40px ; display: inline-block;  background-color: #ffff00;border-radius: 50% " \n\n    onclick="setBackColor(\'#ffff00\')"></div>\n\n</div>\n\n\n\n</div>\n\n<div >\n\n<div>\n\n     <div style="width: 40px ; height: 40px ; display: inline-block; background-color: #66ff33;border-radius: 50% "\n\n     onclick="setBackColor(\'#66ff33\')"></div>\n\n</div>\n\n\n\n</div>\n\n<div >\n\n<div>\n\n     <div style="width: 40px ; height: 40px ; display: inline-block; background-color: #00ccff;border-radius: 50% "\n\n     onclick="setBackColor(\'#00ccff\')"></div>\n\n</div>\n\n\n\n</div>\n\n\n\n    <div >\n\n<div>\n\n    <div style="width: 40px ; height: 40px ; display: inline-block;  background-color: #ff0066;border-radius: 50% "\n\n    onclick="setBackColor(\'#ff0066\')"></div>\n\n</div>\n\n</div>\n\n<div >\n\n<div>\n\n    <div style="width: 40px ; height: 40px ; display: inline-block;  background-color: #9900cc;border-radius: 50% "\n\n    onclick="setBackColor(\'#9900cc\')"></div>\n\n</div>\n\n\n\n</div>\n\n<div >\n\n<div>\n\n     <div style="width: 40px ; height: 40px ; display: inline-block; background-color: #663300;border-radius: 50% "\n\n     onclick="setBackColor(\'#663300\')"></div>\n\n</div>\n\n\n\n</div>\n\n<div >\n\n<div>\n\n     <div style="width: 40px ; height: 40px ; display: inline-block; background-color: #ff9900;border-radius: 50% "\n\n     onclick="setBackColor(\'#ff9900\')"></div>\n\n</div>\n\n\n\n</div>\n\n</div>\n\n</div>\n\n</div>\n\n\n\n<div class="text-part">\n\n<span class="create-icon"> <ion-icon name="create"></ion-icon></span> \n\n<span class="create-icon">Add Text</span>\n\n<input type="color">\n\n</div>\n\n\n\n<!-- <div class="time-test">\n\n  \n\n<span class="time">0:0</span>\n\n<div class="test"><ion-icon name="play">test</ion-icon></div>\n\n\n\n</div> -->\n\n\n\n\n\n<div>\n\n  \n\n    <ul >\n\n            <li class="right-side-btn" >clear</li>\n\n          \n\n            <li class="right-side-btn" >finish</li>\n\n\n\n\n\n        </ul>\n\n</div>\n\n\n\n\n\n\n\n    </div>\n\n  \n\n  </div>\n\n<div class="clearfix"></div>\n\n</div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Moghrabi\Graduation\src\pages\studio\studio.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]])
     ], StudioPage);
     return StudioPage;
 }());
@@ -10735,7 +10687,7 @@ var StudioPage = (function () {
 
 /***/ }),
 
-/***/ 481:
+/***/ 484:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -10758,7 +10710,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 ;(function(factory) {
     'use strict';
     if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(474)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(477)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));

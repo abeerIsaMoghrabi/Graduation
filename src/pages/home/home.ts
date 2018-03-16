@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { storage } from 'firebase';
 import * as firebase from 'firebase/app';
+import { AngularFireAuth } from 'angularfire2/auth';
 /**
  * Generated class for the HomePage page.
  *
@@ -33,17 +34,26 @@ export class HomePage {
     loading;
     currentPhoto;
     imgSource;
+     userInfo
 
 
-
-  constructor(public camera: Camera, public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
+  constructor(public camera: Camera, public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, private aFAuth: AngularFireAuth) {
 
   //firebase.initializeApp(FIREBASE_CONFIG);
 
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
+     this.aFAuth.authState.subscribe(data => {
+      if (data && data.email && data.uid) {
+        console.log('Welcome to APP_NAME' +data.email );
+         this.userInfo=data.uid;
+      }
+      else {
+         console.log(" Could not find authentication details");
+         
+      }
+    });
   }
 
   takePhoto(){
@@ -154,5 +164,8 @@ this.navCtrl.push('StudioPage');
   async b2() {
 this.navCtrl.push('ViewerPage');
   }
+
+
+
 
 }

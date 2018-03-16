@@ -1,4 +1,4 @@
-<!--
+ <!--
   Generated template for the StudioPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
@@ -376,7 +376,7 @@
 
   </ion-list>
 
-  <ion-list *ngSwitchCase="'b3'">
+  <ion-list *ngSwitchCase="'b3'" id="yourObjList">
   <h3><span>&#8203;</span><span>&#8203;</span> <span>&#8203;</span> Your Toys</h3>
     <ion-item>
     
@@ -386,7 +386,14 @@
       
     </ion-item>
 
-
+ <ion-item>
+    
+      <ion-thumbnail item-start>
+        <img  draggable="true" id='49' ondragstart="drag(event)" onclick =" document.getElementById(49).src=toyObj[0]; ">
+        
+      </ion-thumbnail>
+      
+    </ion-item>
     
   </ion-list>
 </div>
@@ -398,24 +405,24 @@
     </div>
     <div class="center-div">
       <div class="action-bar">
-        <div class="action-block" style="   background-image: url(../../assets/imgs/move.jpg);" onclick="move()">
+        <div class="action-block"  id='move' style="   background-image: url(../../assets/imgs/move.jpg);" onclick="move()">
           <div class="action-block-lable">move</div>
         </div>
 
-        <div class="action-block" style="   background-image: url(../../assets/imgs/jump.png);" onclick="jump()">
+        <div class="action-block"  id='jump' style="   background-image: url(../../assets/imgs/jump.png);" onclick="jump()">
           <div class="action-block-lable">jump</div>
         </div>
 
-         <div class="action-block" style="   background-image: url(../../assets/imgs/fly.png);" onclick="fly()">
+         <div class="action-block" id='fly' style="   background-image: url(../../assets/imgs/fly.png);" onclick="fly()">
           <div class="action-block-lable">fly</div>
         </div>
-       <div class="action-block" style="   background-image: url(../../assets/imgs/fall.png);" onclick="fall()">
+       <div class="action-block" id='fall' style="   background-image: url(../../assets/imgs/fall.png);" onclick="fall()">
           <div class="action-block-lable">fall</div>
         </div>
-       <div class="action-block" style="   background-image: url(../../assets/imgs/dissapear1.png);" onclick="dissapear()">
+       <div class="action-block" id='dissapear' style="   background-image: url(../../assets/imgs/dissapear1.png);" onclick="dissapear()">
           <div class="action-block-lable">dissap</div>
         </div>
-         <div class="action-block" style="   background-image: url(../../assets/imgs/growing1.png);" onclick="growing()">
+         <div class="action-block" id='growing' style="   background-image: url(../../assets/imgs/growing1.png);" onclick="growing()">
           <div class="action-block-lable">growing</div>
         </div>
 

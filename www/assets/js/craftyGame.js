@@ -2,7 +2,15 @@
 // // Get an array of all 2D entities
 // var array_of_entities = Crafty("2D").get();
 
+//window.onload = function(){
 
+
+
+
+	
+
+//}
+var toyObj=[];
 
 var objBackground=function(p){
 var that={};
@@ -53,6 +61,43 @@ var initWidht=800;
 });
 
 //}
+
+/////////////////////////////////////////////////////////
+
+   var config = {
+    apiKey: "AIzaSyAwzSQGq1EYiVTEAKlTlNHFtbm1IrZYbtg",
+    authDomain: "myapp-b575c.firebaseapp.com",
+    databaseURL: "https://myapp-b575c.firebaseio.com",
+    projectId: "myapp-b575c",
+    storageBucket: "myapp-b575c.appspot.com",
+    messagingSenderId: "68982032969"
+  };
+  firebase.initializeApp(config);
+
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+   var userId = firebase.auth().currentUser.uid;
+	console.log(userId);
+var databaseWebsites = firebase.database().ref('userImg').child(userId);
+console.log(databaseWebsites.toString());
+databaseWebsites.on('value', function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+
+     
+     console.log(childSnapshot.val().imgN);
+    // document.getElementById('yourObjList').appendChild('img').src=childSnapshot.val().imgN;
+    toyObj.push(childSnapshot.val().imgN);
+
+  });
+
+ // order = 0;
+});
+
+  }
+});
+
+//////////////////////////////////////////////////////
 
 
 function allowDrop(ev) {
@@ -352,7 +397,7 @@ function createResizeEntity(rootm){
           Crafty.sprite(2000,2000, 'assets/imgs/copy2.png', {c:[0,0]});
            Crafty.sprite(512,512, 'assets/imgs/freez.png', {a:[0,0]});
             Crafty.sprite(199,150, 'assets/imgs/collison3.png', {co:[0,0]});
-            Crafty.sprite(256,256, 'assets/imgs/act2.png', {act:[0,0]});
+            Crafty.sprite(261,193, 'assets/imgs/gravity.png', {gravity:[0,0]});
 /////////////////////remove all exsisting circles///////////////////
 
 
@@ -452,7 +497,7 @@ var freez = Crafty.e("2D, DOM, a,Mouse").attr({
 	 x:rootm.x+165,
      y:rootm.y-29
              	});
-var act = Crafty.e("2D, DOM, act,Mouse").attr({
+var gravity = Crafty.e("2D, DOM, gravity,Mouse").attr({
 
 	w:20,
 	h:20,
@@ -474,7 +519,7 @@ circles.push(rotate);
 circles.push(expand);
 circles.push(collision);
 circles.push(freez);
-circles.push(act);
+circles.push(gravity);
 		selectedEntity=rootm;
 
 
@@ -483,6 +528,7 @@ circles.push(act);
 
 
 circle1.bind('MouseDown',function(e){
+
 rootm.css({'border': '1px dashed red'});
 	resizeFlag=true;
 rc=rootm.x+rootm.w;
@@ -786,17 +832,21 @@ freez.bind('Click', function (e) {
 
 //////د\\\\\/////////////////////freez//////////////////////////////
 
-/////////////////////////////////act///////////////////////////////
-act.bind('Click', function (e) {
-	modalPlugin();
- 
+/////////////////////////////////solid///////////////////////////////
 
-             
+collision.bind('Click', function (e) {
+selectedEntity.addComponent('Solid');
+
 });
+//////د\\\\\/////////////////////solid//////////////////////////////
 
-//////د\\\\\/////////////////////act//////////////////////////////
+/////////////////////////////////gravity///////////////////////////////
 
+gravity.bind('Click', function (e) {
+selectedEntity.addComponent('Floor');
 
+});
+//////د\\\\\/////////////////////gravity//////////////////////////////
 rootm.bind("StartDrag", function() {
    removeCircle();
     rootm.css({'border': '0px '});
@@ -865,45 +915,86 @@ for(var i=4;i<circles.length;i++){
 }
 
 
-function modalPlugin(){
-// 	var modal = new tingle.modal({
-//     footer: true,
-//     stickyFooter: false,
-//     closeMethods: ['overlay', 'button', 'escape'],
-//     closeLabel: "Close",
-//     cssClass: ['custom-class-1', 'custom-class-2'],
-//     onOpen: function() {
-//         console.log('modal open');
-//     },
-//     onClose: function() {
-//         console.log('modal closed');
-//     },
-//     beforeClose: function() {
-//         // here's goes some logic
-//         // e.g. save content before closing the modal
-//         return true; // close the modal
-//         return false; // nothing happens
-//     }
-// });
 
-// // set content
-// modal.setContent('<h1>here\'s some content</h1>');
+////////////////////////////////////////////////////////////////////
 
-// // add a button
-// modal.addFooterBtn('Button label', 'tingle-btn tingle-btn--primary', function() {
-//     // here goes some logic
-//     modal.close();
-// });
 
-// // add another button
-// modal.addFooterBtn('Dangerous action !', 'tingle-btn tingle-btn--danger', function() {
-//     // here goes some logic
-//     modal.close();
-// });
 
-// // open modal
-// modal.open();
 
-// // close modal
-// modal.close();
+
+
+
+
+
+
+
+
+
+
+// 
+function move(){
+
+	//////////move gravityion/////////////
+
+}
+function jump(){
+
+// ground=Crafty.e('Floor, 2D, Canvas, Color')
+//              .attr({x: 0, y: 250, w: 250, h: 10})
+//              .color('green');
+ var arr = Crafty("2D").get();
+ var isFloor=false;
+for (var i=0;i< arr.length;i++) {
+	console.log("loop");
+	if(arr[i]!=selectedEntity){
+if(arr[i].has('Floor')){
+	console.log("floor");
+	isFloor=true;
+	break;
+}
+
+}}
+
+if(isFloor==true){
+	selectedEntity.addComponent("Twoway, Gravity,Jumper,Collision") .checkHits('Solid') // check for collisions with entities that have the Solid component in each frame
+    .bind("HitOn", function(hitData) {
+        Crafty.log("Collision with Solid entity occurred for the first time.");
+    })
+    .bind("HitOff", function(comp) {
+        Crafty.log("Collision with Solid entity ended.");
+    });
+selectedEntity.twoway(200)
+  .gravity('Floor');
+
+
+
+
+	document.getElementById('jump').style.backgroundColor = "blue";
+	
+
+}
+
+else{
+	console.log("please make floor");
+}
+
+
+
+
+
+
+
+
+}
+function fly(){
+
+}
+function fall(){
+
+}
+function dissapear(){
+
+}
+function growing(){
+
 }
