@@ -23,12 +23,34 @@ that.id=p.id;
 return that;
 }
 
+var actionList=[];
+var objAction=function(p){
+	var that={};
+that.move=p.move;
+that.jump=p.jump;
+that.fly=p.fly;
+that.fall=p.fall;
+that.dissapear=p.dissapear;
+that.growing=p.growing;
+that.delete=p.delete;
+that.copy=p.copy;
+that.rotate=p.rotate;
+that.expand=p.expand;
+that.collision=p.collision;
+that.freez=p.freez;
+that.gravity=p.gravity;
+that.apple=p.apple;
+that.floors=p.floors;
+return that;
 
+}
+var entityNameCounter=0;
 var xpos;
 var ypos;
 var Game;
 var objList=[];
 var circles=[];
+var lines=[];
 var selectedEntity;
 
 var bg;
@@ -36,7 +58,17 @@ var bg;
 var expandFlag=false;
 var collisionFlag=false;
 var freezFlag=false;
+var collisionFlag=false;
+var gravityFlag=false;
+var jumpFlag=true;
+var moveFlag=false;
+var flyFlag=false;
+var fallFlag=false;
+var dissapearFlag=false;
+var growingFlag=false;
+var flyf=true;
 var initHeight=480;
+
 var initWidht=800;
 
 
@@ -60,7 +92,22 @@ var initWidht=800;
      
 });
 
+
+
+
+
 //}
+
+ Crafty.sprite(100,100, 'assets/imgs/gray.png', {f:[0,0]});
+
+       Crafty.sprite(256,256, 'assets/imgs/dele1.png', {d:[0,0]});
+       Crafty.sprite(2000,1707, 'assets/imgs/expand.png', {e:[0,0]});
+        Crafty.sprite(512,512, 'assets/imgs/rotate.png', {r:[0,0]});
+          Crafty.sprite(2000,2000, 'assets/imgs/copy2.png', {c:[0,0]});
+           Crafty.sprite(512,512, 'assets/imgs/freez.png', {a:[0,0]});
+            Crafty.sprite(199,150, 'assets/imgs/collison3.png', {co:[0,0]});
+            Crafty.sprite(261,193, 'assets/imgs/gravity.png', {gravity:[0,0]});
+            Crafty.sprite(512,512, 'assets/imgs/apple.png', {apple:[0,0]});
 
 /////////////////////////////////////////////////////////
 
@@ -144,7 +191,28 @@ var bg = Crafty.e("2D, DOM, flower,Mouse").attr({
 bg.addComponent('Draggable');
 
 
-  
+  	console.log("must draw square");
+	var line=Crafty.e('2D, DOM, Color,Mouse').attr({
+		x:bg.x,
+		y:bg.y+10,
+		w:bg.w,
+		h:2
+	}).color('green');
+	line.addComponent('Draggable');
+	line.dragDirection({x:0, y:1})
+	
+
+bg.attach(line);
+lines.push(line);
+line.bind('MouseMove',function(e){
+if(line.y>(line._parent.y+line._parent.h)){
+	line.y=line._parent.y+line._parent.h
+}
+else if(line.y<(line._parent.y)){
+line.y=line._parent.y;
+}	
+
+});
     
   //  document.getElementById('obj_info').style.display='block';
   // document.getElementById('objName').innerHTML=bg.getId();
@@ -384,21 +452,39 @@ circles.length=0;
 
 
 function createResizeEntity(rootm){
+//var array_of_entities = Crafty("2D").get();
+rootm.setName(entityNameCounter);
+entityNameCounter++;
+var appleFlag=false;
+//console.log(array_of_entities.length);
+var oa=objAction({
+	move:false,
+jump:false,
+fly:false,
+fall:false,
+dissapear:false,
+growing:false,
+delete:false,
+copy:false,
+rotate:false,
+expand:false,
+collision:false,
+freez:false,
+gravity:false,
+apple:false,
+floors:{}
+
+});
+//Number(x1)
+actionList[Number(rootm.getName())]=oa;
+
+
+/////////////////////remove all exsisting circles///////////////////
 
 
 	rootm.bind('Click', function (e) {
-
+  console.log(Number(rootm.getName()));
   
- Crafty.sprite(100,100, 'assets/imgs/gray.png', {f:[0,0]});
-
-       Crafty.sprite(256,256, 'assets/imgs/dele1.png', {d:[0,0]});
-       Crafty.sprite(2000,1707, 'assets/imgs/expand.png', {e:[0,0]});
-        Crafty.sprite(512,512, 'assets/imgs/rotate.png', {r:[0,0]});
-          Crafty.sprite(2000,2000, 'assets/imgs/copy2.png', {c:[0,0]});
-           Crafty.sprite(512,512, 'assets/imgs/freez.png', {a:[0,0]});
-            Crafty.sprite(199,150, 'assets/imgs/collison3.png', {co:[0,0]});
-            Crafty.sprite(261,193, 'assets/imgs/gravity.png', {gravity:[0,0]});
-/////////////////////remove all exsisting circles///////////////////
 
 
 	selectedEntity.css({'border': '0px'});
@@ -406,7 +492,7 @@ function createResizeEntity(rootm){
 
         removeCircle();
      
-
+  
 
 /////////////////////remove all exsisting circles///////////////////
 ///////////////////////////circle def///////////////////////////////////
@@ -447,7 +533,7 @@ var circle4 = Crafty.e("2D, DOM, f,Mouse,Draggable").attr({
 
 var boxs = Crafty.e("2D, DOM, Color").attr({
 
-	w:220,
+	w:250,
 	h:28,
 	 x:rootm.x,
      y:rootm.y-34
@@ -462,6 +548,7 @@ var del = Crafty.e("2D, DOM, d,Mouse").attr({
 	 x:rootm.x+10,
      y:rootm.y-29
              	});
+
 var copy = Crafty.e("2D, DOM, c,Mouse").attr({
 
 	w:20,
@@ -469,6 +556,7 @@ var copy = Crafty.e("2D, DOM, c,Mouse").attr({
 	 x:rootm.x+40,
      y:rootm.y-29
              	});
+
 var rotate = Crafty.e("2D, DOM, r,Mouse").attr({
 
 	w:20,
@@ -476,6 +564,7 @@ var rotate = Crafty.e("2D, DOM, r,Mouse").attr({
 	 x:rootm.x+70,
      y:rootm.y-29
              	});
+
 var expand = Crafty.e("2D, DOM, e,Mouse").attr({
 
 	w:25,
@@ -504,15 +593,24 @@ var gravity = Crafty.e("2D, DOM, gravity,Mouse").attr({
 	 x:rootm.x+195,
      y:rootm.y-29
              	});
+
+var apple = Crafty.e("2D, DOM, apple,Mouse").attr({
+
+	w:20,
+	h:20,
+	 x:rootm.x+225,
+     y:rootm.y-29
+             	});
+
 rootm.css({'border': '1px dashed #b3b3b3'});
 
 
 
-circles.push(circle1);
-circles.push(circle2);
-circles.push(circle3);
-circles.push(circle4);
-circles.push(boxs);
+circles.push(circle1);//0
+circles.push(circle2);//1
+circles.push(circle3);//2
+circles.push(circle4);//3
+circles.push(boxs);//4
 circles.push(del);
 circles.push(copy);
 circles.push(rotate);
@@ -520,8 +618,10 @@ circles.push(expand);
 circles.push(collision);
 circles.push(freez);
 circles.push(gravity);
+circles.push(apple);
 		selectedEntity=rootm;
-
+checkIfClick();
+ removeEventFromOtherEnitiy();
 
 ///////////////////////////circle def///////////////////////////////////
        /////////////////////circle1////////////////////////
@@ -745,6 +845,8 @@ rootm.destroy();
 
 
 });
+
+
 /////////////////////////////////delete///////////////////////////
 ////////////////////////////////copy/////////////////////////////////
 copy.bind('Click', function (e) {
@@ -785,68 +887,159 @@ circle4.x=xn-5,
 /////////////////////////////////expand///////////////////////////////
 expand.bind('Click', function (e) {
 
-	if(expandFlag==false){
+	if(actionList[Number(selectedEntity.getName())].expand==false){
 		 var neww=cropPx(Game.style.width);
    var newh=cropPx(Game.style.height);
  rootm.w=neww;
  rootm.h=newh;
  console.log(neww);
- expandFlag=true;
- // this.css({'border': '1px solid #0FB1B3 '});
+ //expandFlag=true;
+  this.css({'border': '1px solid #0FB1B3 '});
+  actionList[Number(selectedEntity.getName())].expand=true;
+
 	}
 
-	else if(expandFlag==true){
+	else if(actionList[Number(selectedEntity.getName())].expand==true){
 		rootm.w=200;
  rootm.h=150;
- expandFlag=false;
- // this.css({'border': '0px '});
+ //expandFlag=false;
+  this.css({'border': '0px '});
+  actionList[Number(selectedEntity.getName())].expand=false;
 	}
   
              
 });
 
+
 //////د\\\\\/////////////////////expand//////////////////////////////
 
 /////////////////////////////////freez///////////////////////////////
 freez.bind('Click', function (e) {
-	if(freezFlag==false){
+	if(actionList[Number(selectedEntity.getName())].freez==false){
 		  rootm.removeComponent("Draggable", false);
-		  freezFlag=true;
-		   //this.css({'border': '1px solid #0FB1B3 '});
+		 // freezFlag=true;
+		   this.css({'border': '1px solid #0FB1B3 '});
+
 		   for(var i=0 ;i<4;i++){
 			circles[i].addComponent('Draggable');
 		}
+		actionList[Number(selectedEntity.getName())].freez=true;
 	}
-	else if(freezFlag==true){
+	else if(actionList[Number(selectedEntity.getName())].freez==true){
 		rootm.addComponent("Draggable");
 		for(var i=0 ;i<4;i++){
 			circles[i].addComponent('Draggable');
 		}
-		freezFlag=false;
-		 //this.css({'border': '0px '});
+		//freezFlag=false;
+		 this.css({'border': '0px '});
+		 actionList[Number(selectedEntity.getName())].freez=false;
 	}
  
 
              
 });
 
+
+
 //////د\\\\\/////////////////////freez//////////////////////////////
 
 /////////////////////////////////solid///////////////////////////////
 
 collision.bind('Click', function (e) {
-selectedEntity.addComponent('Solid');
+	if(actionList[Number(selectedEntity.getName())].collision==false){
+		selectedEntity.addComponent('Solid');
+        // collisionFlag=true;
+          this.css({'border': '1px solid #0FB1B3 '});
+  actionList[Number(selectedEntity.getName())].collision=true;
+	}
+	else if(actionList[Number(selectedEntity.getName())].collision==true){
+		console.log("not true for collision");
+		selectedEntity.removeComponent('Solid');
+         //collisionFlag=false;
+          this.css({'border': '0px '});
+  actionList[Number(selectedEntity.getName())].collision=false;
+	}
 
 });
+
 //////د\\\\\/////////////////////solid//////////////////////////////
 
 /////////////////////////////////gravity///////////////////////////////
 
 gravity.bind('Click', function (e) {
-selectedEntity.addComponent('Floor');
+
+console.log("inside gravity");
+
+
+
+	if(actionList[Number(selectedEntity.getName())].gravity==false){
+		var chArr=selectedEntity._children
+		chArr[0].addComponent('Floor');
+         //gravityFlag=true;
+          this.css({'border': '1px solid #0FB1B3 '});
+  actionList[Number(selectedEntity.getName())].gravity=true;
+	}
+	else if(actionList[Number(selectedEntity.getName())].gravity==true){
+		var chArr=selectedEntity._children
+		chArr[0].removeComponent('Floor');
+         //gravityFlag=false;
+          this.css({'border': '0px '});
+  actionList[Number(selectedEntity.getName())].gravity=false;
+	}
+
+
+
+
 
 });
+
 //////د\\\\\/////////////////////gravity//////////////////////////////
+
+/////////////////////////////////apple///////////////////////////////
+
+apple.bind('Click', function (e) {
+	if(actionList[Number(selectedEntity.getName())].apple==false){
+		if(checkIfFloor()==true){
+			selectedEntity.addComponent('Gravity');
+		selectedEntity.gravity('Floor');
+         //appleFlag=true;
+          this.css({'border': '1px solid #0FB1B3 '});
+  actionList[Number(selectedEntity.getName())].apple=true;
+
+		}
+		else{
+			console.log("please make floor");
+		}
+		
+	}
+	else if(actionList[Number(selectedEntity.getName())].apple==true){
+		selectedEntity.removeComponent('Gravity');
+	
+		// if( actionList[Number(selectedEntity.getName())].jump==true){
+		// 	var x= selectedEntity.x;
+		// 	selectedEntity.twoway(0.1);
+		// 	selectedEntity.removeComponent('Twoway');
+		// 	selectedEntity.x=x;
+		// }
+		// if( actionList[Number(selectedEntity.getName())].fly==true){
+			
+			
+		// 	selectedEntity.removeComponent('Multiway');
+		
+		// }
+		
+        
+          this.css({'border': '0px '});
+  actionList[Number(selectedEntity.getName())].apple=false;
+	}
+
+
+
+
+
+});
+
+//////د\\\\\/////////////////////apple//////////////////////////////
 rootm.bind("StartDrag", function() {
    removeCircle();
     rootm.css({'border': '0px '});
@@ -906,6 +1099,8 @@ circles[4].y=rootm.y-34
 circles[11].x=rootm.x+195;
 circles[11].y=rootm.y-29;
 
+circles[12].x=rootm.x+225;
+circles[12].y=rootm.y-29;
 
 for(var i=4;i<circles.length;i++){
 	circles[i].visible=true;
@@ -938,11 +1133,129 @@ function move(){
 
 }
 function jump(){
+if (actionList[Number(selectedEntity.getName())].jump==false){
+	
 
-// ground=Crafty.e('Floor, 2D, Canvas, Color')
-//              .attr({x: 0, y: 250, w: 250, h: 10})
-//              .color('green');
- var arr = Crafty("2D").get();
+//checkIfFloor()==true
+if(actionList[Number(selectedEntity.getName())].apple==true){
+actionList[Number(selectedEntity.getName())].jump=true;
+	  //jumpFlag=false;
+	selectedEntity.addComponent("Twoway,Collision,Gravity") .checkHits('Solid') // check for collisions with entities that have the Solid component in each frame
+    .bind("HitOn", function(hitData) {
+        Crafty.log("Collision with Solid entity occurred for the first time.");
+    })
+    .bind("HitOff", function(comp) {
+        Crafty.log("Collision with Solid entity ended.");
+    });
+
+   // selectedEntity.gravity('Floor');
+selectedEntity.twoway(200);
+ 
+
+
+
+
+	document.getElementById('jump').style.backgroundColor = "blue";
+	
+
+}
+
+else{
+	console.log("please make select gravity button");
+	  document.getElementById('jump').style.backgroundColor = "white";
+}
+
+
+}
+
+else if (actionList[Number(selectedEntity.getName())].jump==true){
+	// jumpFlag=true;
+  actionList[Number(selectedEntity.getName())].jump=false;
+  // var x=selectedEntity.x;
+  // var y=selectedEntity.y;
+  // console.log("x="+x);
+  // console.log("y="+y);
+  document.getElementById('jump').style.backgroundColor = "white";
+ //   selectedEntity.addComponent(" Gravity");
+ // selectedEntity.gravity('Floor');
+ selectedEntity.twoway(1);
+ 
+  selectedEntity.removeComponent("Twoway") ;
+ 
+// selectedEntity.x=x;
+// selectedEntity.y=y;
+  if(selectedEntity.has('Twoway')){
+  	console.log("jump not remove");
+  }
+}
+
+
+
+
+}
+function fly(){
+	
+
+if(actionList[Number(selectedEntity.getName())].fly==false){	
+	//flyf=false;
+
+
+if(actionList[Number(selectedEntity.getName())].apple==true){
+	actionList[Number(selectedEntity.getName())].fly=true;
+	selectedEntity.addComponent("Motion,Collision, Gravity,Multiway") .checkHits('Solid') // check for collisions with entities that have the Solid component in each frame
+    .bind("HitOn", function(hitData) {
+        Crafty.log("Collision with Solid entity occurred for the first time.");
+    })
+    .bind("HitOff", function(comp) {
+        Crafty.log("Collision with Solid entity ended.");
+    })
+    .bind('KeyDown', function(e) {
+       if(e.key == Crafty.keys.UP_ARROW){
+
+if(this.y<20){
+console.log(this.y);
+this.multiway(150, {UP_ARROW: 0, DOWN_ARROW: 45, RIGHT_ARROW: 0, LEFT_ARROW: 180});
+}
+}
+    });
+      //var ay = selectedEntity.ay; 
+      //selectedEntity.ay -= 50; 
+    selectedEntity.multiway(150, {UP_ARROW: -45, DOWN_ARROW: 45, RIGHT_ARROW: 0, LEFT_ARROW: 180});
+    
+   
+      
+
+    document.getElementById('fly').style.backgroundColor = "blue";
+   // document.getElementById('jump').style.backgroundColor = "white";
+    	
+
+
+
+}
+
+else{
+	console.log("please make floor");
+}
+
+}
+else if (actionList[Number(selectedEntity.getName())].fly==true){
+	actionList[Number(selectedEntity.getName())].fly=false;
+//flyf=true;
+selectedEntity.removeComponent('Multiway');
+document.getElementById('fly').style.backgroundColor = "white";
+if(selectedEntity.has('Multiway')){
+	console.log("has multiway");
+}
+
+}
+
+
+
+}
+function fall(){
+
+
+var arr = Crafty("2D").get();
  var isFloor=false;
 for (var i=0;i< arr.length;i++) {
 	console.log("loop");
@@ -967,9 +1280,7 @@ selectedEntity.twoway(200)
   .gravity('Floor');
 
 
-
-
-	document.getElementById('jump').style.backgroundColor = "blue";
+	document.getElementById('fall').style.backgroundColor = "blue";
 	
 
 }
@@ -978,23 +1289,234 @@ else{
 	console.log("please make floor");
 }
 
-
-
-
-
-
-
-
-}
-function fly(){
-
-}
-function fall(){
-
 }
 function dissapear(){
 
+
+
+selectedEntity.visible=false;
 }
 function growing(){
 
+	var ww=selectedEntity.w;
+ww+=10;
+var hh=selectedEntity.h;
+hh+=10;
+var xx=selectedEntity.x;
+xx+=5;
+yy-=5;
+var yy=selectedEntity.y;
+
+selectedEntity.attr({
+	x:xx,
+	y:yy,
+	w:ww,
+	h:hh
+});
+selectedEntity.visible=true;
+
+}
+
+function close1(){
+	console.log('close');
+	document.getElementById('warning').style.display='none';
+}
+
+
+function checkIfClick(){
+if(actionList[Number(selectedEntity.getName())].expand==true){
+	circles[8].css({'border': '1px solid blue'});
+}
+if(actionList[Number(selectedEntity.getName())].collision==true){
+	circles[9].css({'border': '1px solid blue'});
+}
+if(actionList[Number(selectedEntity.getName())].freez==true){
+	circles[10].css({'border': '1px solid blue'});
+}
+
+if(actionList[Number(selectedEntity.getName())].gravity==true){
+	circles[11].css({'border': '1px solid blue'});
+}
+
+if(actionList[Number(selectedEntity.getName())].apple==true){
+	circles[12].css({'border': '1px solid blue'});
+}
+}
+
+
+
+function removeEventFromOtherEnitiy(){
+	var array_of_entities = Crafty("2D").get();
+	for(var i=0;i<array_of_entities.length;i++){
+		console.log(array_of_entities[i].getName());
+	}
+
+	for(var i=1;i<array_of_entities.length;i++){
+		if(array_of_entities[i]==selectedEntity){
+			console.log("*****************");
+                        console.log(Number(array_of_entities[i].getName()));
+			        if(actionList[Number(array_of_entities[i].getName())].move==true){
+
+	                     array_of_entities[i].addComponent('Twoway');
+	                     array_of_entities[i].twoway(200);
+	                      document.getElementById('jump').style.backgroundColor = "blue";
+                                              }
+                                              else{
+
+                                              	 document.getElementById('jump').style.backgroundColor = "white";
+                                              }
+
+                    if(actionList[Number(array_of_entities[i].getName())].jump==true){
+                    	      
+	                      array_of_entities[i].addComponent('Twoway');
+	                        array_of_entities[i].twoway(200);
+	                       console.log("add from select because jump is true");
+	                       document.getElementById('jump').style.backgroundColor = "blue";
+
+                                              }
+                                               else{
+                                               	console.log("jump is false in selected entity");
+                                              	 document.getElementById('jump').style.backgroundColor = "white";
+                                              }
+                    if(actionList[Number(array_of_entities[i].getName())].fly==true){
+                    	 document.getElementById('fly').style.backgroundColor = "blue";
+
+                    	 array_of_entities[i].addComponent('Multiway');
+                    	 array_of_entities[i].multiway(150, {UP_ARROW: -45, DOWN_ARROW: 45, RIGHT_ARROW: 0, LEFT_ARROW: 180});
+	                     
+                                              }
+                                               else{
+                                              	 document.getElementById('fly').style.backgroundColor = "white";
+                                              }
+                    if(actionList[Number(array_of_entities[i].getName())].fall==true){
+                    	 document.getElementById('fall').style.backgroundColor = "blue";
+	                     
+                                              }
+                                               else{
+                                              	 document.getElementById('fall').style.backgroundColor = "white";
+                                              }
+                    if(actionList[Number(array_of_entities[i].getName())].dissapear==true){
+                    	 document.getElementById('dissapear').style.backgroundColor = "blue";
+	                       
+                                              }
+                                               else{
+                                              	 document.getElementById('dissapear').style.backgroundColor = "white";
+                                              }
+                    if(actionList[Number(array_of_entities[i].getName())].growing==true){
+                    	 document.getElementById('growing').style.backgroundColor = "blue";
+	                       
+                                              }
+                                               else{
+                                              	 document.getElementById('growing').style.backgroundColor = "white";
+                                              }
+
+
+
+
+
+		}
+		else{
+			var doNothing=false;
+			for(var j=0;j<circles.length;j++){
+                 if(array_of_entities[i]== circles[j]){
+                 	doNothing=true;
+                 	break;
+                 }
+			}
+			if(doNothing==false){
+				for(var j=0;j<lines.length;j++){
+                if(array_of_entities[i]==lines[j]){
+                		doNothing=true;
+                 	break;
+                }
+}
+			}
+			if(!doNothing){
+
+			 if(actionList[Number(array_of_entities[i].getName())].move==true){
+			 	         array_of_entities[i].twoway(1);
+	                     array_of_entities[i].removeComponent('Twoway');
+                                              }
+
+                    if(actionList[Number(array_of_entities[i].getName())].jump==true){
+                    	array_of_entities[i].twoway(1);
+	                      array_of_entities[i].removeComponent('Twoway');
+	                      console.log("remove from not select");
+	                      console.log(array_of_entities[i].getName());
+                                              }
+                    if(actionList[Number(array_of_entities[i].getName())].fly==true){
+                    	array_of_entities[i].removeComponent('Multiway');
+	                     
+                                              }
+                    if(actionList[Number(array_of_entities[i].getName())].fall==true){
+	                     
+                                              }
+                    if(actionList[Number(array_of_entities[i].getName())].dissapear==true){
+	                       
+                                              }
+                    if(actionList[Number(array_of_entities[i].getName())].growing==true){
+	                       
+                                              }
+
+			}
+
+
+		}
+	}
+
+}
+
+
+
+
+function addGravity(){
+
+
+	for(var i=1;i<array_of_entities.length;i++){
+		if(array_of_entities[i]==selectedEntity){
+                      
+		}
+		else{
+			var doNothing=false;
+			for(var j=0;j<circles.length;j++){
+                 if(array_of_entities[i]== circles[j]){
+                 	doNothing=true;
+                 	break;
+                 }
+			}
+			if(!doNothing){
+
+			array_of_entities[i].addComponent('Gravity');
+			array_of_entities[i].gravity('Floor');
+
+			}
+
+
+		}
+	}
+}
+
+
+function checkIfFloor(){
+
+  
+ // actionList[Number(selectedEntity.getName())].jump=true;
+	 var arr = Crafty("2D").get();
+ var isFloor=false;
+for (var i=0;i< arr.length;i++) {
+	//console.log("loop");
+	if(arr[i]!=selectedEntity){
+if(arr[i].has('Floor')){
+	//console.log("floor");
+	isFloor=true;
+	break;
+}
+
+}}
+
+if(isFloor==true){
+	return true;
+}
+
+return false;
 }

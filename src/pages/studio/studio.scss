@@ -21,7 +21,7 @@ top: -7px;
 	 display: inline-block;
 	
 	 width: 100%;
-	/*position: relative;*/
+	position: relative;
 	
 	
 	 overflow-x: auto;
@@ -29,6 +29,32 @@ top: -7px;
 	 border-radius: 17px;
 	 border-top-left-radius: 0px;
 	 border-top-right-radius: 0px;
+}
+
+.warning{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: #f7dfdb;
+  height: 50px;
+  
+    border: 1px solid #f4cbcc;
+     width: 100%;
+     color: #c34a46;
+       padding: 16px 10px;
+}
+.close{
+  color: #c34a46;
+
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 4px;
+
+}
+
+.close:hover{
+  color: #7b6c68;
+  
 }
 .center-div{
  display: inline-block;
