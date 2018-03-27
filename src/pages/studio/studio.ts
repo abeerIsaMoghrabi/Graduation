@@ -85,7 +85,7 @@ export class StudioPage {
     imgSource45;
     imgSource46;
     imgSource47;
-
+     imgSource48;
 
   constructor( public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
 
@@ -249,7 +249,9 @@ this.loadScript();
           this.imgSource47 = url;
           })
 
-
+         firebase.storage().ref().child('bg/groung1.png').getDownloadURL().then((url)=>{
+          this.imgSource48 = url;
+          })
 
 
 

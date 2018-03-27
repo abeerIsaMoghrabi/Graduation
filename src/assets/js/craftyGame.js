@@ -1,8 +1,15 @@
 
+
 // // Get an array of all 2D entities
 // var array_of_entities = Crafty("2D").get();
 
 //window.onload = function(){
+
+
+
+var walls=[];
+
+
 
 
 
@@ -14,6 +21,10 @@ var toyObj=[];
 
 var objBackground=function(p){
 var that={};
+var isDown=false;
+var isUp=false;
+var isBack=false;
+var isFor=true;
 that.x=p.x;
 that.y=p.y;
 that.w=p.w;
@@ -24,6 +35,7 @@ return that;
 }
 
 var actionList=[];
+var entList=[];
 var objAction=function(p){
 	var that={};
 that.move=p.move;
@@ -40,7 +52,7 @@ that.collision=p.collision;
 that.freez=p.freez;
 that.gravity=p.gravity;
 that.apple=p.apple;
-that.floors=p.floors;
+//that.floors=p.floors;
 return that;
 
 }
@@ -50,7 +62,9 @@ var ypos;
 var Game;
 var objList=[];
 var circles=[];
+var gravity_list=[];
 var lines=[];
+var cirList=[];
 var selectedEntity;
 
 var bg;
@@ -68,33 +82,146 @@ var dissapearFlag=false;
 var growingFlag=false;
 var flyf=true;
 var initHeight=480;
-
-var initWidht=800;
-
+var fullSize=false;
+var initWidht=2000;
+var speedFlag=false;
 
 //function ff(){
 
   //alert(Game);
  Game=document.getElementById('game');
- Crafty.init(800,480, document.getElementById('game'));
+ Crafty.init(2000,480, document.getElementById('game'));
+
+///////////////////////////////////////new code for viewport/////////////////////////////////////////
+console.log("canvas width"+cropPx(document.getElementById('canvas-div').style.width));
+  Crafty.viewport.width=2000;
+console.log("viewport"+Crafty.viewport.width)
+   Crafty.viewport.height=480;
+    
+     Crafty.viewport.clampToEntites=false;
+ 
+     Crafty.viewport.scale(1);
+     /////////////////////////////////////scrol////////////////////////////////////////////////////////////
+    scrolEn=Crafty.e('2D,DOM,Color,Floor').attr({
+	w:650,//center-div width is 55% but we cant use it so we but equvelant value 650
+	h:3,
+	x:0,
+	y:477
+	
+
+
+}).color('red');
+
+
+  var scrollW=scrolEn.w-(2000-650);
+  if(scrollW<0){
+  	scrollW=20;
+  }
+    scrolbar=Crafty.e('2D,DOM,Color,Mouse,Draggable').attr({
+	w:scrollW,
+	h:15,
+	x:1,
+	y:470
+	
+
+
+}).color('green');
+
+    scrolbar.css({'borderRadius':'5px'});
+scrolbar.dragDirection({x:1, y:0});
+scrolEn.attach(scrolbar);
+var startMove=false;
+var startVaule;
+scrolbar.bind('MouseDown',function(e){
+startMove=true;
+startVaule=scrolbar.x;
+console.log("mouse down");
+});
+scrolbar.bind('MouseMove',function(e){
+if(startMove==true){
+	if(startVaule>scrolbar.x){
+		if(scrolbar.x<=0){
+			scrolbar.x=0;
+		}
+		else{
+			movetoRight();
+		startVaule=scrolbar.x;
+		console.log("scroll move left");
+		}
+		
+	}
+	else if (startVaule<scrolbar.x){
+// if(scrolbar.x>=(650-scrolbar.x)){
+// 	scrolbar.x=650-scrolbar.x;
+// }
+// else{
+	movetoLeft();
+	
+		startVaule=scrolbar.x;
+		console.log("scroll move right");
+// }
+
+		
+	}
+	
+	console.log("mouse move");
+
+
+}
+
+});
+scrolbar.bind('MouseUp',function(e){
+startMove=false;
+console.log("mouse up");
+});
+
+
+///////////////////////////////////////scroll///////////////////////////////
+/////////////////////////////////////new code for viewport////////////////////////////////////////////
+
   selectedEntity=Crafty.e('2D,DOM').attr({
 	w:0,
 	h:0
 
 });
+  Crafty.sprite(512,512, 'assets/imgs/minimize.png', {min:[0,0]});
+   min=Crafty.e('2D,DOM,min,Mouse').attr({
+	w:0,
+	h:0
+	
 
-  Game.addEventListener("contextmenu",function(){
 
+});
+
+Game.addEventListener('contextmenu',function(){
+	removeCircle();
 	selectedEntity.css({'border': '0px'});
+})
+   min.bind('Click',function(e){
+   	 
+	document.getElementById('canvas-div').style.position="relative";
+document.getElementById('canvas-div').style.backgroundColor='white';
+document.getElementById('color_scroll').style.display='inline-block';
 
-
-        removeCircle();
+// document.getElementById('canvas-div').style.left= "0px";
+// document.getElementById('canvas-div').style.top= "0px";
+document.getElementById('canvas-div').style.width= "100%" ;
+document.getElementById('canvas-div').style.height= "480px" ;
+document.getElementById('game').style.width= "800px" ;
+document.getElementById('game').style.height= "480px" ;
+document.getElementById('canvas-div').style.overflowX ="auto";
+document.getElementById('canvas-div').style.overflowY ="hidden";
+min.w=0;
+min.h=0;
      
 });
 
-
-
-
+var square = Crafty.e("2D, DOM");
+square.addComponent("Floor");
+console.log("secret width"+cropPx(document.getElementById('game').style.width));
+square.attr({x:0, y:480,w:800,h:5});
+square.color='blue';
+square.visible=false;
 
 //}
 
@@ -108,6 +235,7 @@ var initWidht=800;
             Crafty.sprite(199,150, 'assets/imgs/collison3.png', {co:[0,0]});
             Crafty.sprite(261,193, 'assets/imgs/gravity.png', {gravity:[0,0]});
             Crafty.sprite(512,512, 'assets/imgs/apple.png', {apple:[0,0]});
+            Crafty.sprite(300,300, 'assets/imgs/circle.png', {cir:[0,0]});
 
 /////////////////////////////////////////////////////////
 
@@ -187,42 +315,20 @@ var bg = Crafty.e("2D, DOM, flower,Mouse").attr({
              	});
 
 
-
 bg.addComponent('Draggable');
 
 
   	console.log("must draw square");
-	var line=Crafty.e('2D, DOM, Color,Mouse').attr({
-		x:bg.x,
-		y:bg.y+10,
-		w:bg.w,
-		h:2
-	}).color('green');
-	line.addComponent('Draggable');
-	line.dragDirection({x:0, y:1})
 	
-
-bg.attach(line);
-lines.push(line);
-line.bind('MouseMove',function(e){
-if(line.y>(line._parent.y+line._parent.h)){
-	line.y=line._parent.y+line._parent.h
-}
-else if(line.y<(line._parent.y)){
-line.y=line._parent.y;
-}	
-
-});
     
   //  document.getElementById('obj_info').style.display='block';
   // document.getElementById('objName').innerHTML=bg.getId();
   //   document.getElementById('objW').innerHTML='width:'+bg._w;
   //      document.getElementById('objH').innerHTML='hieght:'+bg._h;
 
-createResizeEntity(bg);
-
+entList.push(bg);
+createResizeEntity(bg,true);
  
-
 
 
 
@@ -354,6 +460,7 @@ createResizeEntity(bg);
 
      ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
      function store(){
 
      	alert("hi");
@@ -437,7 +544,33 @@ function removeCircle(){
 circles.length=0;
 
 }
+function removeList(){
+	for(var i=0;i<gravity_list.length;i++){
 
+    gravity_list[i].destroy();
+    
+   
+
+
+}
+
+gravity_list.length=0;
+
+}
+
+function removecir(){
+	for(var i=0;i<cirList.length;i++){
+
+    cirList[i].destroy();
+    
+   
+
+
+}
+
+cirList.length=0;
+
+}
 //////////////////////////////////////background color//////////////////////
 
  function setBackColor(col){
@@ -451,9 +584,14 @@ circles.length=0;
 //////////////////////////////////////background color//////////////////////
 
 
-function createResizeEntity(rootm){
+function createResizeEntity(rootm,flag){
 //var array_of_entities = Crafty("2D").get();
-rootm.setName(entityNameCounter);
+
+if(flag==true) {
+	
+
+  rootm.setName(entityNameCounter);
+   console.log("name"+rootm.getName());
 entityNameCounter++;
 var appleFlag=false;
 //console.log(array_of_entities.length);
@@ -471,28 +609,35 @@ expand:false,
 collision:false,
 freez:false,
 gravity:false,
-apple:false,
-floors:{}
+apple:false
+//floors:[]
 
 });
 //Number(x1)
 actionList[Number(rootm.getName())]=oa;
 
 
+}
+
+
 /////////////////////remove all exsisting circles///////////////////
 
 
 	rootm.bind('Click', function (e) {
-  console.log(Number(rootm.getName()));
-  
 
+        //rootm.removeComponent("HUD",false);
+         // if(rootm.has("HUD")){
+         // 	console.log("has hud");
+         // }
+            
+       // selectedEntity.addComponent("Draggable,Motion");
 
 	selectedEntity.css({'border': '0px'});
 
-
+     console.log('circles size before='+circles.length);
         removeCircle();
      
-  
+     console.log('circles size after='+circles.length);
 
 /////////////////////remove all exsisting circles///////////////////
 ///////////////////////////circle def///////////////////////////////////
@@ -533,14 +678,18 @@ var circle4 = Crafty.e("2D, DOM, f,Mouse,Draggable").attr({
 
 var boxs = Crafty.e("2D, DOM, Color").attr({
 
-	w:250,
+	w:280,
 	h:28,
 	 x:rootm.x,
      y:rootm.y-34
              	}).color('white');
 boxs.css({'border': '2px solid  #b3b3b3',
 'border-radius':'16px'});
-
+// boxs.attach(up);
+// up.w=30;
+// up.h=30;
+// up.x=boxs.x+boxs.w-25;
+// up.y=boxs.y-5;
 var del = Crafty.e("2D, DOM, d,Mouse").attr({
 
 	w:20,
@@ -594,6 +743,8 @@ var gravity = Crafty.e("2D, DOM, gravity,Mouse").attr({
      y:rootm.y-29
              	});
 
+
+
 var apple = Crafty.e("2D, DOM, apple,Mouse").attr({
 
 	w:20,
@@ -626,6 +777,14 @@ checkIfClick();
 ///////////////////////////circle def///////////////////////////////////
        /////////////////////circle1////////////////////////
 
+selectedEntity.bind('KeyDown',function(){
+ 	
+	selectedEntity.css({'border': '0px'});
+
+
+        removeCircle();
+     
+});
 
 circle1.bind('MouseDown',function(e){
 
@@ -660,6 +819,12 @@ circle3.y=(rootm.y+rootm.h)-5;
 
 circle4.x=(rootm.x+rootm.w)-5;
 circle4.y=(rootm.y+rootm.h)-5;
+
+var chArr=rootm._children;
+for(var n=0;n<chArr.length;n++){
+	chArr[n].h=3;
+}
+removecir();
 
 
 notVisible();
@@ -709,7 +874,11 @@ circle3.y=rootm.y+rootm.h-5;
 
 circle4.x=rootm.x+rootm.w-5;
 circle4.y=rootm.y+rootm.h-5;
-
+var chArr=rootm._children;
+for(var n=0;n<chArr.length;n++){
+	chArr[n].h=3;
+}
+removecir();
 notVisible();
 	}
 	
@@ -759,6 +928,11 @@ circle2.y=rootm.y-5;
 
 circle4.x=rootm.x+rootm.w-5;
 circle4.y=rootm.y+rootm.h-5;
+var chArr=rootm._children;
+for(var n=0;n<chArr.length;n++){
+	chArr[n].h=3;
+}
+removecir();
 
 notVisible();
 	}
@@ -812,7 +986,13 @@ circle2.y=rootm.y-5;
 
 circle3.x=rootm.x-5;
 circle3.y=rootm.y+rootm.h-5;
+//console.log(rootm._children);
+var chArr=rootm._children;
+for(var n=0;n<chArr.length;n++){
+	chArr[n].h=3;
+}
 
+removecir();
 
 notVisible();
 
@@ -854,7 +1034,7 @@ copy.bind('Click', function (e) {
  var ent2 = rootm.clone()
               .attr({x:100, y:100});
 
-              createResizeEntity(ent2);
+              createResizeEntity(ent2,true);
              
 });
 
@@ -946,19 +1126,69 @@ freez.bind('Click', function (e) {
 /////////////////////////////////solid///////////////////////////////
 
 collision.bind('Click', function (e) {
-	if(actionList[Number(selectedEntity.getName())].collision==false){
+if(actionList[Number(selectedEntity.getName())].collision==false){
 		selectedEntity.addComponent('Solid');
         // collisionFlag=true;
           this.css({'border': '1px solid #0FB1B3 '});
   actionList[Number(selectedEntity.getName())].collision=true;
+
+var w2=selectedEntity.w;
+     var h2=selectedEntity.h;
+     var x2=selectedEntity.x;
+     var y2=selectedEntity.y;
+
+     var t1=y2+h2;
+     var t2=y2-(h2/2.0);
+
+     var s1=x2+w2;
+     var s2=x2-w2;
+var tt = Crafty.e("2D, DOM, Color, solid, top, wall, Floor")
+      .attr({x: x2, y: y2, w: w2, h: 1})
+      .color('white');
+   var bb =Crafty.e("2D, DOM, Color, solid, bottom, wall")
+      .attr({x: x2, y: t1, w: w2, h: 1})
+      .color('white');
+   var ll =Crafty.e("2D, DOM, Color, solid, left, wall")
+      .attr({x: x2, y: y2, w: 1, h: h2})
+      .color('white');
+   var rr = Crafty.e("2D, DOM, Color, solid, right, wall")
+      .attr({x: s1, y: y2, w: 1, h: h2})
+      .color('white');
+
+
+      walls.push(tt);
+      walls.push(bb);
+      walls.push(ll);
+      walls.push(rr);
+      selectedEntity.attach(tt);
+  selectedEntity.attach(bb);
+    selectedEntity.attach(ll);
+      selectedEntity.attach(rr);
+          for(var i=0;i<walls.length;i++){
+
+    walls[i].visible=false;
+}
+
 	}
 	else if(actionList[Number(selectedEntity.getName())].collision==true){
 		console.log("not true for collision");
 		selectedEntity.removeComponent('Solid');
          //collisionFlag=false;
           this.css({'border': '0px '});
-  actionList[Number(selectedEntity.getName())].collision=false;
+     actionList[Number(selectedEntity.getName())].collision=false;
+
+      for(var i=0;i<walls.length;i++){
+
+    walls[i].destroy();
+}
+walls.length=0;
+
 	}
+     
+
+
+
+	
 
 });
 
@@ -971,21 +1201,301 @@ gravity.bind('Click', function (e) {
 console.log("inside gravity");
 
 
+  
 
-	if(actionList[Number(selectedEntity.getName())].gravity==false){
-		var chArr=selectedEntity._children
-		chArr[0].addComponent('Floor');
-         //gravityFlag=true;
-          this.css({'border': '1px solid #0FB1B3 '});
-  actionList[Number(selectedEntity.getName())].gravity=true;
+	// if(actionList[Number(selectedEntity.getName())].gravity==false){
+	// 	var chArr=selectedEntity._children
+	// 	chArr[0].addComponent('Floor');
+ //         //gravityFlag=true;
+           this.css({'border': '1px solid #0FB1B3 '});
+   actionList[Number(selectedEntity.getName())].gravity=true;
+removeList();
+removecir();
+var list = Crafty.e("2D, DOM, Color,Mouse").attr({
+
+	w:100,
+	h:90,
+	 x:gravity.x+5,
+     y:gravity.y+10
+             	}).color('white');
+list.css({'border': '2px solid  #b3b3b3',
+'border-radius':'16px'});
+  gravity_list.push(list);
+  gravity.attach(list);
+
+var list_show_hide_line=Crafty.e("2D, DOM, Text,Mouse").attr({ x: list.x, y: list.y , w:list.w , h:30 }).text("show/hide");
+list_show_hide_line.textAlign('center');
+list_show_hide_line.textColor('#b3b3b3');
+list_show_hide_line.textFont({ size: '15px', weight: 'bold' });
+list_show_hide_line.css({'border-bottom': '2px solid  #b3b3b3',
+'padding-top':'10px'});
+var listNew=Crafty.e("2D, DOM, Text,Mouse").attr({ x: list.x, y: list.y+30 , w:list.w , h:30 }).text("New");
+listNew.textAlign('center');
+listNew.textColor('#b3b3b3');
+listNew.textFont({ size: '15px', weight: 'bold' });
+listNew.css({'border-bottom': '2px solid  #b3b3b3',
+'padding-top':'10px'});
+var listEdit=Crafty.e("2D, DOM, Text,Mouse").attr({ x: list.x, y: list.y+60 , w:list.w , h:30 }).text("Edit");
+listEdit.textAlign('center');
+listEdit.textColor('#b3b3b3');
+listEdit.textFont({ size: '15px', weight: 'bold' });
+listEdit.css({'padding-top':'10px'});
+
+
+gravity_list.push(list_show_hide_line);
+gravity_list.push(listNew);
+gravity_list.push(listEdit);
+list.attach(list_show_hide_line);
+list.attach(listNew);
+list.attach(listEdit);
+ 
+listNew.bind('Click',function(e){
+	removeList();
+	console.log("inside new");
+var line=Crafty.e('2D, DOM, Color,Mouse').attr({
+		x:selectedEntity.x,
+		y:selectedEntity.y+10,
+		w:selectedEntity.w,
+		h:3
+	}).color('green');
+	line.addComponent('Draggable');
+	line.addComponent('Floor');
+	line.dragDirection({x:0, y:1});
+	//actionList[Number(selectedEntity.getName())].floors.push(line);
+selectedEntity.attach(line);
+line.setName('line');
+lines.push(line);
+line.bind('MouseMove',function(e){
+if(line.y>(line._parent.y+line._parent.h)){
+	line.y=line._parent.y+line._parent.h
+}
+else if(line.y<(line._parent.y)){
+line.y=line._parent.y;
+}	
+
+});
+
+
+});
+
+listEdit.bind('Click',function(e){
+	removecir();
+
+removeList();
+
+selectedEntity._children.forEach(function(ch){
+	//console.log('ij='+ij);
+   //var ch=selectedEntity._children[ij];
+if(ch.getName()=='line'){
+	console.log('linee');
+	var cir1 = Crafty.e("2D, DOM, cir,Mouse,Draggable").attr({
+	w:15,
+	h:15,
+	 x:ch.x-2,
+     y:ch.y-3
+             	});
+
+	ch.attach(cir1);
+	cirList.push(cir1);
+		cir1.dragDirection({x:1, y:0});
+
+
+	var cir2 = Crafty.e("2D, DOM, cir,Mouse,Draggable").attr({
+	w:15,
+	h:15,
+	 x:ch.x+ch.w-2,
+     y:ch.y-3
+             	});
+	ch.attach(cir2);
+	cirList.push(cir2);
+	cir2.dragDirection({x:1, y:0});
+
+
+var dLine = Crafty.e("2D, DOM, d,Mouse").attr({
+	w:17,
+	h:17,
+	 x:ch.x+(ch.w/2)-8,
+     y:ch.y-8
+             	});
+	ch.attach(dLine);
+	cirList.push(dLine);
+  dLine.css({'backgroundColor': 'white'});
+
+	var resizeFlag=false;
+var rc;
+//////////////////////////cir1//////////////////////////////
+cir1.bind('MouseDown',function(e){
+console.log('hi yoy click circle1')
+ch.css({'border': '1px dashed red'});
+	resizeFlag=true;
+ rc=ch.x+ch.w;
+
+	});
+
+cir1.bind('MouseMove',function(e){
+
+	if(resizeFlag){
+		ch.css({'border': '1px dashed red'});
+		
+		ch.w=rc-cir1.x;
+		console.log("ch width="+ch.w);
+		
+ch.x=cir1.x;
+
+	cir1.h=15;
+	cir1.w=15;
+
+    cir2.h=15;
+    cir2.w=15;
+    cir2.x=ch.x+ch.w;
+    dLine.h=17;
+    dLine.w=17;
+     dLine.x=ch.x+(ch.w/2)-8;
+     dLine.y=ch.y-8;
+
 	}
-	else if(actionList[Number(selectedEntity.getName())].gravity==true){
-		var chArr=selectedEntity._children
-		chArr[0].removeComponent('Floor');
-         //gravityFlag=false;
-          this.css({'border': '0px '});
-  actionList[Number(selectedEntity.getName())].gravity=false;
+	
+	});
+
+
+cir1.bind('MouseUp',function(e){
+	ch.css({'border': '1px dashed #b3b3b3'});
+resizeFlag=false;
+
+
+
+
+	});
+
+
+ cir1.bind("StopDrag", function() {
+ 	ch.css({'border': '1px dashed #b3b3b3'});
+ 
+resizeFlag=false;
+
+    }); 
+
+/////////////////////////////cir1///////////////////////////////////
+//////////////////////////cir2//////////////////////////////
+cir2.bind('MouseDown',function(e){
+
+ch.css({'border': '1px dashed red'});
+	resizeFlag=true;
+ rc=ch.x+ch.w;
+
+	});
+
+cir2.bind('MouseMove',function(e){
+
+	if(resizeFlag){
+		ch.css({'border': '1px dashed red'});
+		// 	rootm.w=(circle2.x-rootm.x)+5;
+		// rootm.h=(bc-circle2.y);
+
+		// rootm.y=circle2.y+5;
+		ch.w=cir2.x-ch.x;
+		console.log("ch width="+ch.w);
+		
+//ch.x=cir1.x;
+
+	cir1.h=15;
+	cir1.w=15;
+
+    cir2.h=15;
+    cir2.w=15;
+    cir1.x=ch.x;
+    dLine.h=17;
+    dLine.w=17;
+     dLine.x=ch.x+(ch.w/2)-8;
+     dLine.y=ch.y-8;
+
+
 	}
+	
+	});
+
+
+cir2.bind('MouseUp',function(e){
+	ch.css({'border': '1px dashed #b3b3b3'});
+resizeFlag=false;
+
+
+
+
+	});
+
+
+ cir2.bind("StopDrag", function() {
+ 	ch.css({'border': '1px dashed #b3b3b3'});
+ 
+resizeFlag=false;
+
+    }); 
+
+
+
+
+
+
+
+/////////////////////////////cir2///////////////////////////////////
+/////////////////////////////delete line///////////////////////////
+
+dLine.bind('Click',function(e){
+	removecir();
+
+	for(var k=0;k<lines.length;k++){
+		if(lines[k]==ch){
+			lines.splice(k, k+1);
+			break;
+		}
+	}
+	ch.destroy();
+
+});
+/////////////////////////////delete line///////////////////////////	
+}
+
+
+
+});
+
+});
+
+list_show_hide_line.bind('Click',function(e){
+	removeList();
+	removecir();
+//  if(actionList[Number(selectedEntity.getName())].gravity==false){//hide
+ 
+//  	hideCir();
+// actionList[Number(selectedEntity.getName())].gravity=true;
+//  }
+
+//  else if(actionList[Number(selectedEntity.getName())].gravity==true){
+	
+//  	showCir();
+
+// actionList[Number(selectedEntity.getName())].gravity=false;
+
+// 	 }
+
+for(var h=0;h<selectedEntity._children.length;h++){
+		if(selectedEntity._children[h].visible==true&&selectedEntity._children[h].getName()=='line'){
+                selectedEntity._children[h].visible=false;
+		}
+		else if(selectedEntity._children[h].visible==false&&selectedEntity._children[h].getName()=='line'){
+			selectedEntity._children[h].visible=true;
+		}
+	}
+});
+
+
+
+
+//	 }
+
+
+	
 
 
 
@@ -998,6 +1508,8 @@ console.log("inside gravity");
 /////////////////////////////////apple///////////////////////////////
 
 apple.bind('Click', function (e) {
+	selectedEntity.css({'border': '0px'});
+      removeCircle();
 	if(actionList[Number(selectedEntity.getName())].apple==false){
 		if(checkIfFloor()==true){
 			selectedEntity.addComponent('Gravity');
@@ -1047,7 +1559,7 @@ rootm.bind("StartDrag", function() {
  
 
     rootm.bind("StopDrag", function() {
- 
+        //up.visible=true; 
 
 
     }); 
@@ -1105,7 +1617,11 @@ circles[12].y=rootm.y-29;
 for(var i=4;i<circles.length;i++){
 	circles[i].visible=true;
 }
-
+// up.visible=true;
+// up.x=10;
+// up.y=10;
+// up.w=30;
+// up.h=30;
 
 }
 
@@ -1127,29 +1643,157 @@ for(var i=4;i<circles.length;i++){
 
 
 // 
-function move(){
+function expand(){
+	
+		
+		removeCircle();
+selectedEntity.css({'border': '0px'});
+var wx=window.outerWidth;
+var wy=window.outerHeight;
+console.log("wx="+wx+"wy="+wy);
+// document.getElementById('fullS').style.position='absolute';
+// document.getElementById('fullS').style.top='10';
+// document.getElementById('fullS').style.left='10';
+// document.getElementById('fullS').style.color='red';
+//   document.getElementById('fullS').style.zIndex='1';
+// document.getElementById('fullS').style.backgroundColor='green';
 
-	//////////move gravityion/////////////
+min.w=30;
+min.h=30;
+min.x=5;
+min.y=5;
+
+
+document.getElementById('canvas-div').style.position="absolute";
+document.getElementById('canvas-div').style.backgroundColor='white';
+document.getElementById('color_scroll').style.display='none';
+var cavW=cropPx(document.getElementById('canvas-div').style.width);
+var gW=cropPx(document.getElementById('game').style.width);
+var diff=gW-cavW;
+//document.getElementById('canvas-div').style.backgroundColor='red';
+//document.getElementById('game').style.position="absolute";
+var newgw=wx+diff;
+var newh=wy-50;
+console.log('cavw='+wx);
+console.log('gw='+newgw);
+document.getElementById('canvas-div').style.left= "0px";
+document.getElementById('canvas-div').style.top= "0px";
+document.getElementById('canvas-div').style.width= wx+"px" ;
+document.getElementById('canvas-div').style.height= newh+"px" ;
+document.getElementById('game').style.width= newgw+"px" ;
+document.getElementById('game').style.height= newh+"px" ;
+
+document.getElementById('canvas-div').style.overflow ="auto";
+var newCD=cropPx(document.getElementById('canvas-div').style.width);
+console.log("parcent"+newCD/cavW);
+//Crafty.viewport.scale(newCD/cavW);
+
+
+	
+	
+
 
 }
 function jump(){
+removeCircle();
+selectedEntity.css({'border': '0px'});
+
 if (actionList[Number(selectedEntity.getName())].jump==false){
 	
 
 //checkIfFloor()==true
 if(actionList[Number(selectedEntity.getName())].apple==true){
+
 actionList[Number(selectedEntity.getName())].jump=true;
 	  //jumpFlag=false;
-	selectedEntity.addComponent("Twoway,Collision,Gravity") .checkHits('Solid') // check for collisions with entities that have the Solid component in each frame
+	selectedEntity.addComponent("Twoway,Collision,Gravity, WiredHitBox, player,Motion") 
+	  //.checkHits('Solid') // check for collisions with entities that have the Solid component in each frame
+    .checkHits('wall') // check for collisions with entities that have the Solid component in each frame
     .bind("HitOn", function(hitData) {
         Crafty.log("Collision with Solid entity occurred for the first time.");
+        if(isUp==true && isFor==false && isBack==false){
+        this.y+=20;
+        //this.x-=10;
+    }
+
+    if(isUp==true && isFor==true && isBack==false){
+        this.y+=20;
+        this.x-=20;
+    }
+
+    if(isUp==true && isFor==false && isBack==true){
+        this.y+=20;
+        this.x+=20;
+    }
+
+
+    if(isBack==true && isUp==false){
+        this.x+=20;
+      //  this.y+=20;
+        
+    }
+     if(isUp==true && isBack==true){
+        this.x+=20;
+        this.y+=20;
+        
+    } 
+    if(isFor==true && isUp==false){
+
+    	this.x-=20;
+    	//this.y+=20;
+    
+    }
+    if( isUp==true && isFor==true){
+
+    	this.x-=20;
+    	this.y+=20;
+    
+    }
+    
+    
     })
     .bind("HitOff", function(comp) {
         Crafty.log("Collision with Solid entity ended.");
-    });
+    })
+    .bind('KeyDown', function(e) {
+       if(e.key == Crafty.keys.UP_ARROW){
+     isDown=false;
+//      if(this.y<20){
+//     console.log(this.y);
+//      this.multiway(150, {UP_ARROW: 0, DOWN_ARROW: 45, RIGHT_ARROW: 0, LEFT_ARROW: 180});
+// }
+}
 
-   // selectedEntity.gravity('Floor');
-selectedEntity.twoway(200);
+if(e.key == Crafty.keys.DOWN_ARROW){
+	isDown=true;
+	isBack=false;
+	isUp=false;
+	isFor=false;
+ }
+ if(e.key == Crafty.keys.UP_ARROW){
+	isUp=true;
+	isBack=false;
+	isDown=false;
+	isFor=false;
+ }
+
+ if(e.key == Crafty.keys.RIGHT_ARROW){
+	isBack=false;
+	isDown=false;
+	isUp=false;
+	isFor=true;
+ }
+
+ if(e.key == Crafty.keys.LEFT_ARROW){
+	isBack=true;
+	isDown=false;
+	isUp=false;
+	isFor=false;
+ }
+
+    });
+// 	 .
+   selectedEntity.twoway(200);
  
 
 
@@ -1189,46 +1833,116 @@ else if (actionList[Number(selectedEntity.getName())].jump==true){
   }
 }
 
+  Crafty.viewport.width=600;
+    Crafty.viewport.height=480;
 
+    Crafty.viewport.clampToEntites=false;
+    selectedEntity.addComponent("Solid");
+    Crafty.viewport.scale(1);
+    Crafty.one("CameraAnimationDone",function(){
+    Crafty.viewport.follow(selectedEntity,0,0);
+    });
+    Crafty.viewport.centerOn(selectedEntity,0); 
 
 
 }
 function fly(){
 	
+removeCircle();
+selectedEntity.css({'border': '0px'});
 
 if(actionList[Number(selectedEntity.getName())].fly==false){	
 	//flyf=false;
 
 
 if(actionList[Number(selectedEntity.getName())].apple==true){
-	actionList[Number(selectedEntity.getName())].fly=true;
-	selectedEntity.addComponent("Motion,Collision, Gravity,Multiway") .checkHits('Solid') // check for collisions with entities that have the Solid component in each frame
+		actionList[Number(selectedEntity.getName())].fly=true;
+	selectedEntity.addComponent("Motion,Collision, Gravity,Multiway") .checkHits('wall') // check for collisions with entities that have the Solid component in each frame
     .bind("HitOn", function(hitData) {
         Crafty.log("Collision with Solid entity occurred for the first time.");
+        if(isUp==true){
+        this.y+=10;
+        this.x-=5;
+    }
+    if(isBack==true){
+        this.x+=10;
+        //this.y+=5;
+        
+    }
+    if(isFor==true){
+
+    	this.x-=10;
+    	//this.y+=5;
+    
+    }
+    if(isDown==true){
+
+    	this.y-=10;
+    	this.x-=5;
+    
+    }
     })
     .bind("HitOff", function(comp) {
         Crafty.log("Collision with Solid entity ended.");
     })
     .bind('KeyDown', function(e) {
        if(e.key == Crafty.keys.UP_ARROW){
+     isDown=false;
+//      if(this.y<20){
+//     console.log(this.y);
+//      this.multiway(150, {UP_ARROW: 0, DOWN_ARROW: 45, RIGHT_ARROW: 0, LEFT_ARROW: 180});
+// }
+}
 
-if(this.y<20){
-console.log(this.y);
-this.multiway(150, {UP_ARROW: 0, DOWN_ARROW: 45, RIGHT_ARROW: 0, LEFT_ARROW: 180});
-}
-}
+if(e.key == Crafty.keys.DOWN_ARROW){
+	isDown=true;
+	isBack=false;
+	isUp=false;
+	isFor=false;
+ }
+ if(e.key == Crafty.keys.UP_ARROW){
+	isUp=true;
+	isBack=false;
+	isDown=false;
+	isFor=false;
+ }
+
+ if(e.key == Crafty.keys.RIGHT_ARROW){
+	isBack=false;
+	isDown=false;
+	isUp=false;
+	isFor=true;
+ }
+
+ if(e.key == Crafty.keys.LEFT_ARROW){
+	isBack=true;
+	isDown=false;
+	isUp=false;
+	isFor=false;
+ }
+
     });
       //var ay = selectedEntity.ay; 
       //selectedEntity.ay -= 50; 
     selectedEntity.multiway(150, {UP_ARROW: -45, DOWN_ARROW: 45, RIGHT_ARROW: 0, LEFT_ARROW: 180});
+ 
+    Crafty.viewport.width=600;
+    Crafty.viewport.height=480;
     
-   
-      
+    Crafty.viewport.clampToEntites=false;
+    selectedEntity.addComponent("Solid");
+    Crafty.viewport.scale(1);
+    Crafty.one("CameraAnimationDone",function(){
+    Crafty.viewport.follow(selectedEntity,0,0);
+    });
+    Crafty.viewport.centerOn(selectedEntity,0); 
+    //Crafty.stage.fullscreen=true;
+
+
 
     document.getElementById('fly').style.backgroundColor = "blue";
    // document.getElementById('jump').style.backgroundColor = "white";
     	
-
 
 
 }
@@ -1254,49 +1968,45 @@ if(selectedEntity.has('Multiway')){
 }
 function fall(){
 
+	 var ent3 = selectedEntity.clone()
+              .attr({x:selectedEntity.x, 
+              	y:selectedEntity.y
 
-var arr = Crafty("2D").get();
- var isFloor=false;
-for (var i=0;i< arr.length;i++) {
-	console.log("loop");
-	if(arr[i]!=selectedEntity){
-if(arr[i].has('Floor')){
-	console.log("floor");
-	isFloor=true;
-	break;
-}
+              });
+              console.log("selectedEntity name="+selectedEntity.getName());
+                 console.log("ent3 name="+ent3.getName());
+             ent3.setName(selectedEntity.getName());
+              createResizeEntity(ent3,false);
+              selectedEntity.destroy();
 
-}}
-
-if(isFloor==true){
-	selectedEntity.addComponent("Twoway, Gravity,Jumper,Collision") .checkHits('Solid') // check for collisions with entities that have the Solid component in each frame
-    .bind("HitOn", function(hitData) {
-        Crafty.log("Collision with Solid entity occurred for the first time.");
-    })
-    .bind("HitOff", function(comp) {
-        Crafty.log("Collision with Solid entity ended.");
-    });
-selectedEntity.twoway(200)
-  .gravity('Floor');
+              for(var g=0;g<4;g++){
+              	circles[g].visible=false;
+              }
 
 
-	document.getElementById('fall').style.backgroundColor = "blue";
-	
+              notVisible();
 
-}
 
-else{
-	console.log("please make floor");
-}
+  ///////////////////////////////////////////////////left///////////////////////////////
+  //selectedEntity.x=selectedEntity.x-20;
+//   for(var i=0;i<entList.length;i++){
+// 	entList[i].x=entList[i].x-2;
+// }
+//     removeCircle();
+  //////////////////////////////////////////////////left///////////////////////////////////
 
-}
+
+ }
 function dissapear(){
 
-
+removeCircle();
+selectedEntity.css({'border': '0px'});
 
 selectedEntity.visible=false;
 }
 function growing(){
+	removeCircle();
+selectedEntity.css({'border': '0px'});
 
 	var ww=selectedEntity.w;
 ww+=10;
@@ -1351,7 +2061,7 @@ function removeEventFromOtherEnitiy(){
 		console.log(array_of_entities[i].getName());
 	}
 
-	for(var i=1;i<array_of_entities.length;i++){
+	for(var i=5;i<array_of_entities.length;i++){
 		if(array_of_entities[i]==selectedEntity){
 			console.log("*****************");
                         console.log(Number(array_of_entities[i].getName()));
@@ -1426,6 +2136,30 @@ function removeEventFromOtherEnitiy(){
 			if(doNothing==false){
 				for(var j=0;j<lines.length;j++){
                 if(array_of_entities[i]==lines[j]){
+                		doNothing=true;
+                 	break;
+                }
+               }
+			}
+			if(doNothing==false){
+				for(var j=0;j<gravity_list.length;j++){
+                if(array_of_entities[i]==gravity_list[j]){
+                		doNothing=true;
+                 	break;
+                }
+               }
+			}
+			if(doNothing==false){
+				for(var j=0;j<cirList.length;j++){
+                if(array_of_entities[i]==cirList[j]){
+                		doNothing=true;
+                 	break;
+                }
+               }
+			}
+			if(doNothing==false){
+				for(var j=0;j<walls.length;j++){
+                if(array_of_entities[i]==walls[j]){
                 		doNothing=true;
                  	break;
                 }
@@ -1519,4 +2253,82 @@ if(isFloor==true){
 }
 
 return false;
+}
+
+function hideCir(){
+	for(var h=0;h<selectedEntity._children.length;h++){
+		selectedEntity._children[h].visible=false;
+	}
+}
+
+function showCir(){
+	for(var h=0;h<selectedEntity._children.length;h++){
+		selectedEntity._children[h].visible=true;
+	}
+}
+
+
+
+function speed(){
+
+if(speedFlag==false){
+	speedFlag=true;
+	document.getElementById('speedList').style.display='inline-block';
+}
+else if(speedFlag==true){
+	speedFlag=false;
+	document.getElementById('speedList').style.display='none';
+}
+}
+
+function finish(){
+	for(var i=0;i<entList.length;i++){
+	console.log(entList[i].x+" , ");
+
+}
+}
+
+function movetoRight(){
+
+for(var i=0;i<entList.length;i++){
+	entList[i].x=entList[i].x+2;
+}
+ 
+    removeCircle();
+}
+
+
+function movetoLeft(){
+
+for(var i=0;i<entList.length;i++){
+	entList[i].x=entList[i].x-2;
+}
+ 
+    removeCircle();
+}
+
+
+function speedValue(val){
+	var acc = selectedEntity.acceleration();
+switch(val){
+case'n':
+console.log("normal");
+acc.x=0;
+
+break;
+
+case's':
+console.log("slow");
+acc.x=-1;
+
+break;
+case'f':
+console.log("fast");
+acc.x+=2;
+
+break;
+}
+
+
+
 }

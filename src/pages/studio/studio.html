@@ -267,7 +267,11 @@
         <img src= {{imgSource27}} draggable="true" id='27'ondragstart="drag(event)">
       </ion-thumbnail>
     </ion-item>
-   
+     <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource48}} draggable="true" id='48'ondragstart="drag(event)">
+      </ion-thumbnail>
+    </ion-item>
   </ion-list>
 
   <ion-list *ngSwitchCase="'b2'">
@@ -403,17 +407,26 @@
 
       
     </div>
-    <div class="center-div">
+    <div class="center-div" id="center-div">
       <div class="action-bar">
-        <div class="action-block"  id='move' style="   background-image: url(../../assets/imgs/move.jpg);" onclick="move()">
-          <div class="action-block-lable">move</div>
+        <div class="expand-block float-left" id='fullS'> <ion-icon name="expand" class='expand'onclick='expand()'></ion-icon></div>
+      
+
+        <div class="action-block"  id='move' style="   background-image: url(../../assets/imgs/speed.png);" onclick="speed()">
+          <div class="action-block-lable" >speed</div>
+          <div class="speedList" id="speedList">
+            <input type="radio" name="speed" value="fast" id='fast' onclick="speedValue('f')">Fast<br>
+  <input type="radio" name="speed" value="normal" id='normal' onclick="speedValue('n')"> Normal<br>
+  <input type="radio" name="speed" value="slow" id='slow' onclick="speedValue('s')"> Slow
+          </div>
         </div>
 
-        <div class="action-block"  id='jump' style="   background-image: url(../../assets/imgs/jump.png);" onclick="jump()">
+
+        <div class="action-block float-left"  id='jump' style="   background-image: url(../../assets/imgs/jump.png);" onclick="jump()">
           <div class="action-block-lable">jump</div>
         </div>
 
-         <div class="action-block" id='fly' style="   background-image: url(../../assets/imgs/fly.png);" onclick="fly()">
+         <div class="action-block float-left" id='fly' style="   background-image: url(../../assets/imgs/fly.png);" onclick="fly()">
           <div class="action-block-lable">fly</div>
         </div>
        <div class="action-block" id='fall' style="   background-image: url(../../assets/imgs/fall.png);" onclick="fall()">
@@ -428,8 +441,9 @@
 
 
       </div>
-    <div class="canvas-div" >
-      <div class="warning" id='warning' onclick="close1()" >
+       <div class="clearfix"></div>
+    <div class="canvas-div" id='canvas-div' >
+      <div class="warning" id='warning' onclick="close1()" style="display: none;" >
         <span >
           <ion-icon name="close" class="close" id='close' ></ion-icon>
         </span>please make floor</div>
@@ -469,9 +483,9 @@
          </div> -->
 
       
-<div style="width: 80%; margin:auto;">
+<div style="width: 80%; margin:auto;" id='color_scroll'>
 <div style="background-color: #0FB1B3 ; margin-top: 40px; width: 100%; " >
-<div class="myCarousel">
+<div class="myCarousel" >
     <div >
 <div>
     <div id='red' style="width: 40px ; height: 40px ; display: inline-block;  background-color: red;border-radius: 50% " onclick="setBackColor('red')"></div>
@@ -549,7 +563,7 @@
     <ul >
             <li class="right-side-btn" >clear</li>
           
-            <li class="right-side-btn" >finish</li>
+            <li class="right-side-btn" onclick="finish()" >finish</li>
 
 
         </ul>
