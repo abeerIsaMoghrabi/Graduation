@@ -1350,7 +1350,7 @@ Visible(rootm);
 /////////////////////////////////delete///////////////////////////
 
 del.bind('Click', function (e) {
-rootm.destroy();
+
 
 	selectedEntity.css({'border': '0px'});
 
@@ -1362,13 +1362,34 @@ rootm.destroy();
 			break;
 		}
 	}
+console.log("entList after remove");
+for(var k=0;k<entList.length;k++){
+console.log(entList[k].getName());
+}
+
+
+
      for(var k=0;k<actionA.length;k++){
 		if(actionA[k].id==selectedEntity.getName()){
 			actionA.splice(k, k+1);
 			break;
 		}
 	}
-
+console.log("actionA after remove");
+for(var k=0;k<actionA.length;k++){
+console.log(actionA[k].id);
+}
+     for(var k=0;k<actionAEnt.length;k++){
+    if(actionAEnt[k].id==selectedEntity.getName()){
+      actionAEnt.splice(k, k+1);
+      break;
+    }
+  }
+  console.log("actionAEnt after remove");
+for(var k=0;k<actionAEnt.length;k++){
+console.log(actionAEnt[k].id);
+}
+rootm.destroy();
 });
 
 
@@ -2719,6 +2740,9 @@ for(var i=0;i<actionA.length;i++){
 }
 
 objList.length=0;
+for(var y=0;y<objList.length;h++){
+  console.log("objList is not empty");
+}
 copyEntToArray();
 for(var i=0;i<actionAEnt.length;i++){
 var index=0;
