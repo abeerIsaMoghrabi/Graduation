@@ -2757,6 +2757,32 @@ actionAEnt[i].rotate=actionList[actionAEnt[i].id].rotate;
 
 objList.push(actionAEnt[i]);
 }
+
+ var min=objList[0].x;
+  //console.log("x0="+min);
+  var vv;
+
+  for(var i=1;i<objList.length;i++){
+vv=objList[i].x;
+if(vv<min){
+  min=vv;
+  
+}
+  }
+  console.log("min1="+min);
+  if(min<0){
+      for(var i=0;i<objList.length;i++){
+  console.log("bb="+objList[i].x);
+  objList[i].x=objList[i].x-min;
+  console.log("aa="+objList[i].x);
+}
+  }
+
+
+
+
+
+
 console.log("************entity************");
 for(var i=0;i<objList.length;i++){
   console.log("x="+objList[i].x+" , ");
