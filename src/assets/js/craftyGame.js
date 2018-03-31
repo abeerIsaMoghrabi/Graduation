@@ -10,27 +10,59 @@
 var walls=[];
 
 
-
+var arrObj=[];//for backgroundobject final
 
 
 
 	
-
-//}
-var toyObj=[];
-
-var objBackground=function(p){
-var that={};
 var isDown=false;
 var isUp=false;
 var isBack=false;
 var isFor=true;
+//}
+var toyObj=[];
+var actionA=[];
+var actionAEnt=[];
+var objBackground=function(p){
+var that={};
+
 that.x=p.x;
 that.y=p.y;
 that.w=p.w;
 that.h=p.h;
 that.src=p.src;
 that.id=p.id;
+that.rotate=p.rotate;
+that.collision=p.collision;
+that.freez=p.freez;
+that.apple=p.apple;
+return that;
+}
+var actionAEntObj=function(p){
+var that={};
+
+that.x=p.x;
+that.y=p.y;
+that.w=p.w;
+that.h=p.h;
+that.src=p.src;
+that.id=p.id;
+return that;
+}
+var actionInfo=function(p){
+var that={};
+
+that.x=p.x;
+that.y=p.y;
+that.w=p.w;
+that.h=p.h;
+that.src=p.src;
+that.id=p.id;
+that.action=p.action;
+that.startTime=p.startTime;
+that.stopTime=p.stopTime;
+that.keyType=p.keyType;
+that.speed=p.speed;
 return that;
 }
 
@@ -41,7 +73,8 @@ var objAction=function(p){
 that.move=p.move;
 that.jump=p.jump;
 that.fly=p.fly;
-that.fall=p.fall;
+// that.initPosX=p.initPosX;
+// that.initPosY=p.initPosY;
 that.dissapear=p.dissapear;
 that.growing=p.growing;
 that.delete=p.delete;
@@ -52,7 +85,7 @@ that.collision=p.collision;
 that.freez=p.freez;
 that.gravity=p.gravity;
 that.apple=p.apple;
-//that.floors=p.floors;
+that.order=p.order;
 return that;
 
 }
@@ -85,7 +118,24 @@ var initHeight=480;
 var fullSize=false;
 var initWidht=2000;
 var speedFlag=false;
+var objL;
+var objR;
+var objU;
+var objD;
+console.log("initilization");
 
+var firstOneDown={
+up:true,
+down:true,
+left:true,
+right:true
+};
+var firstOneUp={
+up:true,
+down:true,
+left:true,
+right:true
+};
 //function ff(){
 
   //alert(Game);
@@ -507,26 +557,40 @@ function readData(userId){
 
 function copyEntToArray(){
 	var array_of_entities = Crafty("2D").get();
-	var arrObj;
-	for(var i=0 ;i<array_of_entities.length;i++){
-		 arrObj=new objBackground({
-	x:array_of_entities[i].x,
-	y:array_of_entities[i].y,
-	w:array_of_entities[i].w,
-	h:array_of_entities[i].h,
-	src:array_of_entities[i].__image,
-	id:array_of_entities[i].getId()
+	var exiIn=false;
+	for(var i=0 ;i<entList.length;i++){
+    for(var j=0;j<actionAEnt.length;j++){
+      if(actionAEnt[j].id==entList[i].getName()){
+        exiIn=true;
+        break;
+      }
+    }
+    if(!exiIn){
+      console.log("this entity exsist in action array ");
+           arrObj=new objBackground({
+  x:entList[i].x,
+  y:entList[i].y,
+  w:entList[i].w,
+  h:entList[i].h,
+  src:entList[i].__image,
+  id:entList[i].getName(),
+   rotate:actionList[entList[i].getName()].rotate,
+collision:actionList[entList[i].getName()].collision,
+freez:actionList[entList[i].getName()].freez,
+apple:actionList[entList[i].getName()].apple
 
 });
-		objList.push(arrObj);
+    objList.push(arrObj);
+    }
+ 
 
 	}
 
-for(var i=0 ;i<objList.length;i++){
-console.log(objList[i]);
+// for(var i=0 ;i<objList.length;i++){
+// console.log(objList[i]);
 
 
-}
+// }
 }
 
 
@@ -599,7 +663,8 @@ var oa=objAction({
 	move:false,
 jump:false,
 fly:false,
-fall:false,
+// initPosX:'n',
+// initPosY:'n',
 dissapear:false,
 growing:false,
 delete:false,
@@ -609,7 +674,8 @@ expand:false,
 collision:false,
 freez:false,
 gravity:false,
-apple:false
+apple:false,
+order:'n'
 //floors:[]
 
 });
@@ -777,14 +843,247 @@ checkIfClick();
 ///////////////////////////circle def///////////////////////////////////
        /////////////////////circle1////////////////////////
 
-selectedEntity.bind('KeyDown',function(){
- 	
-	selectedEntity.css({'border': '0px'});
+selectedEntity.bind('KeyDown',function(e){
 
+if(actionList[Number(selectedEntity.getName())].jump==true||actionList[Number(selectedEntity.getName())].fly==true){
+	
+	
+switch(e.key){
+	//////////////////////////left////////////////
+case Crafty.keys.LEFT_ARROW:
+if(firstOneDown.left==true){
+	firstOneDown.left=false;
+	firstOneUp.left=true;
 
-        removeCircle();
+var d = new Date(); // for now
+console.log("keydown left");
+
+   action= actionList[Number(selectedEntity.getName())].order;
+    objL=actionInfo({x:selectedEntity.x,
+y:selectedEntity.y,
+h:selectedEntity.h,
+w:selectedEntity.w,
+src:selectedEntity.__image,
+	id:selectedEntity.getName(),
+	action:action ,
+	startTime:d,
+	stopTime:'',
+	keyType:e.key,
+	speed:200
+
+});
+ checkIfexsist(selectedEntity.x,selectedEntity.y,selectedEntity.w,selectedEntity.h); 
+
+}
+
+break;
+//////////////////////////////////left///////////////////////
+/////////////////////////////////right/////////////////////
+case Crafty.keys.RIGHT_ARROW:
+if(firstOneDown.right==true){
+	firstOneDown.right=false;
+	firstOneUp.right=true;
+
+var d = new Date(); // for now
+console.log("keydown right");
+
+   action= actionList[Number(selectedEntity.getName())].order;
+    objR=actionInfo({x:selectedEntity.x,
+y:selectedEntity.y,
+h:selectedEntity.h,
+w:selectedEntity.w,
+src:selectedEntity.__image,
+	id:selectedEntity.getName(),
+	action:action ,
+	startTime:d,
+	stopTime:'',
+	keyType:e.key,
+	speed:200
+
+});
+ checkIfexsist(selectedEntity.x,selectedEntity.y,selectedEntity.w,selectedEntity.h); 
+
+}
+
+break;
+/////////////////////////////////right////////////////////
+/////////////////////////////////up/////////////////////
+case Crafty.keys.UP_ARROW:
+if(firstOneDown.up==true){
+	firstOneDown.up=false;
+	firstOneUp.up=true;
+
+var d = new Date(); // for now
+console.log("keydown up");
+
+   action= actionList[Number(selectedEntity.getName())].order;
+    objU=actionInfo({x:selectedEntity.x,
+y:selectedEntity.y,
+h:selectedEntity.h,
+w:selectedEntity.w,
+src:selectedEntity.__image,
+	id:selectedEntity.getName(),
+	action:action ,
+	startTime:d,
+	stopTime:'',
+	keyType:e.key,
+	speed:200
+
+});
+
+ checkIfexsist(selectedEntity.x,selectedEntity.y,selectedEntity.w,selectedEntity.h); 
+}
+
+break;
+/////////////////////////////////up////////////////////
+/////////////////////////////////down/////////////////////
+case Crafty.keys.DOWN_ARROW:
+if(firstOneDown.down==true){
+	firstOneDown.down=false;
+	firstOneUp.down=true;
+
+var d = new Date(); // for now
+console.log("keydown down");
+
+   action= actionList[Number(selectedEntity.getName())].order;
+    objD=actionInfo({x:selectedEntity.x,
+y:selectedEntity.y,
+h:selectedEntity.h,
+w:selectedEntity.w,
+src:selectedEntity.__image,
+	id:selectedEntity.getName(),
+	action:action ,
+	startTime:d,
+	stopTime:'',
+	keyType:e.key,
+	speed:200
+
+});
+
+ checkIfexsist(selectedEntity.x,selectedEntity.y,selectedEntity.w,selectedEntity.h); 
+}
+
+break;
+/////////////////////////////////down////////////////////
+}
+
+selectedEntity.css({'border': '0px'});
+ removeCircle();
+
+}
      
 });
+//////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////
+//////////////////////////////////
+////////////////////////////
+/////////////////////
+selectedEntity.bind('KeyUp',function(e){
+	//check if event is active fly & jump
+	//when moved entity delete
+if(actionList[Number(selectedEntity.getName())].jump==true||actionList[Number(selectedEntity.getName())].fly==true){
+switch(e.key){
+	//////////////////////////left////////////////
+case Crafty.keys.LEFT_ARROW:
+if(firstOneUp.left==true){
+	firstOneUp.left=false;
+	firstOneDown.left=true;
+
+var d = new Date(); // for now
+
+
+
+ console.log("keyUp left");
+
+
+    objL.stopTime=d;
+ actionA.push(objL);
+
+
+}
+
+break;
+//////////////////////////////////left///////////////////////
+/////////////////////////////////right/////////////////////
+case Crafty.keys.RIGHT_ARROW:
+if(firstOneUp.right==true){
+	firstOneUp.right=false;
+	firstOneDown.right=true;
+
+var d = new Date(); // for now
+
+
+
+ console.log("keyUp right");
+
+
+    objR.stopTime=d;
+ actionA.push(objR);
+
+}
+
+break;
+/////////////////////////////////right////////////////////
+/////////////////////////////////up/////////////////////
+case Crafty.keys.UP_ARROW:
+if(firstOneUp.up==true){
+	firstOneUp.up=false;
+	firstOneDown.up=true;
+
+var d = new Date(); // for now
+
+
+
+ console.log("keyUp up");
+
+
+    objU.stopTime=d;
+ actionA.push(objU);
+
+
+}
+
+break;
+/////////////////////////////////up////////////////////
+/////////////////////////////////down/////////////////////
+case Crafty.keys.DOWN_ARROW:
+if(firstOneUp.down==true){
+	firstOneUp.down=false;
+	firstOneDown.down=true;
+
+var d = new Date(); // for now
+
+
+
+ console.log("keyUp down");
+
+
+    objD.stopTime=d;
+ actionA.push(objD);
+
+
+}
+break;
+/////////////////////////////////down////////////////////
+}
+
+ 	
+
+
+
+
+
+
+
+}
+
+
+        
+     
+});
+
+
+
 
 circle1.bind('MouseDown',function(e){
 
@@ -1022,7 +1321,18 @@ rootm.destroy();
 
 
         removeCircle();
-
+        for(var k=0;k<entList.length;k++){
+		if(entList[k]==selectedEntity){
+			entList.splice(k, k+1);
+			break;
+		}
+	}
+     for(var k=0;k<actionA.length;k++){
+		if(actionA[k].id==selectedEntity.getName()){
+			actionA.splice(k, k+1);
+			break;
+		}
+	}
 
 });
 
@@ -1703,6 +2013,7 @@ if (actionList[Number(selectedEntity.getName())].jump==false){
 
 //checkIfFloor()==true
 if(actionList[Number(selectedEntity.getName())].apple==true){
+   actionList[Number(selectedEntity.getName())].order='j'; 
 
 actionList[Number(selectedEntity.getName())].jump=true;
 	  //jumpFlag=false;
@@ -1856,6 +2167,11 @@ if(actionList[Number(selectedEntity.getName())].fly==false){
 
 
 if(actionList[Number(selectedEntity.getName())].apple==true){
+
+	
+        actionList[Number(selectedEntity.getName())].order='f'; 
+	
+
 		actionList[Number(selectedEntity.getName())].fly=true;
 	selectedEntity.addComponent("Motion,Collision, Gravity,Multiway") .checkHits('wall') // check for collisions with entities that have the Solid component in each frame
     .bind("HitOn", function(hitData) {
@@ -1998,13 +2314,69 @@ function fall(){
 
  }
 function dissapear(){
+	var d = new Date(); 
+	if(actionList[Number(selectedEntity.getName())].dissapear==false){
+		actionList[Number(selectedEntity.getName())].dissapear=true;
+		 var  obj=actionInfo({x:selectedEntity.x,
+y:selectedEntity.y,
+h:selectedEntity.h,
+w:selectedEntity.w,
+src:selectedEntity.__image,
+	id:selectedEntity.getName(),
+	action:'d' ,
+	startTime:d,
+	stopTime:'n',
+	keyType:'n',
+	speed:200
 
+});
+  actionA.push(obj);
+   checkIfexsist();
 removeCircle();
 selectedEntity.css({'border': '0px'});
 
 selectedEntity.visible=false;
+	}
+ else if(actionList[Number(selectedEntity.getName())].dissapear==true){
+		actionList[Number(selectedEntity.getName())].dissapear=false;
+		 var  obj=actionInfo({x:selectedEntity.x,
+y:selectedEntity.y,
+h:selectedEntity.h,
+w:selectedEntity.w,
+src:selectedEntity.__image,
+	id:selectedEntity.getName(),
+	action:'a' ,
+	startTime:d,
+	stopTime:'n',
+	keyType:'n',
+	speed:200
+
+});
+  actionA.push(obj);
+   checkIfexsist();
+//removeCircle();
+//selectedEntity.css({'border': '0px'});
+
+selectedEntity.visible=true;
+	}
 }
 function growing(){
+var d = new Date(); 
+  var  obj=actionInfo({x:selectedEntity.x,
+y:selectedEntity.y,
+h:selectedEntity.h,
+w:selectedEntity.w,
+src:selectedEntity.__image,
+	id:selectedEntity.getName(),
+	action:'g' ,
+	startTime:d,
+	stopTime:'n',
+	keyType:'n',
+	speed:200
+
+});
+  actionA.push(obj);
+   checkIfexsist();
 	removeCircle();
 selectedEntity.css({'border': '0px'});
 
@@ -2024,6 +2396,8 @@ selectedEntity.attr({
 	h:hh
 });
 selectedEntity.visible=true;
+ 
+
 
 }
 
@@ -2282,12 +2656,66 @@ else if(speedFlag==true){
 }
 
 function finish(){
-	for(var i=0;i<entList.length;i++){
-	console.log(entList[i].x+" , ");
+// 	for(var i=0;i<actionList.length;i++){
+// 	console.log("fly="+actionList[i].fly+" , ");
+// 	console.log("jump="+actionList[i].jump+" , ");
+// 	console.log("growing="+actionList[i].growing+" , ");
+// 	console.log("dissapear="+actionList[i].dissapear+" , ");
+// 	console.log("pos=("+actionList[i].initPosX+" , "+actionList[i].initPosY+")");
+
+// }
+console.log("************action array*************");
+for(var i=0;i<actionA.length;i++){
+ 	console.log("x="+actionA[i].x+" , ");
+ 	console.log("y="+actionA[i].y+" , ");
+ 	console.log("h="+actionA[i].h+" , ");
+ 	console.log("w="+actionA[i].w+" , ");
+    console.log("src="+actionA[i].src+" , ");
+    console.log("id="+actionA[i].id+" , ");
+    console.log("action="+actionA[i].action+",");
+    console.log("startTime="+actionA[i].startTime+" , ");
+    console.log("stopTime="+actionA[i].stopTime+" , ");
+    console.log("keyType="+actionA[i].keyType+" , ");
+    console.log("speed="+actionA[i].speed+" , ");
+
+
+}
+
+objList.length=0;
+copyEntToArray();
+for(var i=0;i<actionAEnt.length;i++){
+actionAEnt[i].collision=actionList[actionAEnt[i].id].collision;
+actionAEnt[i].freez=actionList[actionAEnt[i].id].freez;
+
+actionAEnt[i].apple=actionList[actionAEnt[i].id].apple;
+actionAEnt[i].rotate=actionList[actionAEnt[i].id].rotate;
+
+ 	// console.log("x="+actionAEnt[i].x+" , ");
+ 	// console.log("y="+actionAEnt[i].y+" , ");
+ 	// console.log("h="+actionAEnt[i].h+" , ");
+ 	// console.log("w="+actionAEnt[i].w+" , ");
+  //   console.log("src="+actionAEnt[i].src+" , ");
+  //   console.log("id="+actionAEnt[i].id+" , ");
+  //  console.log("collision="+actionAEnt[i].collision+" , ");
+  //  console.log("apple="+actionAEnt[i].apple+" , ");
+  //  console.log("rotate="+actionAEnt[i].rotate+" , ");
+objList.push(actionAEnt[i]);
+}
+console.log("************entity************");
+for(var i=0;i<objList.length;i++){
+  console.log("x="+objList[i].x+" , ");
+  console.log("y="+objList[i].y+" , ");
+  console.log("h="+objList[i].h+" , ");
+  console.log("w="+objList[i].w+" , ");
+    console.log("src="+objList[i].src+" , ");
+    console.log("id="+objList[i].id+" , ");
+   console.log("collision="+objList[i].collision+" , ");
+   console.log("apple="+objList[i].apple+" , ");
+   console.log("rotate="+objList[i].rotate+" , ");
+
 
 }
 }
-
 function movetoRight(){
 
 for(var i=0;i<entList.length;i++){
@@ -2331,4 +2759,63 @@ break;
 
 
 
+}
+
+
+function isFirstEvent(en){
+
+	if(!actionList[Number(en)].fly&&!actionList[Number(en)].jump&&!actionList[Number(en)].dissapear&&!actionList[Number(en)].growing){
+		
+		actionList[Number(en)].initPosX=selectedEntity.x;
+		actionList[Number(en)].initPosY=selectedEntity.y;
+	}
+
+}
+
+
+
+
+
+function checkIfexsist(x,y,w,h){
+	var flagE=false;
+	for(var l=0;l<actionA.length;l++){
+		if(actionA[l].id==selectedEntity.getName()){
+	
+flagE=true;
+break;
+		}
+	
+}
+if(flagE==false){
+	//	console.log("match");
+		var entObj=objBackground({
+        x:x,
+        y:y,
+        w:w,
+        h:h,
+        src:selectedEntity.__image,
+	id:selectedEntity.getName(),
+  rotate:false,
+collision:false,
+freez:false,
+apple:false
+	});
+	
+actionAEnt.push(entObj);
+}
+
+
+}
+
+var myVar = setInterval(myTimer ,1000);
+var counterS=0;
+var counterM=0;
+function myTimer() {
+    var d = new Date();
+    if(counterS==60){
+    counterM++;
+    counterS=0;
+    }
+    document.getElementById("timer").innerHTML = counterM+":"+counterS++;
+    
 }
