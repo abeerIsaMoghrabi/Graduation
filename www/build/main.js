@@ -1,4 +1,4 @@
-webpackJsonp([8],{
+webpackJsonp([9],{
 
 /***/ 156:
 /***/ (function(module, exports) {
@@ -23,34 +23,38 @@ webpackEmptyAsyncContext.id = 156;
 var map = {
 	"../pages/background/background.module": [
 		469,
-		6
+		7
 	],
 	"../pages/chars/chars.module": [
 		470,
+		6
+	],
+	"../pages/display/display.module": [
+		471,
 		5
 	],
 	"../pages/home/home.module": [
-		471,
-		7
+		472,
+		8
 	],
 	"../pages/login/login.module": [
-		472,
+		473,
 		4
 	],
 	"../pages/moves/moves.module": [
-		473,
+		474,
 		3
 	],
 	"../pages/register/register.module": [
-		474,
+		475,
 		2
 	],
 	"../pages/studio/studio.module": [
-		475,
+		476,
 		0
 	],
 	"../pages/viewer/viewer.module": [
-		476,
+		477,
 		1
 	]
 };
@@ -431,6 +435,7 @@ var AppModule = (function () {
                     links: [
                         { loadChildren: '../pages/background/background.module#BackgroundPageModule', name: 'BackgroundPage', segment: 'background', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/chars/chars.module#CharsPageModule', name: 'CharsPage', segment: 'chars', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/display/display.module#DisplayPageModule', name: 'DisplayPage', segment: 'display', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/moves/moves.module#MovesPageModule', name: 'MovesPage', segment: 'moves', priority: 'low', defaultHistory: [] },

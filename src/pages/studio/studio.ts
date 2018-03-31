@@ -293,5 +293,7 @@ this.navCtrl.push('BackgroundPage');
    script.src = 'assets/js/craftyGame.js'; 
    document.body.appendChild(script); };
 
-   
+         async b1() {
+this.navCtrl.push('DisplayPage');
+  } 
 }
