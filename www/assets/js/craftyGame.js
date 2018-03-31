@@ -36,6 +36,7 @@ that.rotate=p.rotate;
 that.collision=p.collision;
 that.freez=p.freez;
 that.apple=p.apple;
+that.gravity=[];
 return that;
 }
 var actionAEntObj=function(p){
@@ -49,6 +50,17 @@ that.src=p.src;
 that.id=p.id;
 return that;
 }
+var lineObj=function(p){
+ var that={};
+
+that.x=p.x;
+that.y=p.y;
+that.w=p.w;
+that.h=p.h;
+
+return that;
+}
+
 var actionInfo=function(p){
 var that={};
 
@@ -56,7 +68,7 @@ that.x=p.x;
 that.y=p.y;
 that.w=p.w;
 that.h=p.h;
-that.src=p.src;
+//that.src=p.src;
 that.id=p.id;
 that.action=p.action;
 that.startTime=p.startTime;
@@ -566,7 +578,9 @@ function copyEntToArray(){
       }
     }
     if(!exiIn){
-      console.log("this entity exsist in action array ");
+     // console.log("this entity exsist in action array ");
+    
+
            arrObj=new objBackground({
   x:entList[i].x,
   y:entList[i].y,
@@ -577,9 +591,30 @@ function copyEntToArray(){
    rotate:actionList[entList[i].getName()].rotate,
 collision:actionList[entList[i].getName()].collision,
 freez:actionList[entList[i].getName()].freez,
-apple:actionList[entList[i].getName()].apple
-
+apple:actionList[entList[i].getName()].apple,
+gravity:""
 });
+             var entLine=[];
+      var chArr=entList[i]._children;
+      for(var k=0;k<chArr.length;k++){
+        console.log("inside for loop for line");
+        if(chArr[k].getName()=="line"){
+          console.log("line ##");
+           var ob=lineObj({
+            x:chArr[k].x,
+            y:chArr[k].y,
+            w:chArr[k].w,
+            h:chArr[k].h
+           });
+           arrObj.gravity.push(ob);
+        }
+      }
+
+           console.log("hi hih");
+            for(var k=0;k<arrObj.gravity.length;k++){
+      console.log("x="+arrObj.gravity[k].x+",");
+      console.log("y="+arrObj.gravity[k].y+",");
+    }
     objList.push(arrObj);
     }
  
@@ -863,10 +898,10 @@ console.log("keydown left");
 y:selectedEntity.y,
 h:selectedEntity.h,
 w:selectedEntity.w,
-src:selectedEntity.__image,
+//src:selectedEntity.__image,
 	id:selectedEntity.getName(),
 	action:action ,
-	startTime:d,
+	startTime:document.getElementById('timer').innerHTML,
 	stopTime:'',
 	keyType:e.key,
 	speed:200
@@ -892,10 +927,10 @@ console.log("keydown right");
 y:selectedEntity.y,
 h:selectedEntity.h,
 w:selectedEntity.w,
-src:selectedEntity.__image,
+//src:selectedEntity.__image,
 	id:selectedEntity.getName(),
 	action:action ,
-	startTime:d,
+	startTime:document.getElementById('timer').innerHTML,
 	stopTime:'',
 	keyType:e.key,
 	speed:200
@@ -921,10 +956,10 @@ console.log("keydown up");
 y:selectedEntity.y,
 h:selectedEntity.h,
 w:selectedEntity.w,
-src:selectedEntity.__image,
+//src:selectedEntity.__image,
 	id:selectedEntity.getName(),
 	action:action ,
-	startTime:d,
+	startTime:document.getElementById('timer').innerHTML,
 	stopTime:'',
 	keyType:e.key,
 	speed:200
@@ -950,10 +985,10 @@ console.log("keydown down");
 y:selectedEntity.y,
 h:selectedEntity.h,
 w:selectedEntity.w,
-src:selectedEntity.__image,
+//src:selectedEntity.__image,
 	id:selectedEntity.getName(),
 	action:action ,
-	startTime:d,
+	startTime:document.getElementById('timer').innerHTML,
 	stopTime:'',
 	keyType:e.key,
 	speed:200
@@ -996,7 +1031,7 @@ var d = new Date(); // for now
  console.log("keyUp left");
 
 
-    objL.stopTime=d;
+    objL.stopTime=document.getElementById('timer').innerHTML;
  actionA.push(objL);
 
 
@@ -1017,7 +1052,7 @@ var d = new Date(); // for now
  console.log("keyUp right");
 
 
-    objR.stopTime=d;
+    objR.stopTime=document.getElementById('timer').innerHTML;
  actionA.push(objR);
 
 }
@@ -1037,7 +1072,7 @@ var d = new Date(); // for now
  console.log("keyUp up");
 
 
-    objU.stopTime=d;
+    objU.stopTime=document.getElementById('timer').innerHTML;
  actionA.push(objU);
 
 
@@ -1058,7 +1093,7 @@ var d = new Date(); // for now
  console.log("keyUp down");
 
 
-    objD.stopTime=d;
+    objD.stopTime=document.getElementById('timer').innerHTML;
  actionA.push(objD);
 
 
@@ -1464,8 +1499,10 @@ var tt = Crafty.e("2D, DOM, Color, solid, top, wall, Floor")
    var rr = Crafty.e("2D, DOM, Color, solid, right, wall")
       .attr({x: s1, y: y2, w: 1, h: h2})
       .color('white');
-
-
+tt.setName("wall");
+bb.setName("wall");
+ll.setName("wall");
+rr.setName("wall");
       walls.push(tt);
       walls.push(bb);
       walls.push(ll);
@@ -2017,7 +2054,7 @@ if(actionList[Number(selectedEntity.getName())].apple==true){
 
 actionList[Number(selectedEntity.getName())].jump=true;
 	  //jumpFlag=false;
-	selectedEntity.addComponent("Twoway,Collision,Gravity, WiredHitBox, player,Motion") 
+	selectedEntity.addComponent("Twoway,Collision,Gravity, player,Motion") 
 	  //.checkHits('Solid') // check for collisions with entities that have the Solid component in each frame
     .checkHits('wall') // check for collisions with entities that have the Solid component in each frame
     .bind("HitOn", function(hitData) {
@@ -2321,10 +2358,10 @@ function dissapear(){
 y:selectedEntity.y,
 h:selectedEntity.h,
 w:selectedEntity.w,
-src:selectedEntity.__image,
+//src:selectedEntity.__image,
 	id:selectedEntity.getName(),
 	action:'d' ,
-	startTime:d,
+	startTime:document.getElementById('timer').innerHTML,
 	stopTime:'n',
 	keyType:'n',
 	speed:200
@@ -2343,10 +2380,10 @@ selectedEntity.visible=false;
 y:selectedEntity.y,
 h:selectedEntity.h,
 w:selectedEntity.w,
-src:selectedEntity.__image,
+//src:selectedEntity.__image,
 	id:selectedEntity.getName(),
 	action:'a' ,
-	startTime:d,
+	startTime:document.getElementById('timer').innerHTML,
 	stopTime:'n',
 	keyType:'n',
 	speed:200
@@ -2366,10 +2403,10 @@ var d = new Date();
 y:selectedEntity.y,
 h:selectedEntity.h,
 w:selectedEntity.w,
-src:selectedEntity.__image,
+//src:selectedEntity.__image,
 	id:selectedEntity.getName(),
 	action:'g' ,
-	startTime:d,
+	startTime:document.getElementById('timer').innerHTML,
 	stopTime:'n',
 	keyType:'n',
 	speed:200
@@ -2670,7 +2707,7 @@ for(var i=0;i<actionA.length;i++){
  	console.log("y="+actionA[i].y+" , ");
  	console.log("h="+actionA[i].h+" , ");
  	console.log("w="+actionA[i].w+" , ");
-    console.log("src="+actionA[i].src+" , ");
+   // console.log("src="+actionA[i].src+" , ");
     console.log("id="+actionA[i].id+" , ");
     console.log("action="+actionA[i].action+",");
     console.log("startTime="+actionA[i].startTime+" , ");
@@ -2684,21 +2721,40 @@ for(var i=0;i<actionA.length;i++){
 objList.length=0;
 copyEntToArray();
 for(var i=0;i<actionAEnt.length;i++){
+var index=0;
+
+      for(var j=0;j<entList.length;j++){
+       if( entList[j].getName()==actionAEnt[i].id){
+
+          index=j;
+          console.log("index="+index);
+          break;
+       }
+      }
+
+         var entLine=[];
+      var chArr=entList[index]._children;
+      console.log("child length"+chArr.length);
+      for(var k=1;k<chArr.length;k++){
+        console.log(chArr[k]);
+        if(chArr[k].getName()=="line"){
+           var ob=lineObj({
+            x:chArr[k].x,
+            y:chArr[k].y,
+            w:chArr[k].w,
+            h:chArr[k].h
+           });
+           actionAEnt[i].gravity.push(ob);
+        }
+      }
+
 actionAEnt[i].collision=actionList[actionAEnt[i].id].collision;
 actionAEnt[i].freez=actionList[actionAEnt[i].id].freez;
 
 actionAEnt[i].apple=actionList[actionAEnt[i].id].apple;
 actionAEnt[i].rotate=actionList[actionAEnt[i].id].rotate;
+//actionAEnt[i].gravity=entLine;
 
- 	// console.log("x="+actionAEnt[i].x+" , ");
- 	// console.log("y="+actionAEnt[i].y+" , ");
- 	// console.log("h="+actionAEnt[i].h+" , ");
- 	// console.log("w="+actionAEnt[i].w+" , ");
-  //   console.log("src="+actionAEnt[i].src+" , ");
-  //   console.log("id="+actionAEnt[i].id+" , ");
-  //  console.log("collision="+actionAEnt[i].collision+" , ");
-  //  console.log("apple="+actionAEnt[i].apple+" , ");
-  //  console.log("rotate="+actionAEnt[i].rotate+" , ");
 objList.push(actionAEnt[i]);
 }
 console.log("************entity************");
@@ -2712,7 +2768,15 @@ for(var i=0;i<objList.length;i++){
    console.log("collision="+objList[i].collision+" , ");
    console.log("apple="+objList[i].apple+" , ");
    console.log("rotate="+objList[i].rotate+" , ");
+console.log("************line for "+objList[i].id+"************");
+ //  console.log("gravity="+objList[i].gravity+" , ");
 
+for(var m=0;m<objList[i].gravity.length;m++){
+  console.log("line x="+objList[i].gravity[m].x);
+  console.log("line y="+objList[i].gravity[m].y);
+  console.log("line w="+objList[i].gravity[m].w);
+  console.log("line h="+objList[i].gravity[m].h);
+}
 
 }
 }
@@ -2798,7 +2862,8 @@ if(flagE==false){
   rotate:false,
 collision:false,
 freez:false,
-apple:false
+apple:false,
+gravity:""
 	});
 	
 actionAEnt.push(entObj);
@@ -2807,9 +2872,10 @@ actionAEnt.push(entObj);
 
 }
 
-var myVar = setInterval(myTimer ,1000);
+//var myVar = setInterval(myTimer ,1000);
 var counterS=0;
 var counterM=0;
+var myVar;
 function myTimer() {
     var d = new Date();
     if(counterS==60){
@@ -2818,4 +2884,18 @@ function myTimer() {
     }
     document.getElementById("timer").innerHTML = counterM+":"+counterS++;
     
+}
+
+function start(){
+  
+  if(document.getElementById('start').innerHTML=="start"){
+document.getElementById('start').innerHTML="stop";
+ myVar = setInterval(myTimer ,1000);
+
+  }
+  else if (document.getElementById('start').innerHTML=="stop"){
+    document.getElementById('start').innerHTML="start";
+clearInterval(myVar);
+
+  }
 }

@@ -26436,7 +26436,7 @@ page-login .background {
   color: white;
   font-size: 18px;
   border: 2px solid white;
-  margin-top: 20px;
+  margin-top: 16px;
   padding: 5px 10px;
   border-radius: 16px;
   text-align: center;
@@ -26453,13 +26453,13 @@ page-login .background {
   font-size: 20px;
   font-weight: 800;
   color: white;
-  padding: 40px 10px 10px 10px;
+  padding: 20px 10px 10px 10px;
 }
 
 .time-container {
   display: inline-block;
   width: 100%;
-  padding: 40px 10px 10px 33%;
+  padding: 20px 10px 10px 33%;
 }
 
 .test {
