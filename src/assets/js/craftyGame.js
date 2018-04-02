@@ -275,7 +275,7 @@ document.getElementById('canvas-div').style.overflowX ="auto";
 document.getElementById('canvas-div').style.overflowY ="hidden";
 min.w=0;
 min.h=0;
-     
+  Crafty.viewport.reload();   
 });
 
 var square = Crafty.e("2D, DOM");
@@ -369,7 +369,7 @@ var ele= document.getElementById(data);
 
   // getInit();
     Crafty.sprite(ele.naturalWidth,ele.naturalHeight, ele.src, {flower:[0,0]});
-var bg = Crafty.e("2D, DOM, flower,Mouse").attr({
+var bg = Crafty.e("2D, DOM, flower,Mouse,Keyboard").attr({
 	w:200,
 	h:150,
 	 x:(xpos- 100),
@@ -397,7 +397,7 @@ createResizeEntity(bg,true);
  console.log(bg.__image);
  //objList.push(bg);
  
-
+Crafty.viewport.reload();
 
 
  
@@ -879,10 +879,10 @@ checkIfClick();
        /////////////////////circle1////////////////////////
 
 selectedEntity.bind('KeyDown',function(e){
-
+console.log('keydown');
 if(actionList[Number(selectedEntity.getName())].jump==true||actionList[Number(selectedEntity.getName())].fly==true){
 	
-	
+	 checkIfexsist(selectedEntity.x,selectedEntity.y,selectedEntity.w,selectedEntity.h); 
 switch(e.key){
 	//////////////////////////left////////////////
 case Crafty.keys.LEFT_ARROW:
@@ -907,8 +907,8 @@ w:selectedEntity.w,
 	speed:200
 
 });
- checkIfexsist(selectedEntity.x,selectedEntity.y,selectedEntity.w,selectedEntity.h); 
 
+ actionA.push(objL);
 }
 
 break;
@@ -936,8 +936,8 @@ w:selectedEntity.w,
 	speed:200
 
 });
- checkIfexsist(selectedEntity.x,selectedEntity.y,selectedEntity.w,selectedEntity.h); 
-
+// checkIfexsist(selectedEntity.x,selectedEntity.y,selectedEntity.w,selectedEntity.h); 
+ actionA.push(objR);
 }
 
 break;
@@ -965,8 +965,8 @@ w:selectedEntity.w,
 	speed:200
 
 });
-
- checkIfexsist(selectedEntity.x,selectedEntity.y,selectedEntity.w,selectedEntity.h); 
+ actionA.push(objU);
+ //checkIfexsist(selectedEntity.x,selectedEntity.y,selectedEntity.w,selectedEntity.h); 
 }
 
 break;
@@ -994,8 +994,8 @@ w:selectedEntity.w,
 	speed:200
 
 });
-
- checkIfexsist(selectedEntity.x,selectedEntity.y,selectedEntity.w,selectedEntity.h); 
+ actionA.push(objD);
+ //checkIfexsist(selectedEntity.x,selectedEntity.y,selectedEntity.w,selectedEntity.h); 
 }
 
 break;
@@ -1032,7 +1032,7 @@ var d = new Date(); // for now
 
 
     objL.stopTime=document.getElementById('timer').innerHTML;
- actionA.push(objL);
+
 
 
 }
@@ -1053,7 +1053,7 @@ var d = new Date(); // for now
 
 
     objR.stopTime=document.getElementById('timer').innerHTML;
- actionA.push(objR);
+// actionA.push(objR);
 
 }
 
@@ -1073,7 +1073,7 @@ var d = new Date(); // for now
 
 
     objU.stopTime=document.getElementById('timer').innerHTML;
- actionA.push(objU);
+ //actionA.push(objU);
 
 
 }
@@ -1094,7 +1094,7 @@ var d = new Date(); // for now
 
 
     objD.stopTime=document.getElementById('timer').innerHTML;
- actionA.push(objD);
+ //actionA.push(objD);
 
 
 }
@@ -1372,7 +1372,7 @@ console.log(entList[k].getName());
      for(var k=0;k<actionA.length;k++){
 		if(actionA[k].id==selectedEntity.getName()){
 			actionA.splice(k, k+1);
-			break;
+		//	break;
 		}
 	}
 console.log("actionA after remove");
@@ -2057,7 +2057,7 @@ console.log("parcent"+newCD/cavW);
 //Crafty.viewport.scale(newCD/cavW);
 
 
-	
+	Crafty.viewport.reload();
 	
 
 
@@ -2388,8 +2388,9 @@ w:selectedEntity.w,
 	speed:200
 
 });
+     checkIfexsist(selectedEntity.x,selectedEntity.y,selectedEntity.w,selectedEntity.h);
   actionA.push(obj);
-   checkIfexsist();
+  
 removeCircle();
 selectedEntity.css({'border': '0px'});
 
@@ -2410,8 +2411,9 @@ w:selectedEntity.w,
 	speed:200
 
 });
+     checkIfexsist(selectedEntity.x,selectedEntity.y,selectedEntity.w,selectedEntity.h);
   actionA.push(obj);
-   checkIfexsist();
+  
 //removeCircle();
 //selectedEntity.css({'border': '0px'});
 
@@ -2433,8 +2435,9 @@ w:selectedEntity.w,
 	speed:200
 
 });
-  actionA.push(obj);
-   checkIfexsist();
+ 
+   checkIfexsist(selectedEntity.x,selectedEntity.y,selectedEntity.w,selectedEntity.h);
+    actionA.push(obj);
 	removeCircle();
 selectedEntity.css({'border': '0px'});
 
@@ -2723,6 +2726,7 @@ function finish(){
 
 // }
 console.log("************action array*************");
+console.log("action list lenght="+actionA.length);
 for(var i=0;i<actionA.length;i++){
  	console.log("x="+actionA[i].x+" , ");
  	console.log("y="+actionA[i].y+" , ");
@@ -2743,7 +2747,22 @@ objList.length=0;
 for(var y=0;y<objList.length;h++){
   console.log("objList is not empty");
 }
+//removeDublicate();
 copyEntToArray();
+console.log("objList before concat")
+ for(var i=0;i<objList.length;i++){
+    console.log("x="+objList[i].x+" , ");
+  console.log("y="+objList[i].y+" , ");
+  console.log("h="+objList[i].h+" , ");
+  console.log("w="+objList[i].w+" , ");
+    console.log("src="+objList[i].src+" , ");
+    console.log("id="+objList[i].id+" , ");
+   console.log("collision="+objList[i].collision+" , ");
+   console.log("apple="+objList[i].apple+" , ");
+   console.log("rotate="+objList[i].rotate+" , ");
+ }
+
+
 for(var i=0;i<actionAEnt.length;i++){
 var index=0;
 
@@ -2781,8 +2800,10 @@ actionAEnt[i].rotate=actionList[actionAEnt[i].id].rotate;
 
 objList.push(actionAEnt[i]);
 }
+if(objList.length>0){
+   var min=objList[0].x;
+}
 
- var min=objList[0].x;
   //console.log("x0="+min);
   var vv;
 
@@ -2892,10 +2913,13 @@ function isFirstEvent(en){
 
 function checkIfexsist(x,y,w,h){
 	var flagE=false;
+  console.log("inside checkIfexsist");
 	for(var l=0;l<actionA.length;l++){
+    console.log("check if exsist function selectedEntity id="+selectedEntity.getName()+"actionA id="+actionA[l].id);
 		if(actionA[l].id==selectedEntity.getName()){
 	
 flagE=true;
+console.log("check if exsist function find this entity in action");
 break;
 		}
 	
@@ -2948,4 +2972,166 @@ document.getElementById('start').innerHTML="stop";
 clearInterval(myVar);
 
   }
+}
+ 
+
+
+  
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+function myJump(){
+  console.log('clear');
+   var wasTriggered = false;
+selectedEntity.addComponent('Twoway');
+selectedEntity.twoway(200);
+
+
+      var count=85;
+       ///if(selectedEntity.has('Gravity')){
+
+               selectedEntity.antigravity();
+                console.log("remove gravity");
+              // }
+       var myVar = setInterval(function () {
+                
+                 selectedEntity.y-=2;
+              
+                count = count - 1;
+                if (count == 0) {
+                  // console.log("add gravity");
+                   selectedEntity.gravity();
+                    clearInterval(myVar);
+                   
+                }
+               
+            }, 7);
+
+      
+       ///if(selectedEntity.has('Gravity')){
+
+             //   selectedEntity.removeComponent('Gravity');
+  
+         
+      // console.log("add gravity");
+        // selectedEntity.addComponent('Gravity');
+   
+
+}
+
+function clearr(){
+  myJump();
+  // clear();
+  // clear();
+
+}
+
+
+function test(){
+  finish();
+
+ for(var j=0;j<entList.length;j++){
+  for(var i=0;i<actionAEnt.length;i++){
+   
+      if(actionAEnt[i].id==entList[j].getName()){
+        console.log('test set initial pos to ('+actionAEnt[i].x+","+actionAEnt[i].y+")");
+     entList[j].x=actionAEnt[i].x;
+     entList[j].y=actionAEnt[i].y;
+     entList[j].h=actionAEnt[i].h;
+     entList[j].w=actionAEnt[i].w;
+
+        break;
+      }
+    }
+
+  }
+  /////////////////////////////////////////////action///////////////////////////////////
+var index=0;
+
+  that.x=p.x;
+that.y=p.y;
+that.w=p.w;
+that.h=p.h;
+
+that.id=p.id;
+that.action=p.action;
+that.startTime=p.startTime;
+that.stopTime=p.stopTime;
+that.keyType=p.keyType;
+that.speed=p.speed;
+
+for(var i=0;i<actionA.length;i++){
+for(var j=0;j<entList.length;j++){
+   if(actionA[i].id==entList[j].getName()){
+ index=j;
+ break;
+   }
+
+}
+switch(actionA[i].action){
+  case 'j':
+  switch(actionA[i].keyType){
+   case Crafty.keys.LEFT_ARROW:
+
+   break;
+   case Crafty.keys.RIGHT_ARROW:
+
+   break;
+   case Crafty.keys.UP_ARROW:
+
+   break;
+
+
+
+  }
+
+  break;
+ case 'f':
+  
+  break;
+   case 'g':
+  
+  break;
+   case 'd':
+  
+  break;
+
+}
+
+
+}
+
+}
+
+
+function removeDublicate(){
+
+for(var k=0;k<actionAEnt.length-1;k++){
+for(var l=k+1;l<actionAEnt.length;l++){
+if(actionAEnt[k].id==actionAEnt[l].id){
+
+ actionAEnt.splice(l, l+1);
+}
+
+
+}
+
+
+}
+
+for(var k=0;k<actionAEnt.length;k++){
+console.log("*******only actionAEn");
+console.log("x="+actionAEnt[k].x+" , ");
+  console.log("y="+actionAEnt[k].y+" , ");
+  console.log("h="+actionAEnt[k].h+" , ");
+  console.log("w="+actionAEnt[k].w+" , ");
+    console.log("src="+actionAEnt[k].src+" , ");
+    console.log("id="+actionAEnt[k].id+" , ");
+   console.log("collision="+actionAEnt[k].collision+" , ");
+   console.log("apple="+actionAEnt[k].apple+" , ");
+   console.log("rotate="+actionAEnt[k].rotate+" , ");
+
+}
+
+
 }
