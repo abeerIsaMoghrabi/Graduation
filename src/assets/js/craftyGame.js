@@ -273,6 +273,12 @@ document.getElementById('game').style.width= "800px" ;
 document.getElementById('game').style.height= "480px" ;
 document.getElementById('canvas-div').style.overflowX ="auto";
 document.getElementById('canvas-div').style.overflowY ="hidden";
+  scrolbar.x=1;
+  scrolbar.y=465;
+  scrolEn.x=0;
+  scrolEn.y=467;
+
+Crafty.viewport.scale(1); 
 min.w=0;
 min.h=0;
   Crafty.viewport.reload();   
@@ -1371,7 +1377,14 @@ console.log(entList[k].getName());
 
      for(var k=0;k<actionA.length;k++){
 		if(actionA[k].id==selectedEntity.getName()){
-			actionA.splice(k, k+1);
+      if(actionA.length==1){
+        actionA.length=0;
+        break;
+      }
+      else{
+        actionA.splice(k, k+1); 
+      }
+		
 		//	break;
 		}
 	}
@@ -2055,7 +2068,12 @@ document.getElementById('canvas-div').style.overflow ="auto";
 var newCD=cropPx(document.getElementById('canvas-div').style.width);
 console.log("parcent"+newCD/cavW);
 //Crafty.viewport.scale(newCD/cavW);
+var f1=document.getElementById('center-div').offsetWidth;;
+var sh=wy-480;
 
+var xc=wx/f1;
+
+Crafty.viewport.scale(sh); 
 
 	Crafty.viewport.reload();
 	
@@ -2949,22 +2967,91 @@ actionAEnt.push(entObj);
 //var myVar = setInterval(myTimer ,1000);
 var counterS=0;
 var counterM=0;
+var handredMSec=0;
+var secfrom="00";
+var minform="00";
+//var handredMSecform="00";
 var myVar;
+var counterST=0;
+var counterMT=0;
+var handredMSecT=0;
+var secfromT="00";
+var minformT="00";
+//var handredMSecformT="00";
+
+var myVar;
+var myVarT;
 function myTimer() {
     var d = new Date();
+    if(handredMSec==10){
+      handredMSec=0;
+      counterS++;
+
+    }
+
     if(counterS==60){
     counterM++;
-    counterS=0;
+    if(counterM>9){
+       minform=counterM;
     }
-    document.getElementById("timer").innerHTML = counterM+":"+counterS++;
-    
+    else{
+      minform="0"+counterM;
+    }
+    counterS=0;
+    secfrom="00"
+    }
+    else if (counterS>9){
+      secfrom=counterS;
+    }
+    else {
+      secfrom="0"+counterS;
+    }
+    document.getElementById("timer").innerHTML = minform+":"+secfrom+":"+handredMSec;
+   handredMSec++;
 }
+
+
+function myTimerTest() {
+  for(var i=0;i<actionA.length;i++){
+  if(actionA[i].startTime==document.getElementById("timer").innerHTML){
+    test(actionA[i]);
+  }
+}
+ if(handredMSecT==10){
+      handredMSecT=0;
+      counterST++;
+
+    }
+
+    //var d = new Date();
+    if(counterST==60){
+    counterMT++;
+    if(counterMT>9){
+       minformT=counterMT;
+    }
+    else{
+      minformT="0"+counterMT;
+    }
+    counterST=0;
+    secfromT="00"
+    }
+    else if (counterST>9){
+      secfromT=counterST;
+    }
+    else {
+      secfromT="0"+counterST;
+    }
+    document.getElementById("timer").innerHTML = minformT+":"+secfromT+":"+handredMSecT;
+  handredMSecT++;
+
+}
+
 
 function start(){
   
   if(document.getElementById('start').innerHTML=="start"){
 document.getElementById('start').innerHTML="stop";
- myVar = setInterval(myTimer ,1000);
+ myVar = setInterval(myTimer ,100);
 
   }
   else if (document.getElementById('start').innerHTML=="stop"){
@@ -2980,7 +3067,7 @@ clearInterval(myVar);
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-function myJump(){
+function myJump(entt){
   console.log('clear');
    var wasTriggered = false;
 selectedEntity.addComponent('Twoway');
@@ -2990,17 +3077,17 @@ selectedEntity.twoway(200);
       var count=85;
        ///if(selectedEntity.has('Gravity')){
 
-               selectedEntity.antigravity();
+               entt.antigravity();
                 console.log("remove gravity");
               // }
        var myVar = setInterval(function () {
-                
-                 selectedEntity.y-=2;
+                console.log("jumpp");
+                 entt.y-=2;
               
                 count = count - 1;
                 if (count == 0) {
                   // console.log("add gravity");
-                   selectedEntity.gravity();
+                   entt.gravity();
                     clearInterval(myVar);
                    
                 }
@@ -3025,14 +3112,24 @@ function clearr(){
   // clear();
 
 }
+function startTest(){
+  if (document.getElementById('start').innerHTML=="stop"){
+     start();
+  }
 
+ 
+    finish();
+   // expand();
+   for(var j=0;j<entList.length;j++){
+      if(actionList[Number(entList[j].getName())].dissapear==true){
+        entList[j].visible=true;
 
-function test(){
-  finish();
-
+      }
+   }
+    
  for(var j=0;j<entList.length;j++){
   for(var i=0;i<actionAEnt.length;i++){
-   
+       
       if(actionAEnt[i].id==entList[j].getName()){
         console.log('test set initial pos to ('+actionAEnt[i].x+","+actionAEnt[i].y+")");
      entList[j].x=actionAEnt[i].x;
@@ -3046,39 +3143,54 @@ function test(){
 
   }
   /////////////////////////////////////////////action///////////////////////////////////
+  counterST=0;
+ counterMT=0;
+ secfromT="00";
+ minformT="00";
+ myVarT = setInterval(myTimerTest ,100);
+//var actArrTime=[];
+
+
+}
+
+function test(act){
+
+ 
 var index=0;
 
-  that.x=p.x;
-that.y=p.y;
-that.w=p.w;
-that.h=p.h;
+//   that.x=p.x;
+// that.y=p.y;
+// that.w=p.w;
+// that.h=p.h;
 
-that.id=p.id;
-that.action=p.action;
-that.startTime=p.startTime;
-that.stopTime=p.stopTime;
-that.keyType=p.keyType;
-that.speed=p.speed;
+// that.id=p.id;
+// that.action=p.action;
+// that.startTime=p.startTime;
+// that.stopTime=p.stopTime;
+// that.keyType=p.keyType;
+// that.speed=p.speed;
 
-for(var i=0;i<actionA.length;i++){
 for(var j=0;j<entList.length;j++){
-   if(actionA[i].id==entList[j].getName()){
+   if(act.id==entList[j].getName()){
  index=j;
  break;
    }
 
 }
-switch(actionA[i].action){
-  case 'j':
-  switch(actionA[i].keyType){
-   case Crafty.keys.LEFT_ARROW:
 
+
+//var amount=findTimeAmount(act.startTime,act.stopTime);
+switch(act.action){
+  case 'j':
+  switch(act.keyType){
+   case Crafty.keys.LEFT_ARROW:
+    leftMove(act.stopTime,entList[index]);
    break;
    case Crafty.keys.RIGHT_ARROW:
-
+ rightMove(act.stopTime,entList[index]);
    break;
    case Crafty.keys.UP_ARROW:
-
+   myJump(entList[index]);
    break;
 
 
@@ -3093,45 +3205,102 @@ switch(actionA[i].action){
   
   break;
    case 'd':
+entList[index].visible=false;
+entList[index].destroy();
+  
+  break;
+   case 'a':
   
   break;
 
 }
 
 
-}
+ 
 
 }
 
 
-function removeDublicate(){
+// function removeDublicate(){
 
-for(var k=0;k<actionAEnt.length-1;k++){
-for(var l=k+1;l<actionAEnt.length;l++){
-if(actionAEnt[k].id==actionAEnt[l].id){
+// for(var k=0;k<actionAEnt.length-1;k++){
+// for(var l=k+1;l<actionAEnt.length;l++){
+// if(actionAEnt[k].id==actionAEnt[l].id){
 
- actionAEnt.splice(l, l+1);
+//  actionAEnt.splice(l, l+1);
+// }
+
+
+// }
+
+
+// }
+
+// for(var k=0;k<actionAEnt.length;k++){
+// console.log("*******only actionAEn");
+// console.log("x="+actionAEnt[k].x+" , ");
+//   console.log("y="+actionAEnt[k].y+" , ");
+//   console.log("h="+actionAEnt[k].h+" , ");
+//   console.log("w="+actionAEnt[k].w+" , ");
+//     console.log("src="+actionAEnt[k].src+" , ");
+//     console.log("id="+actionAEnt[k].id+" , ");
+//    console.log("collision="+actionAEnt[k].collision+" , ");
+//    console.log("apple="+actionAEnt[k].apple+" , ");
+//    console.log("rotate="+actionAEnt[k].rotate+" , ");
+
+// }
+
+
+// }
+
+
+function findTimeAmount(startTime,endTime){
+var startM=startTime.slice(0, 2);
+var startS=startTime.slice(3);
+console.log("M="+startM+"S="+startS);
+var endM=endTime.slice(0, 2);
+var endS=endTime.slice(3);
+var resM=Number(endM)-Number(startM);
+var resS=Number(endS)-Number(startS);
+console.log("result="+(resM*60)+resS);
+return (resM*60)+resS;
+
+}
+function leftMove(stopT,entt){
+  // var count=amount;
+      
+       var myVar = setInterval(function () {
+                 console.log("leftMovee");
+                entt.x-=2;
+              
+              //  count = count - 1;
+                if (stopT==document.getElementById("timer").innerHTML ) {
+                  // console.log("add gravity");
+                  // selectedEntity.gravity();
+                    clearInterval(myVar);
+                   
+                }
+               
+            }, 7);
+
+
 }
 
 
-}
-
-
-}
-
-for(var k=0;k<actionAEnt.length;k++){
-console.log("*******only actionAEn");
-console.log("x="+actionAEnt[k].x+" , ");
-  console.log("y="+actionAEnt[k].y+" , ");
-  console.log("h="+actionAEnt[k].h+" , ");
-  console.log("w="+actionAEnt[k].w+" , ");
-    console.log("src="+actionAEnt[k].src+" , ");
-    console.log("id="+actionAEnt[k].id+" , ");
-   console.log("collision="+actionAEnt[k].collision+" , ");
-   console.log("apple="+actionAEnt[k].apple+" , ");
-   console.log("rotate="+actionAEnt[k].rotate+" , ");
-
-}
-
-
-}
+function rightMove(stopT,entt){
+   //var count=amount;
+      
+       var myVar = setInterval(function () {
+                 console.log("rightMovee");
+                 entt.x+=2;
+              
+               // count = count - 1;
+               if (stopT==document.getElementById("timer").innerHTML ) {
+                  // console.log("add gravity");
+                  // selectedEntity.gravity();
+                    clearInterval(myVar);
+                   
+                }
+               
+            }, 7);
+     }
