@@ -26155,11 +26155,24 @@ page-login .background {
   display: inline-block;
   width: 100%;
   position: relative;
-  overflow-x: auto;
+  overflow-x: hidden;
   border: 2px solid #b3b3b3;
   border-radius: 17px;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
+}
+
+.scroll-div {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 11px;
+  overflow-x: auto;
+  height: 5px;
+}
+
+.scroll-b {
+  display: inline-block;
+  width: 2000px;
 }
 
 .warning {

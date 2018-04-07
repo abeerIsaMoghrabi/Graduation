@@ -9,10 +9,10 @@
 
 var walls=[];
 
-
+var maxFlag=false;
 var arrObj=[];//for backgroundobject final
 
-
+var lastScrollTop = 0;
 
 	
 var isDown=false;
@@ -156,86 +156,88 @@ right:true
 
 ///////////////////////////////////////new code for viewport/////////////////////////////////////////
 console.log("canvas width"+cropPx(document.getElementById('canvas-div').style.width));
-  Crafty.viewport.width=2000;
-console.log("viewport"+Crafty.viewport.width)
-   Crafty.viewport.height=480;
+ // Crafty.viewport.width=700;
+//console.log("viewport"+Crafty.viewport.width)
+   //Crafty.viewport.height=480;
     
-     Crafty.viewport.clampToEntites=false;
+     //Crafty.viewport.clampToEntites=false;
  
-     Crafty.viewport.scale(1);
+     //Crafty.viewport.scale(1);
+
+
      /////////////////////////////////////scrol////////////////////////////////////////////////////////////
-    scrolEn=Crafty.e('2D,DOM,Color,Floor').attr({
-	w:650,//center-div width is 55% but we cant use it so we but equvelant value 650
-	h:3,
-	x:0,
-	y:477
+//     scrolEn=Crafty.e('2D,DOM,Color,Floor').attr({
+// 	w:650,//center-div width is 55% but we cant use it so we but equvelant value 650
+// 	h:3,
+// 	x:0,
+// 	y:477
 	
 
 
-}).color('red');
+// }).color('red');
 
 
-  var scrollW=scrolEn.w-(2000-650);
-  if(scrollW<0){
-  	scrollW=20;
-  }
-    scrolbar=Crafty.e('2D,DOM,Color,Mouse,Draggable').attr({
-	w:scrollW,
-	h:15,
-	x:1,
-	y:470
+//   var scrollW=scrolEn.w-(2000-650);
+//   if(scrollW<0){
+//   	scrollW=20;
+//   }
+//     scrolbar=Crafty.e('2D,DOM,Color,Mouse,Draggable').attr({
+// 	w:scrollW,
+// 	h:15,
+// 	x:1,
+// 	y:470
 	
 
 
-}).color('green');
+// }).color('green');
 
-    scrolbar.css({'borderRadius':'5px'});
-scrolbar.dragDirection({x:1, y:0});
-scrolEn.attach(scrolbar);
-var startMove=false;
-var startVaule;
-scrolbar.bind('MouseDown',function(e){
-startMove=true;
-startVaule=scrolbar.x;
-console.log("mouse down");
-});
-scrolbar.bind('MouseMove',function(e){
-if(startMove==true){
-	if(startVaule>scrolbar.x){
-		if(scrolbar.x<=0){
-			scrolbar.x=0;
-		}
-		else{
-			movetoRight();
-		startVaule=scrolbar.x;
-		console.log("scroll move left");
-		}
+//     scrolbar.css({'borderRadius':'5px'});
+// scrolbar.dragDirection({x:1, y:0});
+// scrolEn.attach(scrolbar);
+// var startMove=false;
+// var startVaule;
+// scrolbar.bind('MouseDown',function(e){
+// startMove=true;
+// startVaule=scrolbar.x;
+// console.log("mouse down");
+// });
+// scrolbar.bind('MouseMove',function(e){
+// if(startMove==true){
+// 	if(startVaule>scrolbar.x){
+// 		if(scrolbar.x<=0){
+// 			scrolbar.x=0;
+// 		}
+// 		else{
+// 			movetoRight();
+// 		startVaule=scrolbar.x;
+// 		console.log("scroll move left");
+// 		}
 		
-	}
-	else if (startVaule<scrolbar.x){
-// if(scrolbar.x>=(650-scrolbar.x)){
-// 	scrolbar.x=650-scrolbar.x;
-// }
-// else{
-	movetoLeft();
+// 	}
+// 	else if (startVaule<scrolbar.x){
+// // if(scrolbar.x>=(650-scrolbar.x)){
+// // 	scrolbar.x=650-scrolbar.x;
+// // }
+// // else{
+// 	movetoLeft();
 	
-		startVaule=scrolbar.x;
-		console.log("scroll move right");
-// }
+// 		startVaule=scrolbar.x;
+// 		console.log("scroll move right");
+// // }
 
 		
-	}
+// 	}
 	
-	console.log("mouse move");
+// 	console.log("mouse move");
 
 
-}
+// }
 
-});
-scrolbar.bind('MouseUp',function(e){
-startMove=false;
-console.log("mouse up");
-});
+// });
+// scrolbar.bind('MouseUp',function(e){
+// startMove=false;
+// console.log("mouse up");
+// });
 
 
 ///////////////////////////////////////scroll///////////////////////////////
@@ -260,6 +262,7 @@ Game.addEventListener('contextmenu',function(){
 	selectedEntity.css({'border': '0px'});
 })
    min.bind('Click',function(e){
+    maxFlag=false;
    	 
 	document.getElementById('canvas-div').style.position="relative";
 document.getElementById('canvas-div').style.backgroundColor='white';
@@ -271,14 +274,17 @@ document.getElementById('canvas-div').style.width= "100%" ;
 document.getElementById('canvas-div').style.height= "480px" ;
 document.getElementById('game').style.width= "800px" ;
 document.getElementById('game').style.height= "480px" ;
-document.getElementById('canvas-div').style.overflowX ="auto";
+document.getElementById('canvas-div').style.overflowX ="hidden";
 document.getElementById('canvas-div').style.overflowY ="hidden";
-  scrolbar.x=1;
-  scrolbar.y=465;
-  scrolEn.x=0;
-  scrolEn.y=467;
+
+  // scrolbar.x=1;
+  // scrolbar.y=465;
+  // scrolEn.x=0;
+  // scrolEn.y=467;
 
 Crafty.viewport.scale(1); 
+Crafty.viewport.width=700;
+Crafty.viewport.height=480;
 min.w=0;
 min.h=0;
   Crafty.viewport.reload();   
@@ -1168,6 +1174,12 @@ removecir();
 
 
 notVisible();
+selectedEntity._children.forEach(function(ch){
+
+  if(ch.getName()=='wall'){
+  ch.destroy();
+}
+              });
 
 	}
 	
@@ -1177,7 +1189,43 @@ notVisible();
 circle1.bind('MouseUp',function(e){
 	rootm.css({'border': '1px dashed #b3b3b3'});
 resizeFlag=false;
+if(actionList[Number(selectedEntity.getName())].collision==true){
 
+  var w2=selectedEntity.w;
+     var h2=selectedEntity.h;
+     var x2=selectedEntity.x;
+     var y2=selectedEntity.y;
+
+     var t1=y2+h2;
+     var t2=y2-(h2/2.0);
+
+     var s1=x2+w2;
+     var s2=x2-w2;
+   var tt = Crafty.e("2D, DOM, Color, solid, top, wall, Floor")
+      .attr({x: x2, y: y2, w: w2, h: 1})
+      ;
+   var bb =Crafty.e("2D, DOM, Color, solid, bottom, wall")
+      .attr({x: x2, y: t1, w: w2, h: 1})
+      ;
+   var ll =Crafty.e("2D, DOM, Color, solid, left, wall")
+      .attr({x: x2, y: y2, w: 1, h: h2})
+      ;
+   var rr = Crafty.e("2D, DOM, Color, solid, right, wall")
+      .attr({x: s1, y: y2, w: 1, h: h2})
+      ;
+tt.setName("wall");
+bb.setName("wall");
+ll.setName("wall");
+rr.setName("wall");
+      walls.push(tt);
+      walls.push(bb);
+      walls.push(ll);
+      walls.push(rr);
+    selectedEntity.attach(tt);
+    selectedEntity.attach(bb);
+    selectedEntity.attach(ll);
+    selectedEntity.attach(rr);
+  }
 
 Visible(rootm);
 
@@ -1220,6 +1268,12 @@ for(var n=0;n<chArr.length;n++){
 }
 removecir();
 notVisible();
+selectedEntity._children.forEach(function(ch){
+
+  if(ch.getName()=='wall'){
+  ch.destroy();
+}
+              });
 	}
 	
 	});
@@ -1228,7 +1282,42 @@ notVisible();
 circle2.bind('MouseUp',function(e){
 	rootm.css({'border': '1px dashed #b3b3b3'});
 resizeFlag=false;
+if(actionList[Number(selectedEntity.getName())].collision==true){
+    var w2=selectedEntity.w;
+     var h2=selectedEntity.h;
+     var x2=selectedEntity.x;
+     var y2=selectedEntity.y;
 
+     var t1=y2+h2;
+     var t2=y2-(h2/2.0);
+
+     var s1=x2+w2;
+     var s2=x2-w2;
+   var tt = Crafty.e("2D, DOM, Color, solid, top, wall, Floor")
+      .attr({x: x2, y: y2, w: w2, h: 1})
+      ;
+   var bb =Crafty.e("2D, DOM, Color, solid, bottom, wall")
+      .attr({x: x2, y: t1, w: w2, h: 1})
+      ;
+   var ll =Crafty.e("2D, DOM, Color, solid, left, wall")
+      .attr({x: x2, y: y2, w: 1, h: h2})
+      ;
+   var rr = Crafty.e("2D, DOM, Color, solid, right, wall")
+      .attr({x: s1, y: y2, w: 1, h: h2})
+      ;
+tt.setName("wall");
+bb.setName("wall");
+ll.setName("wall");
+rr.setName("wall");
+      walls.push(tt);
+      walls.push(bb);
+      walls.push(ll);
+      walls.push(rr);
+    selectedEntity.attach(tt);
+    selectedEntity.attach(bb);
+    selectedEntity.attach(ll);
+    selectedEntity.attach(rr);
+  }
 
 
 Visible(rootm);
@@ -1275,6 +1364,12 @@ for(var n=0;n<chArr.length;n++){
 removecir();
 
 notVisible();
+selectedEntity._children.forEach(function(ch){
+
+  if(ch.getName()=='wall'){
+  ch.destroy();
+}
+              });
 	}
 	
 	});
@@ -1283,7 +1378,43 @@ notVisible();
 circle3.bind('MouseUp',function(e){
 rootm.css({'border': '1px dashed #b3b3b3'});	
 resizeFlag=false;
+if(actionList[Number(selectedEntity.getName())].collision==true){
+    var w2=selectedEntity.w;
+     var h2=selectedEntity.h;
+     var x2=selectedEntity.x;
+     var y2=selectedEntity.y;
 
+     var t1=y2+h2;
+     var t2=y2-(h2/2.0);
+
+     var s1=x2+w2;
+     var s2=x2-w2;
+   var tt = Crafty.e("2D, DOM, Color, solid, top, wall, Floor")
+      .attr({x: x2, y: y2, w: w2, h: 1})
+      ;
+   var bb =Crafty.e("2D, DOM, Color, solid, bottom, wall")
+      .attr({x: x2, y: t1, w: w2, h: 1})
+      ;
+   var ll =Crafty.e("2D, DOM, Color, solid, left, wall")
+      .attr({x: x2, y: y2, w: 1, h: h2})
+      ;
+   var rr = Crafty.e("2D, DOM, Color, solid, right, wall")
+      .attr({x: s1, y: y2, w: 1, h: h2})
+      ;
+tt.setName("wall");
+bb.setName("wall");
+ll.setName("wall");
+rr.setName("wall");
+      walls.push(tt);
+      walls.push(bb);
+      walls.push(ll);
+      walls.push(rr);
+    selectedEntity.attach(tt);
+    selectedEntity.attach(bb);
+    selectedEntity.attach(ll);
+    selectedEntity.attach(rr);
+
+}
 
 
 
@@ -1335,6 +1466,12 @@ for(var n=0;n<chArr.length;n++){
 removecir();
 
 notVisible();
+selectedEntity._children.forEach(function(ch){
+
+  if(ch.getName()=='wall'){
+  ch.destroy();
+}
+              });
 
 	}
 	
@@ -1348,8 +1485,44 @@ resizeFlag=false;
 
 //  
 
+if(actionList[Number(selectedEntity.getName())].collision==true){
+     var w2=selectedEntity.w;
+     var h2=selectedEntity.h;
+     var x2=selectedEntity.x;
+     var y2=selectedEntity.y;
+
+     var t1=y2+h2;
+     var t2=y2-(h2/2.0);
+
+     var s1=x2+w2;
+     var s2=x2-w2;
+   var tt = Crafty.e("2D, DOM, Color, solid, top, wall, Floor")
+      .attr({x: x2, y: y2, w: w2, h: 1});
+   var bb =Crafty.e("2D, DOM, Color, solid, bottom, wall")
+      .attr({x: x2, y: t1, w: w2, h: 1})
+      ;
+   var ll =Crafty.e("2D, DOM, Color, solid, left, wall")
+      .attr({x: x2, y: y2, w: 1, h: h2})
+      ;
+   var rr = Crafty.e("2D, DOM, Color, solid, right, wall")
+      .attr({x: s1, y: y2, w: 1, h: h2})
+      ;
+tt.setName("wall");
+bb.setName("wall");
+ll.setName("wall");
+rr.setName("wall");
+      walls.push(tt);
+      walls.push(bb);
+      walls.push(ll);
+      walls.push(rr);
+    selectedEntity.attach(tt);
+    selectedEntity.attach(bb);
+    selectedEntity.attach(ll);
+    selectedEntity.attach(rr); 
+
 
 Visible(rootm);
+}
 
 	});
 //////////////////////////////////circle4///////////////////////////////////////// 
@@ -1412,8 +1585,9 @@ copy.bind('Click', function (e) {
 
  var ent2 = rootm.clone()
               .attr({x:100, y:100});
-
+entList.push(ent2);
               createResizeEntity(ent2,true);
+
              
 });
 
@@ -2025,19 +2199,12 @@ for(var i=4;i<circles.length;i++){
 
 // 
 function expand(){
-	
-		
-		removeCircle();
+	maxFlag=true;
+   removeCircle();
 selectedEntity.css({'border': '0px'});
 var wx=window.outerWidth;
 var wy=window.outerHeight;
 console.log("wx="+wx+"wy="+wy);
-// document.getElementById('fullS').style.position='absolute';
-// document.getElementById('fullS').style.top='10';
-// document.getElementById('fullS').style.left='10';
-// document.getElementById('fullS').style.color='red';
-//   document.getElementById('fullS').style.zIndex='1';
-// document.getElementById('fullS').style.backgroundColor='green';
 
 min.w=30;
 min.h=30;
@@ -2064,18 +2231,21 @@ document.getElementById('canvas-div').style.height= newh+"px" ;
 document.getElementById('game').style.width= newgw+"px" ;
 document.getElementById('game').style.height= newh+"px" ;
 
-document.getElementById('canvas-div').style.overflow ="auto";
+document.getElementById('canvas-div').style.overflow ="hidden";
 var newCD=cropPx(document.getElementById('canvas-div').style.width);
 console.log("parcent"+newCD/cavW);
 //Crafty.viewport.scale(newCD/cavW);
 var f1=document.getElementById('center-div').offsetWidth;;
-var sh=wy-480;
-
+var sh=wy/480;
 var xc=wx/f1;
+if(Crafty.viewport.width==700){
+  Crafty.viewport.width=wx;
+  Crafty.viewport.height=wy;
+}
 
-Crafty.viewport.scale(sh); 
+Crafty.viewport.scale(sh);  
+Crafty.viewport.reload();  
 
-	Crafty.viewport.reload();
 	
 
 
@@ -2220,12 +2390,12 @@ else if (actionList[Number(selectedEntity.getName())].jump==true){
   }
 }
 
-  Crafty.viewport.width=600;
-    Crafty.viewport.height=480;
+  Crafty.viewport.width=700;
+   Crafty.viewport.height=480;
 
     Crafty.viewport.clampToEntites=false;
     selectedEntity.addComponent("Solid");
-    Crafty.viewport.scale(1);
+    //Crafty.viewport.scale(1);
     Crafty.one("CameraAnimationDone",function(){
     Crafty.viewport.follow(selectedEntity,0,0);
     });
@@ -2318,12 +2488,12 @@ if(e.key == Crafty.keys.DOWN_ARROW){
       //selectedEntity.ay -= 50; 
     selectedEntity.multiway(150, {UP_ARROW: -45, DOWN_ARROW: 45, RIGHT_ARROW: 0, LEFT_ARROW: 180});
  
-    Crafty.viewport.width=600;
-    Crafty.viewport.height=480;
+     Crafty.viewport.width=700;
+     Crafty.viewport.height=460;
     
     Crafty.viewport.clampToEntites=false;
-    selectedEntity.addComponent("Solid");
-    Crafty.viewport.scale(1);
+     selectedEntity.addComponent("Solid");
+   Crafty.viewport.scale(1);
     Crafty.one("CameraAnimationDone",function(){
     Crafty.viewport.follow(selectedEntity,0,0);
     });
@@ -2374,7 +2544,7 @@ function fall(){
               for(var g=0;g<4;g++){
               	circles[g].visible=false;
               }
-
+              entList.push(ent3);
 
               notVisible();
 
@@ -2514,22 +2684,35 @@ function removeEventFromOtherEnitiy(){
 		console.log(array_of_entities[i].getName());
 	}
 
-	for(var i=5;i<array_of_entities.length;i++){
+	for(var i=3;i<array_of_entities.length;i++){
 		if(array_of_entities[i]==selectedEntity){
 			console.log("*****************");
                         console.log(Number(array_of_entities[i].getName()));
-			        if(actionList[Number(array_of_entities[i].getName())].move==true){
 
-	                     array_of_entities[i].addComponent('Twoway');
-	                     array_of_entities[i].twoway(200);
-	                      document.getElementById('jump').style.backgroundColor = "blue";
-                                              }
-                                              else{
-
-                                              	 document.getElementById('jump').style.backgroundColor = "white";
-                                              }
 
                     if(actionList[Number(array_of_entities[i].getName())].jump==true){
+                      ////////////////////////////////////////////////
+                      if(maxFlag==true){
+                        var wx=window.outerWidth;
+                        var wy=window.outerHeight;
+                            Crafty.viewport.width=wx;
+                            Crafty.viewport.height=wy;
+
+                      }
+                      else if(maxFlag==false){
+                            Crafty.viewport.width=700;
+                            Crafty.viewport.height=460;
+
+                      }
+
+    
+   Crafty.viewport.clampToEntites=false;
+        selectedEntity.addComponent("Solid");
+    Crafty.bind("CameraAnimationDone",function(){
+    Crafty.viewport.follow( selectedEntity,0,0);
+    });
+    Crafty.viewport.centerOn( selectedEntity,0); 
+                      ///////////////////////////////////////////////
                     	      
 	                      array_of_entities[i].addComponent('Twoway');
 	                        array_of_entities[i].twoway(200);
@@ -2543,7 +2726,28 @@ function removeEventFromOtherEnitiy(){
                                               }
                     if(actionList[Number(array_of_entities[i].getName())].fly==true){
                     	 document.getElementById('fly').style.backgroundColor = "blue";
+                   ////////////////////////////////////////////////
+                      if(maxFlag==true){
+                        var wx=window.outerWidth;
+                        var wy=window.outerHeight;
+                            Crafty.viewport.width=wx;
+                            Crafty.viewport.height=wy;
 
+                      }
+                      else if(maxFlag==false){
+                            Crafty.viewport.width=700;
+                            Crafty.viewport.height=460;
+
+                      }
+    
+   Crafty.viewport.clampToEntites=false;
+        selectedEntity.addComponent("Solid");
+    Crafty.bind("CameraAnimationDone",function(){
+    Crafty.viewport.follow( selectedEntity,0,0);
+    });
+    Crafty.viewport.centerOn( selectedEntity,0); 
+                      ///////////////////////////////////////////////
+                            
                     	 array_of_entities[i].addComponent('Multiway');
                     	 array_of_entities[i].multiway(150, {UP_ARROW: -45, DOWN_ARROW: 45, RIGHT_ARROW: 0, LEFT_ARROW: 180});
 	                     
@@ -2551,13 +2755,7 @@ function removeEventFromOtherEnitiy(){
                                                else{
                                               	 document.getElementById('fly').style.backgroundColor = "white";
                                               }
-                    if(actionList[Number(array_of_entities[i].getName())].fall==true){
-                    	 document.getElementById('fall').style.backgroundColor = "blue";
-	                     
-                                              }
-                                               else{
-                                              	 document.getElementById('fall').style.backgroundColor = "white";
-                                              }
+
                     if(actionList[Number(array_of_entities[i].getName())].dissapear==true){
                     	 document.getElementById('dissapear').style.backgroundColor = "blue";
 	                       
@@ -2869,12 +3067,19 @@ for(var m=0;m<objList[i].gravity.length;m++){
 
 }
 }
-function movetoRight(){
-
-for(var i=0;i<entList.length;i++){
-	entList[i].x=entList[i].x+2;
+function movetoRight(am){
+  if(Crafty.viewport.width==700){
+    Crafty.viewport.x+=am;
+  }
+  else{
+    for(var i=0;i<entList.length;i++){
+  entList[i].x=entList[i].x+am;
 }
  
+
+  }
+
+
     removeCircle();
 }
 
@@ -2882,7 +3087,7 @@ for(var i=0;i<entList.length;i++){
 function movetoLeft(){
 
 for(var i=0;i<entList.length;i++){
-	entList[i].x=entList[i].x-2;
+	entList[i].x=entList[i].x-5;
 }
  
     removeCircle();
@@ -3119,7 +3324,7 @@ function startTest(){
 
  
     finish();
-   // expand();
+    expand();
    for(var j=0;j<entList.length;j++){
       if(actionList[Number(entList[j].getName())].dissapear==true){
         entList[j].visible=true;
@@ -3199,7 +3404,21 @@ switch(act.action){
 
   break;
  case 'f':
-  
+ entList[index].gravityConst(750);
+  switch(act.keyType){
+   case Crafty.keys.LEFT_ARROW:
+    leftMove(act.stopTime,entList[index]);
+   break;
+   case Crafty.keys.RIGHT_ARROW:
+ rightMove(act.stopTime,entList[index]);
+   break;
+   case Crafty.keys.UP_ARROW:
+   upMove(act.stopTime,entList[index]);
+   break;
+    case Crafty.keys.DOWN_ARROW:
+   downMove(act.stopTime,entList[index]);
+   break;
+ }
   break;
    case 'g':
   
@@ -3302,5 +3521,64 @@ function rightMove(stopT,entt){
                    
                 }
                
+            }, 10);
+     }
+
+function upMove(stopT,entt){
+      
+       var myVar = setInterval(function () {
+                 console.log("rightMovee");
+                 entt.y-=1;
+              
+               // count = count - 1;
+               if (stopT==document.getElementById("timer").innerHTML ) {
+                  // console.log("add gravity");
+                  // selectedEntity.gravity();
+                    clearInterval(myVar);
+                   
+                }
+               
             }, 7);
+
+
+}
+
+function downMove(stopT,entt){
+      
+       var myVar = setInterval(function () {
+                 console.log("rightMovee");
+                 entt.y+=1;
+              
+               // count = count - 1;
+               if (stopT==document.getElementById("timer").innerHTML ) {
+                  // console.log("add gravity");
+                  // selectedEntity.gravity();
+                    clearInterval(myVar);
+                   
+                }
+               
+            }, 7);
+
+
+}
+
+
+
+     function scrollAct(){
+      var scroll=document.getElementById('scroll');
+
+      var st = scroll.pageXOffset ||scroll.scrollLeft; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+       console.log("scroll pos"+st);
+       var am=lastScrollTop-st;
+       lastScrollTop = st;
+        movetoRight(am);
+   // if (st > lastScrollTop){
+   //    console.log("scroll right");
+   //    movetoLeft();
+
+   // } else {
+   //     console.log("scroll left");
+   //     movetoRight();
+   // }
+   // lastScrollTop = st;
      }
