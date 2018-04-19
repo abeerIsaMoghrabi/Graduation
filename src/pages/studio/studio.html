@@ -430,7 +430,7 @@
           <div class="action-block-lable">fly</div>
         </div>
        <div class="action-block" id='fall' style="   background-image: url(../../assets/imgs/fall.png);" onclick="fall()">
-          <div class="action-block-lable">fall</div>
+          <div class="action-block-lable">overlap</div>
         </div>
        <div class="action-block" id='dissapear' style="   background-image: url(../../assets/imgs/dissapear1.png);" onclick="dissapear()">
           <div class="action-block-lable">dissap</div>
@@ -563,8 +563,21 @@
 
 <div>
   
-    <ul >
-       <li class="right-side-btn" id="start" onclick="start()" >start</li>
+    <ul style="padding-left: 7%" >
+      <!--  <li class="right-side-btn" id="start" onclick="start()" >start</li> -->
+      <li class="double-button">
+        <span class="part-of-double float-left" onclick="start()"> <ion-icon id="alarm" name="alarm" class="time-icon"></ion-icon>
+          <ion-icon  id="pause" name="pause" class="time-icon" style="display: none;"></ion-icon></span>
+         <span class="part-of-double float-right" onclick="reset()"><ion-icon name="refresh" class="time-icon"></ion-icon></span>
+         <div class="clearfix"></div>
+      </li>
+  <li class="double-button">
+        <span class="part-of-double float-left" onclick="undo()">   <ion-icon name="undo"></ion-icon>
+   </span>
+         <span class="part-of-double float-right" onclick="removeAllAction()"><ion-icon name="bonfire"></ion-icon></span>
+         <div class="clearfix"></div>
+      </li>
+
         <li class="right-side-btn" onclick="startTest()" >test</li>
          <!-- (click)="b1()" -->
             <li class="right-side-btn" onclick="clearr()" >clear</li>
@@ -573,6 +586,7 @@
 
 
         </ul>
+
 </div>
 
 

@@ -305,7 +305,7 @@ margin-bottom:7px; }
    	font-size: 17;
    	text-align: center;
    	padding-left: 20%;
-   	margin-top: 20px;
+   	
 
 
    }
@@ -329,11 +329,38 @@ margin-bottom:7px; }
       text-align: center;
 
    }
+   .double-button{
+     width: 100px;
+      max-width: 70%;
+      margin:auto;
+      color: white;
+     
+      
+     
+      padding:5px 10px;
+      border-radius: 16px;
+      text-align: center;
+   }
+.part-of-double{
+   width: 35px;
+   height: 35px;
+  border:2px solid white;
+   border-radius: 50%;
+  padding-top: 5px;
 
+   color: white;
+   display: inline-block;
+
+}
+
+.time-icon{
+  color: white;
+  font-size: 20px;
+}
    .time-test{
    	width: 100%;
    	margin: auto;
-   	margin-top: 30px;
+   	margin-top: 10px;
    	padding-left: 10%
    }
 
@@ -346,7 +373,7 @@ margin-bottom:7px; }
    .time-container{
     display: inline-block;
     width: 100%;
-    padding: 20px 10px 10px 33%;
+    padding: 20px 10px 10px 21%;
    }
    .test{
    	color: white;

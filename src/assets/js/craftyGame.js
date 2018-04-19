@@ -66,6 +66,9 @@ var that={};
 
 that.x=p.x;
 that.y=p.y;
+that.xf=p.xf;
+that.yf=p.yf;
+
 that.w=p.w;
 that.h=p.h;
 //that.src=p.src;
@@ -906,8 +909,11 @@ var d = new Date(); // for now
 console.log("keydown left");
 
    action= actionList[Number(selectedEntity.getName())].order;
-    objL=actionInfo({x:selectedEntity.x,
+    objL=actionInfo({
+x:selectedEntity.x,
 y:selectedEntity.y,
+xf:'',
+yf:'',
 h:selectedEntity.h,
 w:selectedEntity.w,
 //src:selectedEntity.__image,
@@ -935,8 +941,11 @@ var d = new Date(); // for now
 console.log("keydown right");
 
    action= actionList[Number(selectedEntity.getName())].order;
-    objR=actionInfo({x:selectedEntity.x,
+    objR=actionInfo({
+x:selectedEntity.x,
 y:selectedEntity.y,
+xf:'',
+yf:'',
 h:selectedEntity.h,
 w:selectedEntity.w,
 //src:selectedEntity.__image,
@@ -964,8 +973,11 @@ var d = new Date(); // for now
 console.log("keydown up");
 
    action= actionList[Number(selectedEntity.getName())].order;
-    objU=actionInfo({x:selectedEntity.x,
+    objU=actionInfo({
+x:selectedEntity.x,
 y:selectedEntity.y,
+xf:'',
+yf:'',
 h:selectedEntity.h,
 w:selectedEntity.w,
 //src:selectedEntity.__image,
@@ -993,8 +1005,11 @@ var d = new Date(); // for now
 console.log("keydown down");
 
    action= actionList[Number(selectedEntity.getName())].order;
-    objD=actionInfo({x:selectedEntity.x,
+    objD=actionInfo({
+x:selectedEntity.x,
 y:selectedEntity.y,
+xf:'',
+yf:'',
 h:selectedEntity.h,
 w:selectedEntity.w,
 //src:selectedEntity.__image,
@@ -1044,7 +1059,8 @@ var d = new Date(); // for now
 
 
     objL.stopTime=document.getElementById('timer').innerHTML;
-
+    objL.xf=selectedEntity.x;
+    objL.yf=selectedEntity.y; 
 
 
 }
@@ -1065,6 +1081,8 @@ var d = new Date(); // for now
 
 
     objR.stopTime=document.getElementById('timer').innerHTML;
+       objR.xf=selectedEntity.x;
+    objR.yf=selectedEntity.y; 
 // actionA.push(objR);
 
 }
@@ -1086,6 +1104,8 @@ var d = new Date(); // for now
 
     objU.stopTime=document.getElementById('timer').innerHTML;
  //actionA.push(objU);
+    objU.xf=selectedEntity.x;
+    objU.yf=selectedEntity.y; 
 
 
 }
@@ -1107,6 +1127,8 @@ var d = new Date(); // for now
 
     objD.stopTime=document.getElementById('timer').innerHTML;
  //actionA.push(objD);
+    objD.xf=selectedEntity.x;
+    objD.yf=selectedEntity.y; 
 
 
 }
@@ -2946,6 +2968,8 @@ console.log("action list lenght="+actionA.length);
 for(var i=0;i<actionA.length;i++){
  	console.log("x="+actionA[i].x+" , ");
  	console.log("y="+actionA[i].y+" , ");
+    console.log("xf="+actionA[i].xf+" , ");
+  console.log("yf="+actionA[i].yf+" , ");
  	console.log("h="+actionA[i].h+" , ");
  	console.log("w="+actionA[i].w+" , ");
    // console.log("src="+actionA[i].src+" , ");
@@ -3251,28 +3275,45 @@ function myTimerTest() {
 
 }
 
-
+var alarmF=false;
 function start(){
+  //console.log(document.getElementById('alarm').display);
   
-  if(document.getElementById('start').innerHTML=="start"){
-document.getElementById('start').innerHTML="stop";
+  if(alarmF==false){
+    alarmF=true;
+//document.getElementById('start').innerHTML="stop";
+  document.getElementById('pause').display="inline-block";
+document.getElementById('alarm').display="none";
+
  myVar = setInterval(myTimer ,100);
 
   }
-  else if (document.getElementById('start').innerHTML=="stop"){
-    document.getElementById('start').innerHTML="start";
+  else {
+
+    alarmF=false;
+    document.getElementById('alarm').display="inline-block";
+document.getElementById('pause').display="none";
+   // document.getElementById('start').innerHTML="start";
+ 
 clearInterval(myVar);
 
   }
 }
  
-
+function reset(){
+  counterS=0;
+ counterM=0;
+ handredMSec=0;
+ secfrom="00";
+ minform="00";
+   document.getElementById("timer").innerHTML = minform+":"+secfrom+":"+"00";
+}
 
   
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-function myJump(entt){
+function myJump(entt,xff,yff){
   console.log('clear');
    var wasTriggered = false;
 selectedEntity.addComponent('Twoway');
@@ -3287,17 +3328,17 @@ selectedEntity.twoway(200);
               // }
        var myVar = setInterval(function () {
                 console.log("jumpp");
-                 entt.y-=2;
+                 entt.y-=2.053;
               
                 count = count - 1;
-                if (count == 0) {
+                if (count==0) {
                   // console.log("add gravity");
                    entt.gravity();
                     clearInterval(myVar);
                    
                 }
                
-            }, 7);
+            }, 10);
 
       
        ///if(selectedEntity.has('Gravity')){
@@ -3312,13 +3353,29 @@ selectedEntity.twoway(200);
 }
 
 function clearr(){
-  myJump();
-  // clear();
-  // clear();
-
+ for(var i=0;i<entList.length;i++){
+  entList[i].destroy();
+  
+ }
+ entList.length=0;
+ for(var i=0;i<actionA.length;i++){
+  actionA[i]="";
+  
+ }
+ actionA.length=0;
+  for(var i=0;i<objList.length;i++){
+  objList[i]="";
+  
+ }
+ objList.length=0;
+  for(var i=0;i< actionAEnt.length;i++){
+  actionAEnt[i]="";
+  
+ }
+ actionAEnt.length=0;
 }
 function startTest(){
-  if (document.getElementById('start').innerHTML=="stop"){
+  if (alarmF==true){
      start();
   }
 
@@ -3389,13 +3446,13 @@ switch(act.action){
   case 'j':
   switch(act.keyType){
    case Crafty.keys.LEFT_ARROW:
-    leftMove(act.stopTime,entList[index]);
+    leftMove(act.stopTime,act.xf,act.yf,entList[index]);
    break;
    case Crafty.keys.RIGHT_ARROW:
- rightMove(act.stopTime,entList[index]);
+ rightMove(act.stopTime,act.xf,act.yf,entList[index]);
    break;
    case Crafty.keys.UP_ARROW:
-   myJump(entList[index]);
+   myJump(entList[index],act.xf,act.yf);
    break;
 
 
@@ -3407,16 +3464,16 @@ switch(act.action){
  entList[index].gravityConst(750);
   switch(act.keyType){
    case Crafty.keys.LEFT_ARROW:
-    leftMove(act.stopTime,entList[index]);
+     leftMoveF(act.stopTime,act.xf,act.yf,entList[index]);
    break;
    case Crafty.keys.RIGHT_ARROW:
- rightMove(act.stopTime,entList[index]);
+ rightMoveF(act.stopTime,act.xf,act.yf,entList[index]);
    break;
    case Crafty.keys.UP_ARROW:
-   upMove(act.stopTime,entList[index]);
+   upMove(act.stopTime,act.xf,act.yf,entList[index]);
    break;
     case Crafty.keys.DOWN_ARROW:
-   downMove(act.stopTime,entList[index]);
+   downMove(act.stopTime,act.xf,act.yf,entList[index]);
    break;
  }
   break;
@@ -3485,36 +3542,36 @@ console.log("result="+(resM*60)+resS);
 return (resM*60)+resS;
 
 }
-function leftMove(stopT,entt){
+function leftMove(stopT,xff,yff,entt){
   // var count=amount;
       
        var myVar = setInterval(function () {
                  console.log("leftMovee");
-                entt.x-=2;
+                entt.x-=2.7;
               
               //  count = count - 1;
-                if (stopT==document.getElementById("timer").innerHTML ) {
+                if (stopT==document.getElementById("timer").innerHTML||entt.x<=xff ) {
                   // console.log("add gravity");
                   // selectedEntity.gravity();
                     clearInterval(myVar);
                    
                 }
                
-            }, 7);
+            }, 10);
 
 
 }
 
 
-function rightMove(stopT,entt){
+function rightMove(stopT,xff,yff,entt){
    //var count=amount;
       
        var myVar = setInterval(function () {
                  console.log("rightMovee");
-                 entt.x+=2;
+                 entt.x+=2.7;
               
                // count = count - 1;
-               if (stopT==document.getElementById("timer").innerHTML ) {
+               if (stopT==document.getElementById("timer").innerHTML ||entt.x>=xff) {
                   // console.log("add gravity");
                   // selectedEntity.gravity();
                     clearInterval(myVar);
@@ -3524,40 +3581,40 @@ function rightMove(stopT,entt){
             }, 10);
      }
 
-function upMove(stopT,entt){
+function upMove(stopT,xff,yff,entt){
       
        var myVar = setInterval(function () {
                  console.log("rightMovee");
                  entt.y-=1;
               
                // count = count - 1;
-               if (stopT==document.getElementById("timer").innerHTML ) {
+               if (stopT==document.getElementById("timer").innerHTML||entt.y<=yff ) {
                   // console.log("add gravity");
                   // selectedEntity.gravity();
                     clearInterval(myVar);
                    
                 }
                
-            }, 7);
+            },10);
 
 
 }
 
-function downMove(stopT,entt){
+function downMove(stopT,xff,yff,entt){
       
        var myVar = setInterval(function () {
                  console.log("rightMovee");
                  entt.y+=1;
               
                // count = count - 1;
-               if (stopT==document.getElementById("timer").innerHTML ) {
+               if (stopT==document.getElementById("timer").innerHTML ||entt.y>=yff) {
                   // console.log("add gravity");
                   // selectedEntity.gravity();
                     clearInterval(myVar);
                    
                 }
                
-            }, 7);
+            }, 10);
 
 
 }
@@ -3582,3 +3639,65 @@ function downMove(stopT,entt){
    // }
    // lastScrollTop = st;
      }
+
+
+
+
+
+
+function leftMoveF(stopT,xff,yff,entt){
+  // var count=amount;
+      
+       var myVar = setInterval(function () {
+                 console.log("leftMovee");
+                entt.x-=1.7;
+              
+              //  count = count - 1;
+                if (stopT==document.getElementById("timer").innerHTML||entt.x<=xff ) {
+                  // console.log("add gravity");
+                  // selectedEntity.gravity();
+                    clearInterval(myVar);
+                   
+                }
+               
+            }, 10);
+
+
+}
+
+
+function rightMoveF(stopT,xff,yff,entt){
+   //var count=amount;
+      
+       var myVar = setInterval(function () {
+                 console.log("rightMovee");
+                 entt.x+=1.7;
+              
+               // count = count - 1;
+               if (stopT==document.getElementById("timer").innerHTML ||entt.x>=xff) {
+                  // console.log("add gravity");
+                  // selectedEntity.gravity();
+                    clearInterval(myVar);
+                   
+                }
+               
+            }, 10);}
+     
+
+
+function removeAllAction(){
+ 
+ for(var i=0;i<actionA.length;i++){
+  actionA[i]="";
+ } 
+ actionA.length=0;
+
+}
+function undo(){
+actionA[length-1]="";
+actionA.length=actionA.length-1;
+}
+
+
+
+

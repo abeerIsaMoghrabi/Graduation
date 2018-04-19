@@ -50,11 +50,11 @@ var map = {
 		2
 	],
 	"../pages/studio/studio.module": [
-		476,
+		477,
 		0
 	],
 	"../pages/viewer/viewer.module": [
-		477,
+		476,
 		1
 	]
 };
@@ -440,8 +440,8 @@ var AppModule = (function () {
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/moves/moves.module#MovesPageModule', name: 'MovesPage', segment: 'moves', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/studio/studio.module#StudioPageModule', name: 'StudioPage', segment: 'studio', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/viewer/viewer.module#ViewerPageModule', name: 'ViewerPage', segment: 'viewer', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/viewer/viewer.module#ViewerPageModule', name: 'ViewerPage', segment: 'viewer', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/studio/studio.module#StudioPageModule', name: 'StudioPage', segment: 'studio', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_9_angularfire2__["a" /* AngularFireModule */].initializeApp(FIREBASE_CONFIG),
