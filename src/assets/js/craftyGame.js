@@ -8,7 +8,7 @@
 
 
 var walls=[];
-
+var stopTestF=false;
 var maxFlag=false;
 var arrObj=[];//for backgroundobject final
 
@@ -3379,7 +3379,18 @@ function startTest(){
      start();
   }
 
- 
+ Game.addEventListener('click',function(){
+ if(stopTestF==true){
+document.getElementById('stopScreen').style.display="none";
+stopTestF=false;
+
+ }
+ else if(stopTestF==false){
+  document.getElementById('stopScreen').style.display="inline-block";
+stopTestF=true;
+
+ }
+});
     finish();
     expand();
    for(var j=0;j<entList.length;j++){
@@ -3409,7 +3420,13 @@ function startTest(){
  counterMT=0;
  secfromT="00";
  minformT="00";
- myVarT = setInterval(myTimerTest ,100);
+ if(stopTestF==false){
+   myVarT = setInterval(myTimerTest ,100);
+ }
+
+ if(stopTestF==true){
+   clearInterval(myVarT);
+ }
 //var actArrTime=[];
 
 
@@ -3544,8 +3561,8 @@ return (resM*60)+resS;
 }
 function leftMove(stopT,xff,yff,entt){
   // var count=amount;
-      
-       var myVar = setInterval(function () {
+      if(stopTestF==false){
+         var myVar = setInterval(function () {
                  console.log("leftMovee");
                 entt.x-=2.7;
               
@@ -3559,13 +3576,20 @@ function leftMove(stopT,xff,yff,entt){
                
             }, 10);
 
+      }
+      
+       else if(stopTestF==true){
+
+ clearInterval(myVar);
+       }
+
 
 }
 
 
 function rightMove(stopT,xff,yff,entt){
    //var count=amount;
-      
+       if(stopTestF==false){
        var myVar = setInterval(function () {
                  console.log("rightMovee");
                  entt.x+=2.7;
@@ -3578,43 +3602,54 @@ function rightMove(stopT,xff,yff,entt){
                    
                 }
                
-            }, 10);
+            }, 10);}
+       else if(stopTestF==true){
+clearInterval(myVar);
+       }
      }
 
 function upMove(stopT,xff,yff,entt){
-      
+       if(stopTestF==false){
        var myVar = setInterval(function () {
                  console.log("rightMovee");
-                 entt.y-=1;
-              
+                 entt.y-=1.3;
+              entt.x+=1.5;
                // count = count - 1;
-               if (stopT==document.getElementById("timer").innerHTML||entt.y<=yff ) {
+               if (stopT==document.getElementById("timer").innerHTML||entt.y<=yff&& entt.x>=xff) {
                   // console.log("add gravity");
                   // selectedEntity.gravity();
                     clearInterval(myVar);
                    
                 }
                
-            },10);
+            },10);}
+       else if(stopTestF==true){
+         clearInterval(myVar);
+
+       }
 
 
 }
 
 function downMove(stopT,xff,yff,entt){
-      
+       if(stopTestF==false){
        var myVar = setInterval(function () {
                  console.log("rightMovee");
-                 entt.y+=1;
-              
+                 entt.y+=1.3;
+                entt.x+=1.5;
                // count = count - 1;
-               if (stopT==document.getElementById("timer").innerHTML ||entt.y>=yff) {
+               if (stopT==document.getElementById("timer").innerHTML ||entt.y>=yff&&entt.x>=xff) {
                   // console.log("add gravity");
                   // selectedEntity.gravity();
                     clearInterval(myVar);
                    
                 }
                
-            }, 10);
+            }, 10);}
+       else if(stopTestF==true){
+        clearInterval(myVar);
+
+       }
 
 
 }
@@ -3647,10 +3682,10 @@ function downMove(stopT,xff,yff,entt){
 
 function leftMoveF(stopT,xff,yff,entt){
   // var count=amount;
-      
+       if(stopTestF==false){
        var myVar = setInterval(function () {
                  console.log("leftMovee");
-                entt.x-=1.7;
+                entt.x-=2;
               
               //  count = count - 1;
                 if (stopT==document.getElementById("timer").innerHTML||entt.x<=xff ) {
@@ -3660,7 +3695,11 @@ function leftMoveF(stopT,xff,yff,entt){
                    
                 }
                
-            }, 10);
+            }, 10);}
+       else if(stopTestF==true){
+        clearInterval(myVar);
+
+       }
 
 
 }
@@ -3668,10 +3707,10 @@ function leftMoveF(stopT,xff,yff,entt){
 
 function rightMoveF(stopT,xff,yff,entt){
    //var count=amount;
-      
+       if(stopTestF==false){
        var myVar = setInterval(function () {
                  console.log("rightMovee");
-                 entt.x+=1.7;
+                 entt.x+=2;
               
                // count = count - 1;
                if (stopT==document.getElementById("timer").innerHTML ||entt.x>=xff) {
@@ -3682,6 +3721,12 @@ function rightMoveF(stopT,xff,yff,entt){
                 }
                
             }, 10);}
+       else if(stopTestF==true){
+clearInterval(myVar);
+       }
+
+
+     }
      
 
 

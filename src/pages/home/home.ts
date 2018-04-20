@@ -5,6 +5,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { storage } from 'firebase';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as $ from "jquery";
 /**
  * Generated class for the HomePage page.
  *

@@ -26187,6 +26187,16 @@ page-login .background {
   padding: 16px 10px;
 }
 
+.stop-screen {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: black;
+  height: 480px;
+  width: 100%;
+  opacity: 0.5;
+}
+
 .close {
   color: #c34a46;
   padding-left: 10px;

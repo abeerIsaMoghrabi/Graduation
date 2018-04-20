@@ -3,8 +3,9 @@ import { IonicPage, NavController, NavParams ,LoadingController  } from 'ionic-a
 //import { Camera, CameraOptions } from '@ionic-native/camera';
 import { storage } from 'firebase';
 import * as firebase from 'firebase/app';
+
 import * as $ from "jquery";
-import 'slick-carousel/slick/slick';
+import  'slick-carousel/slick/slick';
 
 /**
  * Generated class for the StudioPage page.
@@ -278,13 +279,13 @@ this.navCtrl.push('BackgroundPage');
   }
 
     ngOnInit() {
-    $('.myCarousel').slick({
-      dots: true,
-      centerMode: true,
-      infinite: false,
-      centerPadding: '60px',
-      slidesToShow: 1
-    });
+    // $('.myCarousel').slick({
+    //   dots: true,
+    //   centerMode: true,
+    //   infinite: false,
+    //   centerPadding: '60px',
+    //   slidesToShow: 1
+    // });
   }
 
 

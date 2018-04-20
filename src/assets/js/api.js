@@ -1,5 +1,22 @@
 
 
+
+
+
+$(document).ready(function(){
+  alert("hi");
+  alert("hihi");
+  var errorsArray = ClippingMagic.initialize({apiId: 6428});
+  if (errorsArray.length > 0) alert("Sorry, your browser is missing some required features: \n\n " + errorsArray.join("\n "));
+  // ClippingMagic.edit({
+  //   "image" : {
+  //     "id" : 34194711,
+  //     "secret" : "h9v8ekps1vlvdpuvmtahj85hpe1nkjrpnhq0muev4ufddri7qbmm"
+  //   },
+  //   "locale" : "en-US"
+  // }, callback);
+});
+
 var testao = function () {
     console.log(document.getElementById('userInfo').innerHTML);
 
