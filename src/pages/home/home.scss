@@ -19,12 +19,16 @@ opacity: 0.5;
     border-radius: 14px;
     display: inline-block;
     position: absolute;
+
     top: 340px;
     left: 76px;
     background-image: url('../../assets/imgs/profileImg2.jpg');
 background-size: cover;
 background-position: center;
+background-repeat: no-repeat;
 }
+
+
 .user-name{
 	color: white;
 	width: 100%;
@@ -40,15 +44,14 @@ background-position: center;
 	font-size: 18px;
 }
 
-.profile-icon{
-	width: 50%;
-	color: #0FB1B3;
-	font-size: 18px;
-	text-align: left;
-	margin-right: 167px;
-	
+.profile-icon {
+    width: 80%;
+    color: #0FB1B3;
+    font-size: 18px;
+    text-align: left;
+    margin-right: 167px;
+    padding-left: 20%;
 }
-
 
 .circle{
 	display: inline-block;
@@ -81,6 +84,9 @@ background-position: center;
 	border-radius: 14px;
 	display: inline-block;
 	margin: 20px 13px;
+	background-image: url('../../assets/imgs/storyImg.png');
+	background-size: cover;
+
 
 }
 
@@ -91,7 +97,7 @@ background-position: center;
 	height: 50px;
 	bottom: 0px;
 	left: 0px;
-	opacity: 0.6;
+	
 	background-color: #0FB1B3;
 	border-bottom-left-radius: 14px;
 	border-bottom-right-radius: 14px;
@@ -102,4 +108,264 @@ background-position: center;
 	padding-top: 10px;
 
 }
+.film{
+	display: inline-block;
+}
+.camera{
+	display: none;
+}
+@media screen and (max-width:  1219px) {
+.profile-icon {
+    
+   
+    padding-left: 26%;
+}
 
+}
+@media screen and (max-width:  1022px) {
+.profile-icon {
+    
+   
+    padding-left: 35%;
+}
+
+}
+
+ @media screen and (max-width: 999px) {
+ 	.story{
+ 		width: 190px;
+ 	}
+ 
+
+}
+@media screen and (max-width: 915px) {
+ 	.stories {
+    
+    width: 90%;
+  
+}
+ 
+
+}
+
+
+@media screen and (max-width: 835px) {
+ .profile-img{
+  left: 36%;
+  top:313px;
+
+ }
+ .profile-icon {
+    width: 80%;
+    color: #0FB1B3;
+    font-size: 18px;
+    text-align: left;
+    margin-right: 167px;
+    padding-top: 69px;
+}
+
+}
+@media screen and (max-width: 820px) {
+ 	.stories {
+    
+    width: 70%;
+  
+}
+.story {
+    width: 214px;
+}
+ 
+
+}
+@media screen and (max-width: 773px) {
+
+.story {
+    width: 187px;
+}
+ 
+
+}
+
+@media screen and (max-width:  768px) {
+.film{
+	display: none;
+}
+.camera{
+	display: inline-block;
+}
+
+}
+
+@media screen and (max-width: 686px) {
+
+.story {
+    width: 260px;
+}
+ .stories {
+    width: 47%;
+}
+
+}
+ 
+ @media screen and (max-width: 648px) {
+ .profile-img{
+  left: 32%;
+  top:313px;
+
+ }
+ .profile-icon {
+    
+   
+    padding-left: 30%;
+}
+ 
+
+}
+@media screen and (max-width: 570px) {
+
+.story {
+    width: 260px;
+}
+ .stories {
+    width: 56%;
+}
+
+}
+ @media screen and (max-width: 533px) {
+ .profile-img{
+  left: 29%;
+  top:313px;
+
+ }
+ .profile-icon {
+    
+   
+    padding-left: 28%;
+}
+ 
+
+}
+@media screen and (max-width: 473px) {
+
+
+ .stories {
+    width: 63%;
+}
+
+}
+ @media screen and (max-width: 443px) {
+ .profile-img{
+  left: 24%;
+  top:313px;
+
+ }
+ .profile-icon {
+    
+   
+    padding-left: 20%;
+}
+
+ .stories {
+    width: 71%;
+}
+
+
+}
+ @media screen and (max-width: 384px) {
+ .profile-img{
+  left: 18%;
+  top:313px;
+
+ }
+ .profile-icon {
+    
+   
+    padding-left: 15%;
+}
+  .stories {
+    width: 84%;
+}
+
+}
+ @media screen and (max-width: 355px) {
+ .profile-img{
+  left: 14%;
+  top:313px;
+
+ }
+ .profile-icon {
+    
+   
+    padding-left: 10%;
+}
+   .stories {
+    width: 98%;
+}
+
+}
+ @media screen and (max-width: 330px) {
+ .profile-img{
+  left: 9%;
+  top:313px;
+
+ }
+ .profile-icon {
+    
+   
+    padding-left: 5%;
+}
+ 
+
+}
+ @media screen and (max-width: 310px) {
+ 	.circle {
+   
+    width: 60px;
+    height: 60px;
+   
+    padding-top: 17px;
+   
+}
+ .profile-img{
+  left: 9%;
+  top:313px;
+
+ }
+ .profile-icon {
+    
+   
+    padding-left: 5%;
+}
+    .stories {
+    width: 100%;
+}
+.story{
+	width: 225px;
+	margin: 20px 0px;
+}
+
+}
+ @media screen and (max-width: 281px) {
+ 	.circle {
+   
+    width: 60px;
+    height: 60px;
+   
+    padding-top: 17px;
+
+     margin: -10px 8px;
+   
+}
+ .profile-img{
+  left: 5%;
+  top:313px;
+
+ }
+ .profile-icon {
+    
+   
+    padding-left: 5%;
+}
+ 
+
+}

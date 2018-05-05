@@ -1,6 +1,6 @@
-webpackJsonp([9],{
+webpackJsonp([10],{
 
-/***/ 156:
+/***/ 155:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -13,48 +13,52 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 156;
+webpackEmptyAsyncContext.id = 155;
 
 /***/ }),
 
-/***/ 198:
+/***/ 197:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/background/background.module": [
-		469,
-		7
+		468,
+		8
 	],
 	"../pages/chars/chars.module": [
+		467,
+		7
+	],
+	"../pages/display/display.module": [
 		470,
 		6
 	],
-	"../pages/display/display.module": [
-		471,
-		5
-	],
 	"../pages/home/home.module": [
 		472,
-		8
+		9
 	],
 	"../pages/login/login.module": [
-		473,
+		469,
+		5
+	],
+	"../pages/main/main.module": [
+		476,
 		4
 	],
 	"../pages/moves/moves.module": [
-		474,
+		471,
 		3
 	],
 	"../pages/register/register.module": [
-		475,
+		473,
 		2
 	],
 	"../pages/studio/studio.module": [
-		476,
+		475,
 		0
 	],
 	"../pages/viewer/viewer.module": [
-		477,
+		474,
 		1
 	]
 };
@@ -69,12 +73,12 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 198;
+webpackAsyncContext.id = 197;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 285:
+/***/ 284:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -109,7 +113,7 @@ var AboutPage = (function () {
 
 /***/ }),
 
-/***/ 286:
+/***/ 285:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -144,7 +148,7 @@ var ContactPage = (function () {
 
 /***/ }),
 
-/***/ 287:
+/***/ 286:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -153,7 +157,7 @@ var ContactPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(377);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase_app__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase_app__);
@@ -231,6 +235,7 @@ var HomePage = (function () {
         this.navParams = navParams;
         this.loadingCtrl = loadingCtrl;
         this.aFAuth = aFAuth;
+        this.smallList = false;
         this.onSuccess = function (snapshot) {
             _this.currentPhoto = snapshot.downloadURL;
             _this.loading.dismiss();
@@ -251,6 +256,14 @@ var HomePage = (function () {
                 console.log(" Could not find authentication details");
             }
         });
+    };
+    HomePage.prototype.showSmallList = function () {
+        if (this.smallList == false) {
+            this.smallList = true;
+        }
+        else if (this.smallList == true) {
+            this.smallList = false;
+        }
     };
     HomePage.prototype.takePhoto = function () {
         var _this = this;
@@ -341,9 +354,14 @@ var HomePage = (function () {
             });
         });
     };
+    HomePage.prototype.disp = function (n) {
+        this.navCtrl.push('DisplayPage', {
+            data: n
+        });
+    };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Moghrabi\Graduation\src\pages\home\home.html"*/'<!--\n\n  Generated template for the HomePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <!-- <ion-navbar color="primary">\n\n    <ion-title>Home</ion-title>\n\n  </ion-navbar > -->\n\n\n\n</ion-header>\n\n\n\n\n\n\n\n\n\n<ion-content >\n\n<!-- <div>{{userInfo}}</div> -->\n\n<div style="background-color: black;">\n\n<div class=\'Profile-header\'>\n\n\n\n<div class="container-fluid header-div " >\n\n    <div class="container">\n\n        <!--<div class="row" >-->\n\n           <div class="logo "><a href="#">STORY</a></div>\n\n    <div class="float-right list-div ">\n\n        <!--col-sm-6 offset-4-->\n\n        <ul >\n\n            <li class="log-btn  float-right header-li" onclick="store()">sign out</li>\n\n            <li class=" header-li float-right"><a   full [navPush]="userProf">Profile</a></li>\n\n            <li class=" header-li float-right"><a href="#">Studio</a></li>\n\n            <li class=" header-li float-right"><a href="#">Home</a></li>\n\n\n\n\n\n\n\n        </ul>\n\n\n\n    </div>\n\n    <div class="clearfix"></div>\n\n\n\n\n\n    <!--</div>-->\n\n    </div>\n\n</div>\n\n\n\n<div class="profile-img">\n\n  <div class="user-name">Abeer Moghrabi</div>\n\n</div>\n\n\n\n\n\n\n\n\n\n</div>\n\n</div>\n\n\n\n\n\n<div class="container-fluid">\n\n  <div class="container">\n\n    \n\n<ul class="profile-icon float-right">\n\n<li class="circle">\n\n  <ion-icon name="person"></ion-icon>\n\n</li>\n\n\n\n<li class="circle" (click)="b2()"><ion-icon name="camera"></ion-icon>\n\n</li>\n\n<li class="circle" (click)="b1()"><ion-icon name="film"></ion-icon></li>\n\n    \n\n     \n\n      \n\n\n\n\n\n</ul>\n\n<div class="clearfix"></div>\n\n  </div>\n\n</div>\n\n\n\n\n\n<div class="container-fluid">\n\n  <div class="container">\n\n    <div class="stories">\n\n\n\n\n\n      <div class="story" >\n\n        <div class="story-label">\n\n          story name\n\n        </div>\n\n      </div>\n\n\n\n\n\n<div class="story" >\n\n        <div class="story-label">\n\n          story name\n\n\n\n        </div>\n\n      </div>\n\n\n\n\n\n\n\n      <div class="story" >\n\n        <div class="story-label">\n\n          story name\n\n\n\n        </div>\n\n      </div>\n\n\n\n\n\n\n\n      <div class="story" >\n\n        <div class="story-label">\n\n          story name\n\n\n\n        </div>\n\n      </div>\n\n\n\n\n\n\n\n      <div class="story" >\n\n        <div class="story-label">\n\n          story name\n\n\n\n        </div>\n\n      </div>\n\n\n\n\n\n\n\n\n\n    </div>\n\n\n\n  </div>\n\n\n\n\n\n</div>\n\n\n\n\n\n\n\n<div class="container-fluid" style="background-color: #1e231f; height: 200px;">\n\n  <div class="container">\n\n    \n\n\n\n  </div>\n\n\n\n\n\n</div>\n\n\n\n\n\n\n\n\n\n<!--   <img src={{currentPhoto}} />\n\n\n\n  <button ion-button (click)="b1()" >Studio</button>\n\n  <button ion-button (click)="b2()" >Viewer</button>\n\n  <img src={{imgSource}} /> -->\n\n\n\n</ion-content>\n\n\n\n\n\n\n\n'/*ion-inline-end:"C:\Users\Moghrabi\Graduation\src\pages\home\home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Moghrabi\Graduation\src\pages\home\home.html"*/'<!--\n\n  Generated template for the HomePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <!-- <ion-navbar color="primary">\n\n    <ion-title>Home</ion-title>\n\n  </ion-navbar > -->\n\n\n\n</ion-header>\n\n\n\n\n\n\n\n\n\n<ion-content >\n\n<!-- <div>{{userInfo}}</div> -->\n\n<div style="background-color: black;">\n\n<div class=\'Profile-header\'>\n\n\n\n<div class="container-fluid header-div " >\n\n    <div class="container">\n\n        <!--<div class="row" >-->\n\n           <div class="logo "><a href="#">STORY</a></div>\n\n    <div class="float-right list-div ">\n\n        <!--col-sm-6 offset-4-->\n\n        <ul >\n\n            <li class="log-btn  float-right header-li" >sign out</li>\n\n            <li class=" header-li float-right"><a   full [navPush]="userProf">Profile</a></li>\n\n            <li class=" header-li float-right"><a href="#">Studio</a></li>\n\n            <li class=" header-li float-right"><a href="#">Home</a></li>\n\n\n\n\n\n\n\n        </ul>\n\n\n\n    </div>\n\n    <span  (click)="showSmallList()" ><ion-icon name="menu" class="menu-icon float-right"></ion-icon></span>\n\n  <ul  class="list-small" [hidden]="!smallList">\n\n            <li  class=" header-li" ><a href="#">sign  out </a></li>\n\n            <li class=" header-li "><a   full [navPush]="userProf">Profile</a></li>\n\n            <li class=" header-li "><a href="#">Studio</a></li>\n\n            <li class=" header-li "><a href="#">Home</a></li>\n\n\n\n\n\n\n\n        </ul>\n\n\n\n    <div class="clearfix"></div>\n\n\n\n\n\n    <!--</div>-->\n\n    </div>\n\n</div>\n\n\n\n<div class="profile-img">\n\n  <div class="user-name">Abeer Moghrabi</div>\n\n</div>\n\n\n\n\n\n\n\n\n\n</div>\n\n</div>\n\n\n\n\n\n<div class="container-fluid">\n\n  <div class="container">\n\n    \n\n<ul class="profile-icon ">\n\n<li class="circle">\n\n  <ion-icon name="person"></ion-icon>\n\n</li>\n\n\n\n<li class="circle camera" (click)="b2()"><ion-icon name="camera"></ion-icon>\n\n</li>\n\n<li class="circle film" (click)="b1()"><ion-icon name="film"></ion-icon></li>\n\n    \n\n     \n\n      \n\n\n\n\n\n</ul>\n\n<div class="clearfix"></div>\n\n  </div>\n\n</div>\n\n\n\n\n\n<div class="container-fluid">\n\n  <div class="container">\n\n    <div class="stories">\n\n\n\n\n\n\n\n\n\n<div class="story" (click)="disp(\'storyD\')">\n\n\n\n        <div class="story-label" >\n\n\n\n         storyD\n\n\n\n        </div>\n\n\n\n      </div>\n\n<div class="story" (click)="disp(\'storyD\')">\n\n\n\n        <div class="story-label" >\n\n\n\n         storyD\n\n\n\n        </div>\n\n\n\n      </div>\n\n\n\n<div class="story" (click)="disp(\'storyD\')">\n\n\n\n        <div class="story-label" >\n\n\n\n         storyD\n\n\n\n        </div>\n\n\n\n      </div>\n\n      <div class="story" (click)="disp(\'storyD\')">\n\n\n\n        <div class="story-label" >\n\n\n\n         storyD\n\n\n\n        </div>\n\n\n\n      </div>\n\n\n\n\n\n\n\n\n\n\n\n    </div>\n\n\n\n  </div>\n\n\n\n\n\n</div>\n\n\n\n\n\n\n\n<div class="container-fluid" style="background-color: #1e231f; height: 200px;">\n\n  <div class="container">\n\n     <ion-grid>\n\n      <ion-row justify-content-center>\n\n        <ion-col col-sm-3 class="footer-title" >\n\n          GET IN TOUCH\n\n        </ion-col>\n\n\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col col-sm-12  >\n\n          <div >\n\n            \n\n            <ul style="padding-left: 16%; border-bottom: 1px solid #b6b2ac;padding-bottom: 20px;">\n\n              <li style="display: inline-block; padding-left: 20px;" ><a href="#"><ion-icon name="person"></ion-icon> +9 595 460 414</a></li>\n\n              <li style="display: inline-block; padding-left: 20px;"><a href="#">  <ion-icon name="logo-google"></ion-icon> abeer.isa.moghrabi@gmail.com</a></li>\n\n              <li style="display: inline-block;  padding-left: 20px;"><a href="#"><ion-icon name="mail"></ion-icon> abeer.isa.moghrabi@hotmail.com</a></li>\n\n            </ul>\n\n          </div>\n\n        </ion-col>\n\n        <ion-col>\n\n          <p style="text-align: center;color: #666457">© 2016 Free HTML5. All Rights Reserved.<br>\n\nDesigned by GetTemplates.co Demo Images: Unsplash</p>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n\n\n  </div>\n\n\n\n\n\n</div>\n\n\n\n\n\n\n\n\n\n<!--   <img src={{currentPhoto}} />\n\n\n\n  <button ion-button (click)="b1()" >Studio</button>\n\n  <button ion-button (click)="b2()" >Viewer</button>\n\n  <img src={{imgSource}} /> -->\n\n\n\n</ion-content>\n\n\n\n\n\n\n\n'/*ion-inline-end:"C:\Users\Moghrabi\Graduation\src\pages\home\home.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_5_angularfire2_auth__["a" /* AngularFireAuth */]])
     ], HomePage);
@@ -354,13 +372,13 @@ var HomePage = (function () {
 
 /***/ }),
 
-/***/ 291:
+/***/ 290:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(292);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(314);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(312);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -368,7 +386,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 314:
+/***/ 312:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -377,18 +395,18 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(467);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_about_about__ = __webpack_require__(285);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_contact_contact__ = __webpack_require__(286);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_tabs_tabs__ = __webpack_require__(468);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__ = __webpack_require__(283);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__ = __webpack_require__(284);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angularfire2__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(465);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_about_about__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_contact_contact__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_tabs_tabs__ = __webpack_require__(466);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angularfire2__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_angularfire2_auth__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_camera__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_file__ = __webpack_require__(288);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_transfer__ = __webpack_require__(289);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_file_path__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_file__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_transfer__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_file_path__ = __webpack_require__(289);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -433,15 +451,16 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/background/background.module#BackgroundPageModule', name: 'BackgroundPage', segment: 'background', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/chars/chars.module#CharsPageModule', name: 'CharsPage', segment: 'chars', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/display/display.module#DisplayPageModule', name: 'DisplayPage', segment: 'display', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/background/background.module#BackgroundPageModule', name: 'BackgroundPage', segment: 'background', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/display/display.module#DisplayPageModule', name: 'DisplayPage', segment: 'display', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/moves/moves.module#MovesPageModule', name: 'MovesPage', segment: 'moves', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/viewer/viewer.module#ViewerPageModule', name: 'ViewerPage', segment: 'viewer', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/studio/studio.module#StudioPageModule', name: 'StudioPage', segment: 'studio', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/viewer/viewer.module#ViewerPageModule', name: 'ViewerPage', segment: 'viewer', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/main/main.module#MainPageModule', name: 'MainPage', segment: 'main', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_9_angularfire2__["a" /* AngularFireModule */].initializeApp(FIREBASE_CONFIG),
@@ -474,15 +493,15 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 467:
+/***/ 465:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(283);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(283);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -498,7 +517,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var MyApp = (function () {
     function MyApp(platform, statusBar, splashScreen) {
-        this.rootPage = 'LoginPage';
+        this.rootPage = 'MainPage';
         platform.ready().then(function () {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
@@ -518,15 +537,15 @@ var MyApp = (function () {
 
 /***/ }),
 
-/***/ 468:
+/***/ 466:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__about_about__ = __webpack_require__(285);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact_contact__ = __webpack_require__(286);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__about_about__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact_contact__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(286);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -558,5 +577,5 @@ var TabsPage = (function () {
 
 /***/ })
 
-},[291]);
+},[290]);
 //# sourceMappingURL=main.js.map

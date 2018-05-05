@@ -4,17 +4,50 @@
 // var array_of_entities = Crafty("2D").get();
 
 //window.onload = function(){
+  var NNN=false;
+  var lenObj=function(p){
+ var that={};
+
+that.bl=p.bl;
+that.al=p.al;
+that.ael=p.ael;
+return that;
+}
+var StoryObj=function(p){
+var that={};
+
+that.actionAEnt=p.actionAEnt;
+that.actionA=p.actionA;
+that.objList=p.objList;
+that.len=p.len;
+that.natu=p.natu;
+return that;
+}
 
 
+var natu=[];
 
+
+var natObj=function(p){
+ var that={};
+that.id=p.id;
+that.nw=p.nw;
+that.nh=p.nh;
+
+return that;
+}
+var stopEnt;
+var playEnt;
+var redoEnt;
+var closeEnt;
 var walls=[];
 var stopTestF=false;
 var maxFlag=false;
 var arrObj=[];//for backgroundobject final
 
 var lastScrollTop = 0;
-
-	
+var theEndf=false;
+	var countAction=0;
 var isDown=false;
 var isUp=false;
 var isBack=false;
@@ -159,91 +192,7 @@ right:true
 
 ///////////////////////////////////////new code for viewport/////////////////////////////////////////
 console.log("canvas width"+cropPx(document.getElementById('canvas-div').style.width));
- // Crafty.viewport.width=700;
-//console.log("viewport"+Crafty.viewport.width)
-   //Crafty.viewport.height=480;
-    
-     //Crafty.viewport.clampToEntites=false;
- 
-     //Crafty.viewport.scale(1);
 
-
-     /////////////////////////////////////scrol////////////////////////////////////////////////////////////
-//     scrolEn=Crafty.e('2D,DOM,Color,Floor').attr({
-// 	w:650,//center-div width is 55% but we cant use it so we but equvelant value 650
-// 	h:3,
-// 	x:0,
-// 	y:477
-	
-
-
-// }).color('red');
-
-
-//   var scrollW=scrolEn.w-(2000-650);
-//   if(scrollW<0){
-//   	scrollW=20;
-//   }
-//     scrolbar=Crafty.e('2D,DOM,Color,Mouse,Draggable').attr({
-// 	w:scrollW,
-// 	h:15,
-// 	x:1,
-// 	y:470
-	
-
-
-// }).color('green');
-
-//     scrolbar.css({'borderRadius':'5px'});
-// scrolbar.dragDirection({x:1, y:0});
-// scrolEn.attach(scrolbar);
-// var startMove=false;
-// var startVaule;
-// scrolbar.bind('MouseDown',function(e){
-// startMove=true;
-// startVaule=scrolbar.x;
-// console.log("mouse down");
-// });
-// scrolbar.bind('MouseMove',function(e){
-// if(startMove==true){
-// 	if(startVaule>scrolbar.x){
-// 		if(scrolbar.x<=0){
-// 			scrolbar.x=0;
-// 		}
-// 		else{
-// 			movetoRight();
-// 		startVaule=scrolbar.x;
-// 		console.log("scroll move left");
-// 		}
-		
-// 	}
-// 	else if (startVaule<scrolbar.x){
-// // if(scrolbar.x>=(650-scrolbar.x)){
-// // 	scrolbar.x=650-scrolbar.x;
-// // }
-// // else{
-// 	movetoLeft();
-	
-// 		startVaule=scrolbar.x;
-// 		console.log("scroll move right");
-// // }
-
-		
-// 	}
-	
-// 	console.log("mouse move");
-
-
-// }
-
-// });
-// scrolbar.bind('MouseUp',function(e){
-// startMove=false;
-// console.log("mouse up");
-// });
-
-
-///////////////////////////////////////scroll///////////////////////////////
 /////////////////////////////////////new code for viewport////////////////////////////////////////////
 
   selectedEntity=Crafty.e('2D,DOM').attr({
@@ -252,10 +201,18 @@ console.log("canvas width"+cropPx(document.getElementById('canvas-div').style.wi
 
 });
   Crafty.sprite(512,512, 'assets/imgs/minimize.png', {min:[0,0]});
+   Crafty.sprite(512,512, 'assets/imgs/puseTest.png', {puseTest:[0,0]});
    min=Crafty.e('2D,DOM,min,Mouse').attr({
 	w:0,
 	h:0
 	
+
+
+});
+   var puseTest=Crafty.e('2D,DOM,puseTest,Mouse').attr({
+  w:0,
+  h:0
+  
 
 
 });
@@ -266,7 +223,8 @@ Game.addEventListener('contextmenu',function(){
 })
    min.bind('Click',function(e){
     maxFlag=false;
-   	 
+   	 puseTest.w=0;
+     puseTest.h=0;
 	document.getElementById('canvas-div').style.position="relative";
 document.getElementById('canvas-div').style.backgroundColor='white';
 document.getElementById('color_scroll').style.display='inline-block';
@@ -285,13 +243,14 @@ document.getElementById('canvas-div').style.overflowY ="hidden";
   // scrolEn.x=0;
   // scrolEn.y=467;
 
-Crafty.viewport.scale(1); 
+ Crafty.viewport.scale(1); 
 Crafty.viewport.width=700;
-Crafty.viewport.height=480;
+ Crafty.viewport.height=480;
 min.w=0;
 min.h=0;
   Crafty.viewport.reload();   
 });
+    puseTest.bind('Click',enableClick);
 
 var square = Crafty.e("2D, DOM");
 square.addComponent("Floor");
@@ -381,7 +340,14 @@ var ele= document.getElementById(data);
     console.log("****************");
   
     console.log(ele);
+    var nn=new natObj({
+      id:entityNameCounter,
+nw:ele.naturalWidth,
+nh:ele.naturalHeight
 
+});
+    console.log("push nn");
+natu.push(nn);
   // getInit();
     Crafty.sprite(ele.naturalWidth,ele.naturalHeight, ele.src, {flower:[0,0]});
 var bg = Crafty.e("2D, DOM, flower,Mouse,Keyboard").attr({
@@ -538,54 +504,21 @@ Crafty.viewport.reload();
      ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-     function store(){
-
-     	alert("hi");
-        copyEntToArray();
-
-   var config = {
-    apiKey: "AIzaSyAlx0SvI8rLi2KxMOqqGjM3cr-2_CtnnkM",
-    authDomain: "grdprogect.firebaseapp.com",
-    databaseURL: "https://grdprogect.firebaseio.com",
-    projectId: "grdprogect",
-    storageBucket: "grdprogect.appspot.com",
-    messagingSenderId: "304904675026"
-  };
-  firebase.initializeApp(config);
-
-
-
-  var database = firebase.database();// Get a reference to the database service
-
-writeUserData("1");
+  
  
-     }
-
-     function writeUserData(backId) {
-  firebase.database().ref('backs/' + backId).set({
-    
-    back: objList
-   
-  });
 
 
-  //var userId1 = firebase.auth().currentUser.userId;
-//readData(userId);
-}
 
 
-function readData(userId){
-	return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-  var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-  console.log(username);
-});
-}
 
 
 function copyEntToArray(){
+  console.log("777777777777777777777777777777777777");
+  console.log(entList.length);
 	var array_of_entities = Crafty("2D").get();
-	var exiIn=false;
+
 	for(var i=0 ;i<entList.length;i++){
+      var exiIn=false;
     for(var j=0;j<actionAEnt.length;j++){
       if(actionAEnt[j].id==entList[i].getName()){
         exiIn=true;
@@ -594,7 +527,7 @@ function copyEntToArray(){
     }
     if(!exiIn){
      // console.log("this entity exsist in action array ");
-    
+    console.log("not exit");
 
            arrObj=new objBackground({
   x:entList[i].x,
@@ -783,7 +716,7 @@ var circle3 = Crafty.e("2D, DOM, f,Mouse,Draggable").attr({
 	h:13,
 	 x:rootm.x-5,
      y:yn-5
-             	});
+             	}); 
 
 var circle4 = Crafty.e("2D, DOM, f,Mouse,Draggable").attr({
 	w:13,
@@ -1608,7 +1541,23 @@ copy.bind('Click', function (e) {
  var ent2 = rootm.clone()
               .attr({x:100, y:100});
 entList.push(ent2);
+for(var ii=0;ii<natu.length;ii++){
+  if(Number(rootm.getName())==natu[ii].id){
+    var nn=new natObj({
+      id:entityNameCounter,
+nw:natu[ii].nw,
+nh:natu[ii].nh
+
+});
+    console.log("push nn");
+natu.push(nn);
+break;
+  }
+}
+
+
               createResizeEntity(ent2,true);
+
 
              
 });
@@ -2232,7 +2181,10 @@ min.w=30;
 min.h=30;
 min.x=5;
 min.y=5;
-
+puseTest.w=30;
+puseTest.h=30;
+puseTest.x=45;
+puseTest.y=5;
 
 document.getElementById('canvas-div').style.position="absolute";
 document.getElementById('canvas-div').style.backgroundColor='white';
@@ -2421,6 +2373,7 @@ else if (actionList[Number(selectedEntity.getName())].jump==true){
     Crafty.one("CameraAnimationDone",function(){
     Crafty.viewport.follow(selectedEntity,0,0);
     });
+    //Crafty.viewport.mouselook(true);
     Crafty.viewport.centerOn(selectedEntity,0); 
 
 
@@ -2511,11 +2464,11 @@ if(e.key == Crafty.keys.DOWN_ARROW){
     selectedEntity.multiway(150, {UP_ARROW: -45, DOWN_ARROW: 45, RIGHT_ARROW: 0, LEFT_ARROW: 180});
  
      Crafty.viewport.width=700;
-     Crafty.viewport.height=460;
+     Crafty.viewport.height=480;
     
     Crafty.viewport.clampToEntites=false;
      selectedEntity.addComponent("Solid");
-   Crafty.viewport.scale(1);
+   //Crafty.viewport.scale(1);
     Crafty.one("CameraAnimationDone",function(){
     Crafty.viewport.follow(selectedEntity,0,0);
     });
@@ -2706,7 +2659,7 @@ function removeEventFromOtherEnitiy(){
 		console.log(array_of_entities[i].getName());
 	}
 
-	for(var i=3;i<array_of_entities.length;i++){
+	for(var i=4;i<array_of_entities.length;i++){
 		if(array_of_entities[i]==selectedEntity){
 			console.log("*****************");
                         console.log(Number(array_of_entities[i].getName()));
@@ -2721,11 +2674,11 @@ function removeEventFromOtherEnitiy(){
                             Crafty.viewport.height=wy;
 
                       }
-                      else if(maxFlag==false){
-                            Crafty.viewport.width=700;
-                            Crafty.viewport.height=460;
+                      // else if(maxFlag==false){
+                      //       Crafty.viewport.width=700;
+                      //       Crafty.viewport.height=460+20;
 
-                      }
+                      // }
 
     
    Crafty.viewport.clampToEntites=false;
@@ -2756,11 +2709,11 @@ function removeEventFromOtherEnitiy(){
                             Crafty.viewport.height=wy;
 
                       }
-                      else if(maxFlag==false){
-                            Crafty.viewport.width=700;
-                            Crafty.viewport.height=460;
+                      // else if(maxFlag==false){
+                      //       Crafty.viewport.width=700;
+                      //       Crafty.viewport.height=460;
 
-                      }
+                      // }
     
    Crafty.viewport.clampToEntites=false;
         selectedEntity.addComponent("Solid");
@@ -2953,6 +2906,31 @@ else if(speedFlag==true){
 	document.getElementById('speedList').style.display='none';
 }
 }
+function createIt(){
+  if(document.getElementById('sN').value!=""){
+ 
+  document.getElementById("modal").style.display="none";
+  document.getElementById('t1').innerHTML= document.getElementById("sN").value;
+  document.getElementById('sN').value="";
+  }
+  else if(document.getElementById('sN').value==""){
+    alert("plase write name");
+  }
+
+}
+function cancle(){
+  document.getElementById("modal").style.display="none";
+  document.getElementById('sN').value="";
+}
+function addStory(){
+ 
+  console.log("no name");
+  document.getElementById("modal").style.display="block";
+  document.getElementById("cancle").style.display="inline-block";
+ 
+
+
+}
 
 function finish(){
 // 	for(var i=0;i<actionList.length;i++){
@@ -2963,6 +2941,15 @@ function finish(){
 // 	console.log("pos=("+actionList[i].initPosX+" , "+actionList[i].initPosY+")");
 
 // }
+if(document.getElementById('t1').innerHTML==""){
+  console.log("no name");
+  document.getElementById("modal").style.display="block";
+  document.getElementById("cancle").style.display="none";
+  
+
+}
+else{
+
 console.log("************action array*************");
 console.log("action list lenght="+actionA.length);
 for(var i=0;i<actionA.length;i++){
@@ -3089,6 +3076,8 @@ for(var m=0;m<objList[i].gravity.length;m++){
   console.log("line h="+objList[i].gravity[m].h);
 }
 
+}
+store();
 }
 }
 function movetoRight(am){
@@ -3241,9 +3230,13 @@ function myTimer() {
 
 
 function myTimerTest() {
-  for(var i=0;i<actionA.length;i++){
+  if(stopTestF==false&&theEndf==false){
+   clearInterval(myVar);
+
+    for(var i=0;i<actionA.length;i++){
   if(actionA[i].startTime==document.getElementById("timer").innerHTML){
     test(actionA[i]);
+    // break;
   }
 }
  if(handredMSecT==10){
@@ -3272,18 +3265,21 @@ function myTimerTest() {
     }
     document.getElementById("timer").innerHTML = minformT+":"+secfromT+":"+handredMSecT;
   handredMSecT++;
+  }
+  
 
 }
 
 var alarmF=false;
 function start(){
+   clearInterval(myVarT);
   //console.log(document.getElementById('alarm').display);
   
   if(alarmF==false){
     alarmF=true;
 //document.getElementById('start').innerHTML="stop";
-  document.getElementById('pause').display="inline-block";
-document.getElementById('alarm').display="none";
+  document.getElementById('pause').style.display="inline-block";
+document.getElementById('alarm').style.display="none";
 
  myVar = setInterval(myTimer ,100);
 
@@ -3291,8 +3287,8 @@ document.getElementById('alarm').display="none";
   else {
 
     alarmF=false;
-    document.getElementById('alarm').display="inline-block";
-document.getElementById('pause').display="none";
+    document.getElementById('alarm').style.display="inline-block";
+document.getElementById('pause').style.display="none";
    // document.getElementById('start').innerHTML="start";
  
 clearInterval(myVar);
@@ -3314,10 +3310,12 @@ function reset(){
 
 
 function myJump(entt,xff,yff){
-  console.log('clear');
+
+   if(stopTestF==false){
+    console.log('clear');
    var wasTriggered = false;
-selectedEntity.addComponent('Twoway');
-selectedEntity.twoway(200);
+entt.addComponent('Twoway');
+entt.twoway(200);
 
 
       var count=85;
@@ -3326,7 +3324,7 @@ selectedEntity.twoway(200);
                entt.antigravity();
                 console.log("remove gravity");
               // }
-       var myVar = setInterval(function () {
+       var myVarr = setInterval(function () {
                 console.log("jumpp");
                  entt.y-=2.053;
               
@@ -3334,7 +3332,7 @@ selectedEntity.twoway(200);
                 if (count==0) {
                   // console.log("add gravity");
                    entt.gravity();
-                    clearInterval(myVar);
+                    clearInterval(myVarr);
                    
                 }
                
@@ -3348,11 +3346,20 @@ selectedEntity.twoway(200);
          
       // console.log("add gravity");
         // selectedEntity.addComponent('Gravity');
-   
+
+   }
+  
+ if(stopTestF==true){
+ entt.antigravity();
+ clearInterval(myVarr);
+
+
+ }  
 
 }
 
 function clearr(){
+  entityNameCounter=0;
  for(var i=0;i<entList.length;i++){
   entList[i].destroy();
   
@@ -3375,22 +3382,19 @@ function clearr(){
  actionAEnt.length=0;
 }
 function startTest(){
+
+  theEndf=false;
+   stopTestF=false;
   if (alarmF==true){
      start();
   }
 
- Game.addEventListener('click',function(){
- if(stopTestF==true){
-document.getElementById('stopScreen').style.display="none";
-stopTestF=false;
 
- }
- else if(stopTestF==false){
-  document.getElementById('stopScreen').style.display="inline-block";
-stopTestF=true;
 
- }
-});
+
+
+
+
     finish();
     expand();
    for(var j=0;j<entList.length;j++){
@@ -3417,9 +3421,10 @@ stopTestF=true;
   }
   /////////////////////////////////////////////action///////////////////////////////////
   counterST=0;
- counterMT=0;
+   counterMT=0;
  secfromT="00";
  minformT="00";
+ var countAction=0;
  if(stopTestF==false){
    myVarT = setInterval(myTimerTest ,100);
  }
@@ -3449,6 +3454,19 @@ var index=0;
 // that.keyType=p.keyType;
 // that.speed=p.speed;
 
+
+
+
+ countAction++;
+    if(countAction==actionA.length){
+      theEndf=true;
+      countAction=0;
+       Game.removeEventListener('click',enableClick,true );
+      clearInterval(myVarT);
+
+    }
+
+
 for(var j=0;j<entList.length;j++){
    if(act.id==entList[j].getName()){
  index=j;
@@ -3457,12 +3475,19 @@ for(var j=0;j<entList.length;j++){
 
 }
 
+   Crafty.one("CameraAnimationDone",function(){
+    Crafty.viewport.follow(entList[index],20,20);
+    });
+    //Crafty.viewport.mouselook(true);
+    Crafty.viewport.centerOn(entList[index],0);
+
 
 //var amount=findTimeAmount(act.startTime,act.stopTime);
 switch(act.action){
   case 'j':
   switch(act.keyType){
    case Crafty.keys.LEFT_ARROW:
+
     leftMove(act.stopTime,act.xf,act.yf,entList[index]);
    break;
    case Crafty.keys.RIGHT_ARROW:
@@ -3562,7 +3587,7 @@ return (resM*60)+resS;
 function leftMove(stopT,xff,yff,entt){
   // var count=amount;
       if(stopTestF==false){
-         var myVar = setInterval(function () {
+         var myVarr = setInterval(function () {
                  console.log("leftMovee");
                 entt.x-=2.7;
               
@@ -3570,7 +3595,7 @@ function leftMove(stopT,xff,yff,entt){
                 if (stopT==document.getElementById("timer").innerHTML||entt.x<=xff ) {
                   // console.log("add gravity");
                   // selectedEntity.gravity();
-                    clearInterval(myVar);
+                    clearInterval(myVarr);
                    
                 }
                
@@ -3580,7 +3605,7 @@ function leftMove(stopT,xff,yff,entt){
       
        else if(stopTestF==true){
 
- clearInterval(myVar);
+ clearInterval(myVarr);
        }
 
 
@@ -3590,7 +3615,7 @@ function leftMove(stopT,xff,yff,entt){
 function rightMove(stopT,xff,yff,entt){
    //var count=amount;
        if(stopTestF==false){
-       var myVar = setInterval(function () {
+       var myVarr = setInterval(function () {
                  console.log("rightMovee");
                  entt.x+=2.7;
               
@@ -3598,19 +3623,19 @@ function rightMove(stopT,xff,yff,entt){
                if (stopT==document.getElementById("timer").innerHTML ||entt.x>=xff) {
                   // console.log("add gravity");
                   // selectedEntity.gravity();
-                    clearInterval(myVar);
+                    clearInterval(myVarr);
                    
                 }
                
             }, 10);}
        else if(stopTestF==true){
-clearInterval(myVar);
+clearInterval(myVarr);
        }
      }
 
 function upMove(stopT,xff,yff,entt){
        if(stopTestF==false){
-       var myVar = setInterval(function () {
+       var myVarr = setInterval(function () {
                  console.log("rightMovee");
                  entt.y-=1.3;
               entt.x+=1.5;
@@ -3618,13 +3643,13 @@ function upMove(stopT,xff,yff,entt){
                if (stopT==document.getElementById("timer").innerHTML||entt.y<=yff&& entt.x>=xff) {
                   // console.log("add gravity");
                   // selectedEntity.gravity();
-                    clearInterval(myVar);
+                    clearInterval(myVarr);
                    
                 }
                
             },10);}
        else if(stopTestF==true){
-         clearInterval(myVar);
+         clearInterval(myVarr);
 
        }
 
@@ -3633,7 +3658,7 @@ function upMove(stopT,xff,yff,entt){
 
 function downMove(stopT,xff,yff,entt){
        if(stopTestF==false){
-       var myVar = setInterval(function () {
+       var myVarr = setInterval(function () {
                  console.log("rightMovee");
                  entt.y+=1.3;
                 entt.x+=1.5;
@@ -3641,13 +3666,13 @@ function downMove(stopT,xff,yff,entt){
                if (stopT==document.getElementById("timer").innerHTML ||entt.y>=yff&&entt.x>=xff) {
                   // console.log("add gravity");
                   // selectedEntity.gravity();
-                    clearInterval(myVar);
+                    clearInterval(myVarr);
                    
                 }
                
             }, 10);}
        else if(stopTestF==true){
-        clearInterval(myVar);
+        clearInterval(myVarr);
 
        }
 
@@ -3683,7 +3708,7 @@ function downMove(stopT,xff,yff,entt){
 function leftMoveF(stopT,xff,yff,entt){
   // var count=amount;
        if(stopTestF==false){
-       var myVar = setInterval(function () {
+       var myVarr = setInterval(function () {
                  console.log("leftMovee");
                 entt.x-=2;
               
@@ -3691,13 +3716,13 @@ function leftMoveF(stopT,xff,yff,entt){
                 if (stopT==document.getElementById("timer").innerHTML||entt.x<=xff ) {
                   // console.log("add gravity");
                   // selectedEntity.gravity();
-                    clearInterval(myVar);
+                    clearInterval(myVarr);
                    
                 }
                
             }, 10);}
        else if(stopTestF==true){
-        clearInterval(myVar);
+        clearInterval(myVarr);
 
        }
 
@@ -3708,7 +3733,7 @@ function leftMoveF(stopT,xff,yff,entt){
 function rightMoveF(stopT,xff,yff,entt){
    //var count=amount;
        if(stopTestF==false){
-       var myVar = setInterval(function () {
+       var myVarr = setInterval(function () {
                  console.log("rightMovee");
                  entt.x+=2;
               
@@ -3716,13 +3741,13 @@ function rightMoveF(stopT,xff,yff,entt){
                if (stopT==document.getElementById("timer").innerHTML ||entt.x>=xff) {
                   // console.log("add gravity");
                   // selectedEntity.gravity();
-                    clearInterval(myVar);
+                    clearInterval(myVarr);
                    
                 }
                
             }, 10);}
        else if(stopTestF==true){
-clearInterval(myVar);
+clearInterval(myVarr);
        }
 
 
@@ -3736,7 +3761,16 @@ function removeAllAction(){
   actionA[i]="";
  } 
  actionA.length=0;
+  for(var i=0;i<actionAEnt.length;i++){
+  actionAEnt[i]="";
+ } 
+ actionAEnt.length=0;
 
+
+  for(var i=0;i<objList.length;i++){
+  objList[i]="";
+ } 
+ objList.length=0;
 }
 function undo(){
 actionA[length-1]="";
@@ -3745,4 +3779,225 @@ actionA.length=actionA.length-1;
 
 
 
+function enableClick(){
+ 
 
+
+ // document.getElementById('stopScreen').style.display="inline-block";
+  // document.getElementById('stopScreen').style.zIndex="2";
+   Crafty.sprite(98,93, 'assets/imgs/close.png', {close:[0,0]});
+    Crafty.sprite(102,95, 'assets/imgs/paly2.png', {play:[0,0]});
+     Crafty.sprite(102,95, 'assets/imgs/redo.png', {redo:[0,0]});
+  var wx=window.outerWidth;
+var wy=window.outerHeight;
+stopTestF=true;
+stopEnt=Crafty.e("2D, DOM,Mouse").attr({
+
+  w:wx,
+  h:wy,
+   x:0,
+     y:0
+              });
+ stopEnt.css({'backgroundColor': 'rgba(0,0,0,0.3)'});
+
+playEnt=Crafty.e("2D, DOM,play,Mouse").attr({
+
+  w:40,
+  h:40,
+   x:43,
+     y:3
+              });
+
+playEnt.bind('Click', function (e) {
+  playAgain();
+
+});
+
+playEnt.css({'borderRadius': '50%'});
+
+redoEnt=Crafty.e("2D, DOM,redo,Mouse").attr({
+
+  w:40,
+  h:40,
+   x:88,
+     y:3
+              });
+
+redoEnt.bind('Click', function (e) {
+  startTest();
+
+});
+
+redoEnt.css({'borderRadius': '50%'});
+
+
+
+closeEnt=Crafty.e("2D, DOM,close,Mouse").attr({
+
+  w:40,
+  h:40,
+   x:133,
+     y:3
+              });
+closeEnt.css({'borderRadius': '50%'});
+ stopEnt.css({'backgroundColor': 'rgba(0,0,0,0.3)'});
+
+
+
+
+
+
+}
+
+
+function playAgain(){
+
+//document.getElementById('stopScreen').style.display="none";
+stopTestF=false;
+stopEnt.destroy();
+playEnt.destroy();
+redoEnt.destroy();
+closeEnt.destroy();
+
+
+
+}
+
+
+
+
+
+
+////////////////////////////////////////////////////////database////////////////////////////////////////////////
+
+function store(){
+
+    
+
+   var config = {
+    apiKey: "AIzaSyAlx0SvI8rLi2KxMOqqGjM3cr-2_CtnnkM",
+    authDomain: "grdprogect.firebaseapp.com",
+    databaseURL: "https://grdprogect.firebaseio.com",
+    projectId: "grdprogect",
+    storageBucket: "grdprogect.appspot.com",
+    messagingSenderId: "304904675026"
+  };
+  //firebase.initializeApp(config);
+
+
+
+
+
+var l=new lenObj({
+    bl:objList.length,
+    al:actionA.length,
+    ael:actionAEnt.length   
+
+      }); 
+
+  var s=new StoryObj({
+    actionAEnt:actionAEnt,
+    actionA:actionA,
+    objList:objList ,
+    len:l,
+    natu:natu           
+
+      });
+
+  name=document.getElementById('t1').innerHTML;
+
+  var database = firebase.database();// Get a reference to the database service
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+   var userId = firebase.auth().currentUser.uid;
+  
+   var db =firebase.database().ref(userId).child(" "+name+"/").push({
+    StoryObj: s
+ });
+  
+
+     }
+});
+}
+
+//      function writeUserData(backId) {
+//       //alert("wre"+backId);
+
+//       firebase.auth().onAuthStateChanged(function(user) {
+//   if (user) {
+//    var userId = firebase.auth().currentUser.uid;
+//   console.log("id ="+userId);
+//    var db =firebase.database().ref("actionEntities"+name+"/" + backId).child(userId).push({
+    
+//        actione: actionAEnt[backId]
+   
+//   });
+
+
+
+//   }
+// });
+
+    
+//    }
+
+//      function writeUserData2(backId) {
+//      //action: actionA[backId]
+// firebase.auth().onAuthStateChanged(function(user) {
+//   if (user) {
+//    var userId = firebase.auth().currentUser.uid;
+//   console.log("id ="+userId);
+//    var db =firebase.database().ref("actions"+name+"/" + backId).child(userId).push({
+    
+//        action: actionA[backId]
+   
+//   });
+
+//   }
+// });
+// }
+
+// function writeUserData3(backId) {
+//       //back: objList[backId]
+
+//       firebase.auth().onAuthStateChanged(function(user) {
+//   if (user) {
+//    var userId = firebase.auth().currentUser.uid;
+//   console.log("id ="+userId);
+//    var db =firebase.database().ref("backs"+name+"/"+ backId).child(userId).push({
+    
+//        back: objList[backId]
+
+   
+//   });
+
+//    console.log("back");
+//    console.log(objList[backId]);
+
+//   }
+// });
+// }
+
+// function writeUserData4(backId) {
+//      //action: actionA[backId]
+// firebase.auth().onAuthStateChanged(function(user) {
+//   if (user) {
+//    var userId = firebase.auth().currentUser.uid;
+//   //console.log("id ="+userId);
+//    var db =firebase.database().ref("natu"+name+"/"+ backId).child(userId).push({
+    
+//        natu: natu[backId]
+   
+//   });
+
+//   }
+// });
+// }
+
+
+// function readData(userId){
+//   return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+//   var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+//   console.log(username);
+// });
+// }

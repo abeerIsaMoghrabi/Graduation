@@ -27,7 +27,7 @@
     <div class="float-right list-div ">
         <!--col-sm-6 offset-4-->
         <ul >
-            <li class="log-btn  float-right header-li" onclick="store()">sign out</li>
+            <li class="log-btn  float-right header-li" >sign out</li>
             <li class=" header-li float-right"><a   full [navPush]="userProf">Profile</a></li>
             <li class=" header-li float-right"><a href="#">Studio</a></li>
             <li class=" header-li float-right"><a href="#">Home</a></li>
@@ -37,6 +37,17 @@
         </ul>
 
     </div>
+    <span  (click)="showSmallList()" ><ion-icon name="menu" class="menu-icon float-right"></ion-icon></span>
+  <ul  class="list-small" [hidden]="!smallList">
+            <li  class=" header-li" ><a href="#">sign  out </a></li>
+            <li class=" header-li "><a   full [navPush]="userProf">Profile</a></li>
+            <li class=" header-li "><a href="#">Studio</a></li>
+            <li class=" header-li "><a href="#">Home</a></li>
+
+
+
+        </ul>
+
     <div class="clearfix"></div>
 
 
@@ -58,14 +69,14 @@
 <div class="container-fluid">
   <div class="container">
     
-<ul class="profile-icon float-right">
+<ul class="profile-icon ">
 <li class="circle">
   <ion-icon name="person"></ion-icon>
 </li>
 
-<li class="circle" (click)="b2()"><ion-icon name="camera"></ion-icon>
+<li class="circle camera" (click)="b2()"><ion-icon name="camera"></ion-icon>
 </li>
-<li class="circle" (click)="b1()"><ion-icon name="film"></ion-icon></li>
+<li class="circle film" (click)="b1()"><ion-icon name="film"></ion-icon></li>
     
      
       
@@ -82,46 +93,46 @@
     <div class="stories">
 
 
-      <div class="story" >
-        <div class="story-label">
-          story name
-        </div>
-      </div>
 
 
-<div class="story" >
-        <div class="story-label">
-          story name
+<div class="story" (click)="disp('storyD')">
+
+        <div class="story-label" >
+
+         storyD
 
         </div>
+
       </div>
+<div class="story" (click)="disp('storyD')">
 
+        <div class="story-label" >
 
-
-      <div class="story" >
-        <div class="story-label">
-          story name
+         storyD
 
         </div>
+
       </div>
 
+<div class="story" (click)="disp('storyD')">
 
+        <div class="story-label" >
 
-      <div class="story" >
-        <div class="story-label">
-          story name
+         storyD
 
         </div>
+
       </div>
+      <div class="story" (click)="disp('storyD')">
 
+        <div class="story-label" >
 
-
-      <div class="story" >
-        <div class="story-label">
-          story name
+         storyD
 
         </div>
+
       </div>
+
 
 
 
@@ -137,7 +148,30 @@
 
 <div class="container-fluid" style="background-color: #1e231f; height: 200px;">
   <div class="container">
-    
+     <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col col-sm-3 class="footer-title" >
+          GET IN TOUCH
+        </ion-col>
+
+      </ion-row>
+      <ion-row>
+        <ion-col col-sm-12  >
+          <div >
+            
+            <ul style="padding-left: 16%; border-bottom: 1px solid #b6b2ac;padding-bottom: 20px;">
+              <li style="display: inline-block; padding-left: 20px;" ><a href="#"><ion-icon name="person"></ion-icon> +9 595 460 414</a></li>
+              <li style="display: inline-block; padding-left: 20px;"><a href="#">  <ion-icon name="logo-google"></ion-icon> abeer.isa.moghrabi@gmail.com</a></li>
+              <li style="display: inline-block;  padding-left: 20px;"><a href="#"><ion-icon name="mail"></ion-icon> abeer.isa.moghrabi@hotmail.com</a></li>
+            </ul>
+          </div>
+        </ion-col>
+        <ion-col>
+          <p style="text-align: center;color: #666457">© 2016 Free HTML5. All Rights Reserved.<br>
+Designed by GetTemplates.co Demo Images: Unsplash</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
   </div>
 

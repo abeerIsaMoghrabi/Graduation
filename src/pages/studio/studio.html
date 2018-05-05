@@ -8,6 +8,49 @@
 
 
 <ion-content >
+ 
+
+ <div class="modal"  id="modal" style="display: none;">
+    <div class="modal-body">
+      <div class="model-head"><label>New story</label>
+       
+       </div>
+      <div class="input-body">
+      <label>Story name</label>
+      <input type="text" name="storyName" id="sN">
+    </div>
+    <div class="btn-body">
+      <button class="cancle-btn" id="cancle" onclick="cancle()" >cancle</button>
+      <button class="create-btn" onclick="createIt()">create</button>
+      
+    </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+<!--   //////////////////////////////////////////// -->
+ <!--  <div class="modal" [hidden]="!newStory" id="modal">
+    <div class="modal-body">
+      <div class="model-head"><label>New story</label>
+        <span (click)="cancle()">  <ion-icon name="close-circle" class="float-right" style="padding-right: 10px;color:#b3b3b3;"></ion-icon></span>
+        <div class="clearfix"></div></div>
+      <div class="input-body">
+      <label>Story name</label>
+      <input type="text" name="storyName" [(ngModel)]="storyN">
+    </div>
+    <div class="btn-body">
+      <button class="cancle-btn" (click)="cancle()" >cancle</button>
+      <button class="create-btn" (click)="create()">create</button>
+      
+    </div>
+    </div>
+  </div> -->
 
 <div class="container-fluid header-div" >
     <div class="container">
@@ -439,7 +482,8 @@
           <div class="action-block-lable">growing</div>
         </div>
 
-
+<div class="float-right" onclick="addStory()">  <ion-icon name="add" class="add"></ion-icon></div>
+<div class="clearfix"></div>
       </div>
        <div class="clearfix"></div>
     <div class="canvas-div" id='canvas-div' >
@@ -447,8 +491,9 @@
         <span >
           <ion-icon name="close" class="close" id='close' ></ion-icon>
         </span>please make floor</div>
-         <div class="stop-screen" id="stopScreen" style="display: none"></div>
+        
       <div  id="game" style =" " ondrop="drop(event)"  ondragover="allowDrop(event)"  ></div>
+       <div class="stop-screen" id="stopScreen" style="display: none"></div>
 
     
     </div>
@@ -456,6 +501,7 @@
 </div>
 
     <div class="right-side side float-right">
+      <label id="t1" style="color: white;font-size: 17px;padding-left: 10px;padding-top: 10px;">{{storyNN}}</label>
     <!--  <div id='obj_info' style="display: none;">
       <div class="main " ><span class="arrow"></span><span class="arrow-obj" id="objName"></span></div>
     <div>

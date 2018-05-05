@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from "../../models/user";
 import { AngularFireAuth } from 'angularfire2/auth';
 
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -18,7 +19,11 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class LoginPage {
 
   user = {} as User;
-
+    userInfo;
+   isLogin=false;
+    activeFR=true;
+      activeFL=false;
+    // public books: FirebaseListObservable<Book[]>;
 
   constructor(private aFAuth: AngularFireAuth,
   public navCtrl: NavController, public navParams: NavParams) {
@@ -55,6 +60,67 @@ try {
       }
     } catch (e) {
       console.error(e);
+    }
+  }
+
+
+  public Addstorage(): void {
+     this.aFAuth.authState.subscribe(data => {
+      if (data && data.email && data.uid) {
+        console.log('Welcome to APP_NAME' +data.email );
+         this.userInfo=data.uid;
+
+      }
+      else {
+         console.log(" Could not find authentication details");
+         
+      }
+    });
+      
+    }
+
+    public activateR(){
+       this.activeFR=true;
+       this.activeFL=false;
+
+    }
+      public activateL(){
+       this.activeFR=false;
+       this.activeFL=true;
+
+    }
+     public  getStyleRBack() {
+    if(this.activeFR) {
+        return "#12B3B0";
+     
+    } else {
+      return "";
+    }
+  }
+
+
+       public  getStyleRBorder() {
+    if(this.activeFR) {
+       return "#12B3B0";
+    } else {
+      return "";
+    }
+  }
+
+      public  getStyleLBack() {
+    if(this.activeFL) {
+     return "#12B3B0";
+    } else {
+      return "";
+    }
+  }
+
+
+       public  getStyleLBorder() {
+    if(this.activeFL) {
+      return "#12B3B0";
+    } else {
+      return "";
     }
   }
 }

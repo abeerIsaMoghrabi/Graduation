@@ -37,7 +37,7 @@ export class HomePage {
     imgSource;
      userInfo
 
-
+smallList=false;
   constructor(public camera: Camera, public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, private aFAuth: AngularFireAuth) {
 
   //firebase.initializeApp(FIREBASE_CONFIG);
@@ -55,6 +55,14 @@ export class HomePage {
          
       }
     });
+  }
+  showSmallList(){
+    if(this.smallList==false){
+     this.smallList=true;
+    }
+    else if(this.smallList==true){
+     this.smallList=false;
+    }
   }
 
   takePhoto(){
@@ -167,6 +175,15 @@ this.navCtrl.push('ViewerPage');
   }
 
 
+disp(n){
+
+  this.navCtrl.push('DisplayPage', {
+
+      data:n
+
+    });
+
+}
 
 
 }

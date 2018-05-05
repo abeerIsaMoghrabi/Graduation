@@ -19,24 +19,14 @@
    <div [hidden] id='userInfo'>{{userInfo}}</div>
   <h3 [hidden]="lastImage !== null">Please Select Image!</h3>
 
-<script src="https://clippingmagic.com/api/v1/ClippingMagic.js" type="text/javascript"></script>
-<script type="text/javascript">
-  alert("hihi");
-  var errorsArray = ClippingMagic.initialize({apiId: 6428});
-  if (errorsArray.length > 0) alert("Sorry, your browser is missing some required features: \n\n " + errorsArray.join("\n "));
-  ClippingMagic.edit({
-    "image" : {
-      "id" : 34194711,
-      "secret" : "h9v8ekps1vlvdpuvmtahj85hpe1nkjrpnhq0muev4ufddri7qbmm"
-    },
-    "locale" : "en-US"
-  }, callback);
-</script>
+
+
   <button  onclick="testao()">cartoonize</button>
   <button onclick="store()">store</button>
    <img  style="width: 100%"   id="img_res">
   <p id="state"></p>
   <p id="demo"></p>
+  <div id="backgroundT"></div>
 </ion-content>
 <ion-footer>
   <ion-toolbar color="primary">

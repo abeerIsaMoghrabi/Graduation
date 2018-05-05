@@ -14,10 +14,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'display.html',
 })
 export class DisplayPage {
-
+  name: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  //	this.loadScript1() ;
-  	this.loadScript2(); 
+  //  this.loadScript1() ;
+    this.name = navParams.get('data');
+    //alert(""+this.name);
+    this.loadScript2(); 
   }
 
   ionViewDidLoad() {
@@ -31,7 +33,6 @@ export class DisplayPage {
    script.type = 'text/javascript'; 
    script.src = 'assets/js/displayPage.js'; 
    document.body.appendChild(script); };
-
 
 
 }

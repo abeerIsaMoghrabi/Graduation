@@ -1,0 +1,175 @@
+<!--
+  Generated template for the MainPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+<ion-content>
+	<div class="girl-back">
+		<div class="cover"></div>
+	<div class="container-fluid header-div "  style="z-index: 1" >
+    <div class="container">
+        <!--<div class="row" >-->
+           <div class="logo "><a href="#">STORY</a></div>
+    <div class="float-right list-div ">
+        <!--col-sm-6 offset-4-->
+        <ul >
+            <li class="log-btn  float-right header-li" (click)="goTologin()">sign in</li>
+            <li class=" header-li float-right"><a   full [navPush]="userProf">Profile</a></li>
+            <li class=" header-li float-right"><a href="#">Studio</a></li>
+            <li class=" header-li float-right"><a href="#">Home</a></li>
+        
+
+
+        </ul>
+
+    </div>
+        <span  (click)="showSmallList()" ><ion-icon name="menu" class="menu-icon float-right"></ion-icon></span>
+  <ul  class="list-small" [hidden]="!smallList">
+            <li  class=" header-li" (click)="goTologin()" ><a >sign  in </a></li>
+            <li class=" header-li "><a   full [navPush]="userProf">Profile</a></li>
+            <li class=" header-li "><a href="#">Studio</a></li>
+            <li class=" header-li "><a href="#">Home</a></li>
+
+
+
+        </ul>
+    <div class="clearfix"></div>
+    <!--</div>-->
+    </div>
+</div>
+<div >
+<ion-grid>
+  <ion-row >
+<ion-col    col-xs-12 col-sm-12 col-md-7   offset-1 style="margin-top: 140px;" class="main-title">
+	<h1 class="title">it is your story!</h1>
+	<p class="second-title">animated<span style="color: #12B3B0; padding-left: 5px;">cartoon</span> </p>
+
+</ion-col>
+<ion-col col-xs-12 col-sm-6 col-md-3   justify-content-end class="search-body" >
+
+	<input type="text" name="search" class="search" placeholder="search ..">
+
+</ion-col>
+
+</ion-row>
+</ion-grid>
+
+</div>
+</div>
+
+
+<div>
+	<div class="container-fluid " style="padding-top: 62px;"  >
+    <div class="container">
+	<ion-grid class="container2">
+		<div class="pop-title"> popular stories</div>
+  <ion-row class="card-body" justify-content-center>
+
+  	<ion-col col-8 col-sm-6 col-md-4 col-lg-3 class="card"  >
+	
+		<div class="card-img-cover"></div>
+		<div class="card-img"></div>
+
+		<div class="card-info">
+
+			<label class="card-txt">storyA</label><br>
+			<label class="auther-name">by Abeer Moghrabi</label>
+		</div>
+	
+</ion-col>
+  	<ion-col col-8 col-sm-6 col-md-4 col-lg-3 class="card"  >
+	
+		<div class="card-img-cover"></div>
+		<div class="card-img"></div>
+
+		<div class="card-info">
+
+			<label class="card-txt">storyA</label><br>
+			<label class="auther-name">by Abeer Moghrabi</label>
+		</div>
+	
+</ion-col>
+  	<ion-col col-8 col-sm-6 col-md-4 col-lg-3 class="card"  >
+	
+		<div class="card-img-cover"></div>
+		<div class="card-img"></div>
+
+		<div class="card-info">
+
+			<label class="card-txt">storyA</label><br>
+			<label class="auther-name">by Abeer Moghrabi</label>
+		</div>
+	
+</ion-col>
+  	<ion-col col-8 col-sm-6 col-md-4 col-lg-3 class="card"  >
+	
+		<div class="card-img-cover"></div>
+		<div class="card-img"></div>
+
+		<div class="card-info">
+
+			<label class="card-txt">storyA</label><br>
+			<label class="auther-name">by Abeer Moghrabi</label>
+		</div>
+	
+</ion-col>
+  	
+  
+  </ion-row>
+</ion-grid>
+</div>
+</div>
+</div>
+<div class="container-fluid " style="margin-top: 62px; padding-top: 20px;padding-bottom: 20px; background-color: #12B3B0;"  >
+    <div class="container">
+      <div class="title" style="text-align: center;">about us</div>
+      <ion-grid>
+    	<ion-row justify-content-center>
+    		<ion-col col-sm-6>
+    			<ion-icon name="contact" class="we"></ion-icon>
+    			<div>
+    				<p class="txt-f">Animated cartoon is an application for parents and kindergarten teachers. It will provide a way to facilitate children's education by making animated stories of their games in kindergarten.  It is also help parents make stories for their children and help the child understand stories well and imagine characters. The most important aspects in our project is take a photo to the character and then convert it to a cartoon character. Then the person who will use the application will choose background and movements of character based on the story scenario. The application saves all the movements and displays them once as a story. Then add audio to the story.</p>
+    			</div>
+    		</ion-col>
+    	</ion-row>
+    </ion-grid>
+    </div>
+</div>
+
+
+<div class="container-fluid" style="background-color: #1e231f; height: 200px;">
+  <div class="container">
+    
+     
+      <ion-grid>
+    	<ion-row justify-content-center>
+    		<ion-col col-sm-6 class="footer-title">
+          GET IN TOUCH
+    		</ion-col>
+    	</ion-row>
+    </ion-grid>
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ion-content>

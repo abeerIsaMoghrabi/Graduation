@@ -175,3 +175,34 @@ float: left;
 .clearfix{
 clear: both;
 }
+.list-small{
+     position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 44px;
+   right: 15px;
+    padding-left: 24px;
+    width: 119px;
+}
+.menu-icon{
+    color: #b6b2ac;
+    font-size: 36px;
+    display: none;
+    padding-top: 10px;
+}
+.footer-title{
+    color:white;
+    font-size: 18px;
+    padding-top: 25px;
+}
+@media screen and (max-width: 774px) {
+ .list-div  {
+    display: none; 
+  }
+  .menu-icon{
+   
+    display: inline-block;
+}
+.header-li{
+    display: block;
+}
+}
