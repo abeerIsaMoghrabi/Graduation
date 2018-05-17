@@ -11,14 +11,21 @@
 <div >
     <span  id="timer" style="position: absolute; left: 30px; top:10px;">00:00:00</span>
 
-    <span class="stat-btn"  onclick ="startStory()"><ion-icon name="play" class="play"></ion-icon></span>
+    <span class="stat-btn"  onclick ="startStory()"><ion-icon name="play" class="play" id="playd"></ion-icon>
+
+     <ion-icon name="pause" id="pausee2" class="play" onclick="pausee2()" style="display: none;" ></ion-icon></span>
     <div id="name" style="position: absolute; left:300px; top:10px;">{{name}}</div>
 
   </div>
 
 
 <div class="canvas-div">
-	
+
 <div id='game1' ></div>
+ <div class="text-sh" id='txt-sp' style="display: none;"  >
+
+
+             <span class="wn"  id="wn">  </span>
+            </div>
 </div>
 </ion-content>

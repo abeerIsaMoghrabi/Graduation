@@ -14,6 +14,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { storage,initializeApp } from 'firebase';
+import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { Camera } from '@ionic-native/camera';
 import { ImageProvider } from '../providers/image/image';
 
@@ -63,6 +64,7 @@ export const FIREBASE_CONFIG =
     Camera,
     FilePath,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AngularFireDatabase ,
     
   ]
 })

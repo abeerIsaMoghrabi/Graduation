@@ -76,21 +76,6 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-land_values-land.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\values-land\\values-land.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,125,189,260",
-                        "endColumns": "69,63,70,67",
-                        "endOffsets": "120,184,255,323"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-ca_values-ca.arsc.flat",
             "map": [
                 {
@@ -101,6 +86,21 @@
                         "startOffsets": "55,173,281,404,510,617,700,808,934,1018,1099,1182,1293,1402,1500,1610,1714,1822,1945,2044,2125",
                         "endColumns": "117,107,122,105,106,82,107,125,83,80,82,110,108,97,109,103,107,122,98,80,100",
                         "endOffsets": "168,276,399,505,612,695,803,929,1013,1094,1177,1288,1397,1495,1605,1709,1817,1940,2039,2120,2221"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-land_values-land.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\values-land\\values-land.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,125,189,260",
+                        "endColumns": "69,63,70,67",
+                        "endOffsets": "120,184,255,323"
                     }
                 }
             ]
@@ -242,21 +242,6 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-ms-rMY_values-ms-rMY.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\values-ms-rMY\\values-ms-rMY.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,166,274,397,502,610,697,801,912,990,1069,1149,1261,1370,1467,1576,1679,1786,1908,2009,2089",
-                        "endColumns": "110,107,122,104,107,86,103,110,77,78,79,111,108,96,108,102,106,121,100,79,100",
-                        "endOffsets": "161,269,392,497,605,692,796,907,985,1064,1144,1256,1365,1462,1571,1674,1781,1903,2004,2084,2185"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-pt-rBR_values-pt-rBR.arsc.flat",
             "map": [
                 {
@@ -267,6 +252,21 @@
                         "startOffsets": "55,175,283,406,512,619,708,809,927,1010,1090,1177,1284,1396,1498,1606,1713,1823,1948,2048,2133",
                         "endColumns": "119,107,122,105,106,88,100,117,82,79,86,106,111,101,107,106,109,124,99,84,100",
                         "endOffsets": "170,278,401,507,614,703,804,922,1005,1085,1172,1279,1391,1493,1601,1708,1818,1943,2043,2128,2229"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-ms-rMY_values-ms-rMY.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\values-ms-rMY\\values-ms-rMY.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,166,274,397,502,610,697,801,912,990,1069,1149,1261,1370,1467,1576,1679,1786,1908,2009,2089",
+                        "endColumns": "110,107,122,104,107,86,103,110,77,78,79,111,108,96,108,102,106,121,100,79,100",
+                        "endOffsets": "161,269,392,497,605,692,796,907,985,1064,1144,1256,1365,1462,1571,1674,1781,1903,2004,2084,2185"
                     }
                 }
             ]
@@ -318,17 +318,16 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-hdpi-v4_values-hdpi-v4.arsc.flat",
+            "outputFile": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-h720dp-v13_values-h720dp-v13.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",
-                        "endLines": "6",
-                        "endColumns": "13",
-                        "endOffsets": "327"
+                        "endColumns": "66",
+                        "endOffsets": "117"
                     }
                 }
             ]
@@ -349,16 +348,17 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-h720dp-v13_values-h720dp-v13.arsc.flat",
+            "outputFile": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-hdpi-v4_values-hdpi-v4.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
+                    "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",
-                        "endColumns": "66",
-                        "endOffsets": "117"
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
                     }
                 }
             ]
@@ -486,21 +486,6 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-ml-rIN_values-ml-rIN.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\values-ml-rIN\\values-ml-rIN.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,174,282,405,523,638,731,836,968,1045,1121,1203,1314,1420,1518,1632,1732,1843,1971,2072,2154",
-                        "endColumns": "118,107,122,117,114,92,104,131,76,75,81,110,105,97,113,99,110,127,100,81,100",
-                        "endOffsets": "169,277,400,518,633,726,831,963,1040,1116,1198,1309,1415,1513,1627,1727,1838,1966,2067,2149,2250"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-zu_values-zu.arsc.flat",
             "map": [
                 {
@@ -511,6 +496,21 @@
                         "startOffsets": "55,163,271,394,501,615,703,806,933,1013,1093,1179,1283,1389,1487,1594,1700,1806,1926,2022,2103",
                         "endColumns": "107,107,122,106,113,87,102,126,79,79,85,103,105,97,106,105,105,119,95,80,100",
                         "endOffsets": "158,266,389,496,610,698,801,928,1008,1088,1174,1278,1384,1482,1589,1695,1801,1921,2017,2098,2199"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-ml-rIN_values-ml-rIN.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\values-ml-rIN\\values-ml-rIN.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,174,282,405,523,638,731,836,968,1045,1121,1203,1314,1420,1518,1632,1732,1843,1971,2072,2154",
+                        "endColumns": "118,107,122,117,114,92,104,131,76,75,81,110,105,97,113,99,110,127,100,81,100",
+                        "endOffsets": "169,277,400,518,633,726,831,963,1040,1116,1198,1309,1415,1513,1627,1727,1838,1966,2067,2149,2250"
                     }
                 }
             ]

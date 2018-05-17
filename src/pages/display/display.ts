@@ -25,10 +25,10 @@ export class DisplayPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad DisplayPage');
   }
-    loadScript1 () { var script = document.createElement('script');
-   script.type = 'text/javascript'; 
-   script.src = 'assets/js/craftyGame.js'; 
-   document.body.appendChild(script); };
+   //  loadScript1 () { var script = document.createElement('script');
+   // script.type = 'text/javascript'; 
+   // script.src = 'assets/js/craftyGame.js'; 
+   // document.body.appendChild(script); };
      loadScript2 () { var script = document.createElement('script');
    script.type = 'text/javascript'; 
    script.src = 'assets/js/displayPage.js'; 

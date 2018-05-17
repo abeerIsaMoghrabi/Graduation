@@ -31,6 +31,7 @@ export class ViewerPage {
  //    mySelectedPhoto;
  //    loading;
  //    currentPhoto;
+ backRemove=true;
   lastImage: string = null;
     loading: Loading
     ver:string;
@@ -209,6 +210,10 @@ export class ViewerPage {
    script.type = 'text/javascript'; 
    script.src = 'assets/js/api.js'; 
    document.body.appendChild(script); }
+
+   enableB(){
+       this.backRemove=false;
+   }
 
    
 

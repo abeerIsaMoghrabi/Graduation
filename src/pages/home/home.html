@@ -95,6 +95,21 @@
 
 
 
+<ion-list>
+<ion-item  *ngFor="let item of storiesN" class="story" (click)="disp(item.key)">
+   <p style="display: none" id="story-label">{{item.key}}</p>
+   <p  style="display: none" id="UI">{{userInfo}}</p>
+        <div class="story-label"  >
+          <!--  <ion-icon name="star" [style.color]="getStyleLColor(item)" class="float-left" style="padding-left: 15px; font-size: 30px"  onclick="activeS()"></ion-icon> -->
+
+         {{item.key}}
+
+        </div>
+       <div class="clearfix" ></div>
+      </ion-item>
+
+    </ion-list>
+<!-- 
 <div class="story" (click)="disp('storyD')">
 
         <div class="story-label" >
@@ -103,8 +118,8 @@
 
         </div>
 
-      </div>
-<div class="story" (click)="disp('storyD')">
+      </div> -->
+<!--       <div class="story" (click)="disp('storyD')">
 
         <div class="story-label" >
 
@@ -112,26 +127,7 @@
 
         </div>
 
-      </div>
-
-<div class="story" (click)="disp('storyD')">
-
-        <div class="story-label" >
-
-         storyD
-
-        </div>
-
-      </div>
-      <div class="story" (click)="disp('storyD')">
-
-        <div class="story-label" >
-
-         storyD
-
-        </div>
-
-      </div>
+      </div> -->
 
 
 

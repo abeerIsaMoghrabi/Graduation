@@ -5,6 +5,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { storage } from 'firebase';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Observable } from 'rxjs/Observable';
+
+import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database-deprecated";
 import * as $ from "jquery";
 /**
  * Generated class for the HomePage page.
@@ -28,7 +31,17 @@ export const FIREBASE_CONFIG =
   selector: 'page-home',
   templateUrl: 'home.html',
 })
+
+
 export class HomePage {
+   stories: FirebaseListObservable<any[]>;
+   storiesN=[];
+   count=0;
+   nn:String;
+   activeStar=false;
+   couNum=0;
+  
+   //items: Subscription;
 
    public base64Image: string;
     mySelectedPhoto;
@@ -38,10 +51,10 @@ export class HomePage {
      userInfo
 
 smallList=false;
-  constructor(public camera: Camera, public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, private aFAuth: AngularFireAuth) {
+  constructor(public camera: Camera, public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, private aFAuth: AngularFireAuth , private af: AngularFireDatabase) {
 
   //firebase.initializeApp(FIREBASE_CONFIG);
-
+this.loadScript2(); 
   }
 
   ionViewDidLoad() {
@@ -49,12 +62,25 @@ smallList=false;
       if (data && data.email && data.uid) {
         console.log('Welcome to APP_NAME' +data.email );
          this.userInfo=data.uid;
-      }
+        
+this.af.list('/'+this.userInfo, { preserveSnapshot: true})
+    .subscribe(snapshots=>{
+        snapshots.forEach(snapshot => {
+         console.log(snapshot.key); 
+        this.storiesN[this.count]=snapshot;
+
+        
+        this.count++;
+    });
+
+      });
+  }
       else {
          console.log(" Could not find authentication details");
          
       }
     });
+
   }
   showSmallList(){
     if(this.smallList==false){
@@ -176,14 +202,37 @@ this.navCtrl.push('ViewerPage');
 
 
 disp(n){
+console.log(n);
 
   this.navCtrl.push('DisplayPage', {
 
-      data:n
+      data:n.replace(/\s/g, "")
 
     });
 
 }
 
+activeS(item){
 
+this.af.list('/publicS').push({key:item.key,
+
+  });
+  item.val.isPublic=true
+}
+getStyleLColor(item){
+  if(item.val.isPublic==true){
+  
+
+    return "yellow";
+  }
+  else if(item.val.isPublic==false){
+
+    return "white";
+  }
+}
+
+  loadScript2 () { var script = document.createElement('script');
+   script.type = 'text/javascript'; 
+   script.src = 'assets/js/publicJs.js'; 
+   document.body.appendChild(script); };
 }

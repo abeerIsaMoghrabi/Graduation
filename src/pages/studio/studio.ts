@@ -35,9 +35,8 @@ export class StudioPage {
    //  mySelectedPhoto;
    //  loading;
    //  currentPhoto;
-   newStory=false;
-   storyN="";
-   storyNN="";
+  
+  colorArr=[true,true,true,true,true,true,true];
     imgSource;
     imgSource2;
     imgSource3;
@@ -96,20 +95,7 @@ export class StudioPage {
   this.getMyURL();
 this.loadScript();
   }
-  cancle(){
-    this.newStory=false;
-    this.storyN="";
-  }
-  create(){
-    if(this.storyN.length>0){
-this.storyNN=this.storyN;
-    this.storyN="";
-   this.newStory=false;
-    
-    }
-    
-    
-  }
+
 
   getMyURL(){
       firebase.storage().ref().child('bg/t1.png').getDownloadURL().then((url)=>{
@@ -283,7 +269,11 @@ this.storyNN=this.storyN;
 
 
 
- 
+ activeColor(num){
+   this.colorArr=[true,true,true,true,true,true,true];
+this.colorArr[num]=false;
+
+ }
 
   
 

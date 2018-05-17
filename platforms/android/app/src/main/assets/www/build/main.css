@@ -26803,12 +26803,12 @@ page-login .background {
 }
 
 .action-bar {
-  /*	position: absolute;*/
+  /* position: absolute;*/
   width: 100%;
   max-width: 100%;
   background-color: #0FB1B3;
   height: 47px;
-  /*	opacity: 0.6;*/
+  /* opacity: 0.6;*/
   left: 0px;
   top: 0px;
   border-top-left-radius: 17px;
@@ -27174,4 +27174,19 @@ page-login .background {
   width: 70px;
   height: 30px;
   border-radius: 10px;
+}
+
+.btn-st {
+  background-color: #12b3b0;
+  color: white;
+  font-family: "Kaushan Script", cursive !important;
+  border: 1px solid #12b3b0;
+  border-radius: 5px;
+  padding: 6px;
+}
+
+.cameraa {
+  color: #d6d4cf;
+  font-size: 110px;
+  text-align: center;
 }

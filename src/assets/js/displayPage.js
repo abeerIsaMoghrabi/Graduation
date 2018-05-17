@@ -2,6 +2,8 @@ var wx=window.innerWidth;
 var wy=window.innerHeight;
 var walls2=[];
 var natu2=[];
+var theEndf2=false;
+var buf2=[];
 //here
 var arrObj2=[];
 var toyObj2=[];
@@ -10,6 +12,7 @@ var actionA2=[];
 var entityNameCounter2=0;
 var objList2=[];
 var entList2=[];
+var txts2=[];
 var objL2;
 var Game2;
 var stopTestF2=false;
@@ -113,11 +116,12 @@ return that;
 var StoryObj2=function(p){
 var that={};
 
-that.actionAEnt=p.actionAEnt;
+//that.actionAEnt=p.actionAEnt;
 that.actionA=p.actionA;
 that.objList=p.objList;
-that.len=p.len;
+//that.len=p.len;
 that.natu=p.natu;
+that.textArr=p.textArr;
 return that;
 }
 
@@ -133,7 +137,7 @@ return that;
 
 console.log("wx="+wx+"wy="+wy);
 
-Crafty.init(1000,wy, document.getElementById('game1'));
+Crafty.init(3000,wy, document.getElementById('game1'));
     Crafty.viewport.scale(sh);
 Game2=document.getElementById('game1');
 var config = {
@@ -186,6 +190,7 @@ var story = firebase.database().ref(userId).child(" "+name2+"/").on("value",func
       actionA2=data.val().StoryObj.actionA;
       //actionAEnt2=data.val().StoryObj.actionAEnt;
       natu2=data.val().StoryObj.natu;
+     txts2=data.val().StoryObj.textArr;
       console.log(objList2);
       console.log(actionA2);
       //console.log(actionAEnt2);
@@ -298,7 +303,7 @@ entList2.push(bg);
 
 
 
-function myJump2(entt,xff,yff){
+function myJump2(entt,xff,yff,act){
   console.log('clear');
    var wasTriggered = false;
   entt.addComponent('Twoway');
@@ -333,16 +338,81 @@ function myJump2(entt,xff,yff){
                     clearInterval(myVar);
                    
                 }
+                          else if(stopTestF2==true){
+                 entt.antigravity();
+                   clearInterval(myVar);
+                    var ee=actionInfo({
+                                  x:entt.x,
+                                  y:entt.y,
+                                  xf:xff,
+                                  yf:yff,
+                                  h:selectedEntity.h,
+                                  w:selectedEntity.w,
+                                 //src:selectedEntity.__image,
+                                   id:entt.getName(),
+                                   action:act.action ,
+                                   startTime:document.getElementById("timer").innerHTML,
+                                   stopTime:act.stopTime,
+                                   keyType:act.keyType,
+                                   speed:200
+
+                                               });
+                    buf2.push(ee);
+                       
+                }
                
             }, 10);
 
 }
 
 function myTimerTest2() {
+  if(stopTestF2==false&&theEndf2==false){///
+    if(buf2.length>0){///
+//for(var w=0;w<buf.length;w++){
+ //countAction--;
+ test2(buf2[0]); ///
+
+ buf2.shift();///
+
+//}
+}///
+
+
+    if(document.getElementById("timer").innerHTML==actionA2[actionA2.length-1].stopTime){
+     
+      theEndf=true;
+     // countAction=0;
+    
+
+
+   
+   
+
+
+document.getElementById("pausee2").style.display="none";//?????
+document.getElementById("playd").style.display="inline-block";//?????
+
+      clearInterval(myVarT2);///
+
+    }
+
+
   for(var i=0;i<actionA2.length;i++){
   if(actionA2[i].startTime==document.getElementById("timer").innerHTML){
 
     test2(actionA2[i]);
+  }
+  if(txts2[0]!="empty"){
+
+        for( var h=0;h<txts2.length;h++){
+     // alert(txts[h].sT+"/"+document.getElementById("timer2").innerHTML);
+      if(txts2[h].sT==document.getElementById("timer").innerHTML){
+       // alert("hi it is text know");
+        document.getElementById('txt-sp').style.display="inline-block";
+
+         document.getElementById('wn').innerHTML=txts2[h].txt;
+      }
+    }
   }
 }
  if(handredMSecT2==10){
@@ -373,32 +443,22 @@ function myTimerTest2() {
   handredMSecT2++;
 
 }
-
+}
 
 
 function startTest2(){
   
-//alert("start");
- Game2.addEventListener('click',function(){
- if(stopTestF2==true){
-//document.getElementById('stopScreen').style.display="none";
-stopTestF2=false;
-
- }
- else if(stopTestF2==false){
-  //document.getElementById('stopScreen').style.display="inline-block";
-  //alert("stop");
-stopTestF2=true;
-
- }
-});
-    
-   
+  
   /////////////////////////////////////////////action///////////////////////////////////
+   document.getElementById('txt-sp').style.display="none";
   counterST2=0;
  counterMT2=0;
+  handredMSecT=0;///
  secfromT2="00";
  minformT2="00";
+  buf2.length=0;///
+   theEndf2=false;///
+   stopTestF2=false;///
  if(stopTestF2==false){
    myVarT2 = setInterval(myTimerTest2 ,100);
  }
@@ -413,7 +473,7 @@ stopTestF2=true;
 
 function test2(act){
 
- 
+  if(stopTestF2==false){
 var index=0;
 
 for(var j=0;j<entList2.length;j++){
@@ -432,13 +492,13 @@ switch(act.action){
   case 'j':
   switch(act.keyType){
    case Crafty.keys.LEFT_ARROW:
-  leftMove2(act.stopTime,act.xf,act.yf,entList2[index]);
+  leftMove2(act.stopTime,act.xf,act.yf,entList2[index],act);
    break;
    case Crafty.keys.RIGHT_ARROW:
-   rightMove2(act.stopTime,act.xf,act.yf,entList2[index]);
+   rightMove2(act.stopTime,act.xf,act.yf,entList2[index],act);
    break;
    case Crafty.keys.UP_ARROW:
-   myJump2(entList2[index],act.xf,act.yf);
+   myJump2(entList2[index],act.xf,act.yf,act);
    break;
 
 
@@ -450,16 +510,16 @@ switch(act.action){
  //entList2[index].gravityConst(750);
   switch(act.keyType){
    case Crafty.keys.LEFT_ARROW:
-     leftMoveF2(act.stopTime,act.xf,act.yf,entList2[index]);
+     leftMoveF2(act.stopTime,act.xf,act.yf,entList2[index],act);
    break;
    case Crafty.keys.RIGHT_ARROW:
-   rightMoveF2(act.stopTime,act.xf,act.yf,entList2[index]);
+   rightMoveF2(act.stopTime,act.xf,act.yf,entList2[index],act);
    break;
    case Crafty.keys.UP_ARROW:
-   upMove2(act.stopTime,act.xf,act.yf,entList2[index]);
+   upMove2(act.stopTime,act.xf,act.yf,entList2[index],act);
    break;
     case Crafty.keys.DOWN_ARROW:
-   downMove2(act.stopTime,act.xf,act.yf,entList2[index]);
+   downMove2(act.stopTime,act.xf,act.yf,entList2[index],act);
    break;
  }
   break;
@@ -468,17 +528,17 @@ switch(act.action){
   break;
    case 'd':
 entList2[index].visible=false;
-entList2[index].destroy();
+
   
   break;
    case 'a':
-  
+  entList2[index].visible=true;
   break;
 
 }
 
 
- 
+ }
 
 }
 
@@ -497,9 +557,9 @@ console.log("result="+(resM*60)+resS);
 return (resM*60)+resS;
 
 }
-function leftMove2(stopT,xff,yff,entt){
+function leftMove2(stopT,xff,yff,entt,act){
   // var count=amount;
-      if(stopTestF2==false){
+      
          var myVar = setInterval(function () {
                  console.log("leftMovee");
                 entt.x-=2.7;
@@ -511,23 +571,45 @@ function leftMove2(stopT,xff,yff,entt){
                     clearInterval(myVar);
                    
                 }
+                          else if(stopTestF2==true){
+                  clearInterval(myVar);
+                      var ee=actionInfo({
+                                  x:entt.x,
+                                  y:entt.y,
+                                  xf:xff,
+                                  yf:yff,
+                                  h:selectedEntity.h,
+                                  w:selectedEntity.w,
+                                 //src:selectedEntity.__image,
+                                   id:entt.getName(),
+                                   action:act.action ,
+                                   startTime:document.getElementById("timer").innerHTML,
+                                   stopTime:stopT,
+                                   keyType:act.keyType,
+                                   speed:200
+
+                                               });
+                      buf2.push(ee);
+                       
+                      
+
+
+                }
+
                
             }, 10);
 
-      }
+     
       
-       else if(stopTestF2==true){
-
- clearInterval(myVar);
-       }
+  
 
 
 }
 
 
-function rightMove2(stopT,xff,yff,entt){
+function rightMove2(stopT,xff,yff,entt,act){
    //var count=amount;
-       if(stopTestF2==false){
+      
        var myVar = setInterval(function () {
         Crafty.viewport.width=wx;
      Crafty.viewport.height=wy;
@@ -549,15 +631,37 @@ function rightMove2(stopT,xff,yff,entt){
                     clearInterval(myVar);
                    
                 }
+                           else if(stopTestF2==true){
+                  clearInterval(myVar);
+                      var ee=actionInfo({
+                                  x:entt.x,
+                                  y:entt.y,
+                                  xf:xff,
+                                  yf:yff,
+                                  h:selectedEntity.h,
+                                  w:selectedEntity.w,
+                                 //src:selectedEntity.__image,
+                                   id:entt.getName(),
+                                   action:act.action ,
+                                   startTime:document.getElementById("timer").innerHTML,
+                                   stopTime:stopT,
+                                   keyType:act.keyType,
+                                   speed:200
+
+                                               });
+                      buf2.push(ee);
+                       
+                      
+
+
+                }
                
-            }, 10);}
-       else if(stopTestF2==true){
-clearInterval(myVar);
-       }
+            }, 10);
+  
      }
 
-function upMove2(stopT,xff,yff,entt){
-       if(stopTestF2==false){
+function upMove2(stopT,xff,yff,entt,act){
+      
        var myVar = setInterval(function () {
         Crafty.viewport.width=wx;
      Crafty.viewport.height=wy;
@@ -577,18 +681,38 @@ function upMove2(stopT,xff,yff,entt){
                     clearInterval(myVar);
                    
                 }
-               
-            },10);}
-       else if(stopTestF2==true){
-         clearInterval(myVar);
+                                 else if(stopTestF2==true){
+                  clearInterval(myVar);
+                      var ee=actionInfo({
+                                  x:entt.x,
+                                  y:entt.y,
+                                  xf:xff,
+                                  yf:yff,
+                                  h:selectedEntity.h,
+                                  w:selectedEntity.w,
+                                 //src:selectedEntity.__image,
+                                   id:entt.getName(),
+                                   action:act.action ,
+                                   startTime:document.getElementById("timer").innerHTML,
+                                   stopTime:stopT,
+                                   keyType:act.keyType,
+                                   speed:200
 
-       }
+                                               });
+                      buf2.push(ee);
+                       
+                      
+
+
+                }
+               
+            },10);
 
 
 }
 
-function downMove2(stopT,xff,yff,entt){
-       if(stopTestF2==false){
+function downMove2(stopT,xff,yff,entt,act){
+      
        var myVar = setInterval(function () {
         Crafty.viewport.width=wx;
      Crafty.viewport.height=wy;
@@ -601,7 +725,9 @@ function downMove2(stopT,xff,yff,entt){
     });
     Crafty.viewport.centerOn(entt,0); 
                  console.log("rightMovee");
-                 entt.y+=1.3;
+                 entt.addComponent("gravity");
+                 entt.gravityConst(1000);
+                 entt.y+=2;
                 entt.x+=1.5;
                // count = count - 1;
                if (stopT==document.getElementById("timer").innerHTML ||entt.y>=yff&&entt.x>=xff) {
@@ -610,12 +736,32 @@ function downMove2(stopT,xff,yff,entt){
                     clearInterval(myVar);
                    
                 }
-               
-            }, 10);}
-       else if(stopTestF2==true){
-        clearInterval(myVar);
+                           else if(stopTestF2==true){
+                  clearInterval(myVar);
+                      var ee=actionInfo({
+                                  x:entt.x,
+                                  y:entt.y,
+                                  xf:xff,
+                                  yf:yff,
+                                  h:selectedEntity.h,
+                                  w:selectedEntity.w,
+                                 //src:selectedEntity.__image,
+                                   id:entt.getName(),
+                                   action:act.action ,
+                                   startTime:document.getElementById("timer").innerHTML,
+                                   stopTime:stopT,
+                                   keyType:act.keyType,
+                                   speed:200
 
-       }
+                                               });
+                      buf2.push(ee);
+                       
+                      
+
+
+                }
+               
+            }, 10);
 
 
 }
@@ -634,9 +780,9 @@ function downMove2(stopT,xff,yff,entt){
      }
 
 
-function leftMoveF2(stopT,xff,yff,entt){
+function leftMoveF2(stopT,xff,yff,entt,act){
   // var count=amount;
-       if(stopTestF2==false){
+   
        var myVar = setInterval(function () {
         Crafty.viewport.width=wx;
      Crafty.viewport.height=wy;
@@ -658,12 +804,32 @@ function leftMoveF2(stopT,xff,yff,entt){
                     clearInterval(myVar);
                    
                 }
-               
-            }, 10);}
-       else if(stopTestF2==true){
-        clearInterval(myVar);
+                                 else if(stopTestF2==true){
+                  clearInterval(myVar);
+                      var ee=actionInfo({
+                                  x:entt.x,
+                                  y:entt.y,
+                                  xf:xff,
+                                  yf:yff,
+                                  h:selectedEntity.h,
+                                  w:selectedEntity.w,
+                                 //src:selectedEntity.__image,
+                                   id:entt.getName(),
+                                   action:act.action ,
+                                   startTime:document.getElementById("timer").innerHTML,
+                                   stopTime:stopT,
+                                   keyType:act.keyType,
+                                   speed:200
 
-       }
+                                               });
+                      buf2.push(ee);
+                       
+                      
+
+
+                }
+               
+            }, 10);
 
 
 }
@@ -671,7 +837,7 @@ function leftMoveF2(stopT,xff,yff,entt){
 
 function rightMoveF2(stopT,xff,yff,entt){
    //var count=amount;
-       if(stopTestF2==false){
+      
        var myVar = setInterval(function () {
         Crafty.viewport.width=wx;
      Crafty.viewport.height=wy;
@@ -693,18 +859,48 @@ function rightMoveF2(stopT,xff,yff,entt){
                     clearInterval(myVar);
                    
                 }
+                              else if(stopTestF2==true){
+                  clearInterval(myVar);
+                      var ee=actionInfo({
+                                  x:entt.x,
+                                  y:entt.y,
+                                  xf:xff,
+                                  yf:yff,
+                                  h:selectedEntity.h,
+                                  w:selectedEntity.w,
+                                 //src:selectedEntity.__image,
+                                   id:entt.getName(),
+                                   action:act.action ,
+                                   startTime:document.getElementById("timer").innerHTML,
+                                   stopTime:stopT,
+                                   keyType:act.keyType,
+                                   speed:200
+
+                                               });
+                      buf2.push(ee);
+                       
+                      
+
+
+                }
                
-            }, 10);}
-       else if(stopTestF2==true){
-clearInterval(myVar);
-       }
+            }, 10);
 
 
      }
 
 //console.log("len="+actionA2.length);
 function startStory(){
-
+   document.getElementById("playd").style.display="none";
+     document.getElementById("pausee2").style.display="inline-block";
      startTest2();
+
+}
+
+function pausee2(){
+  console.log("pause2");
+  stopTestF2=true;
+   document.getElementById("playd").style.display="inline-block";
+     document.getElementById("pausee2").style.display="none";
 
 }

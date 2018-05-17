@@ -9,6 +9,16 @@
 
 <ion-content >
  
+    <ion-icon name="contract" class="contract" id="contract" onclick="contract()"></ion-icon>
+     <ion-icon name="pause" id="pausee" class="pausee" onclick="pausee()" ></ion-icon>
+  <div class="btn-group" id="btn-group">
+   
+     <span><ion-icon name="play" class="playy" id="playy" onclick="continuee()"></ion-icon></span>
+     <ion-icon name="refresh-circle" class="refresh-circle" onclick="refresh()" ></ion-icon>
+     <ion-icon name="close-circle" class="close-circle" onclick="closeS()"></ion-icon>
+     <ion-icon name="create" class="create-b" onclick="enableTxt()"></ion-icon>
+  </div>
+
 
  <div class="modal"  id="modal" style="display: none;">
     <div class="modal-body">
@@ -487,21 +497,35 @@
       </div>
        <div class="clearfix"></div>
     <div class="canvas-div" id='canvas-div' >
-      <div class="warning" id='warning' onclick="close1()" style="display: none;" >
-        <span >
-          <ion-icon name="close" class="close" id='close' ></ion-icon>
+      <div class="warning" id='warning' style="display: none;" >
+        <span onclick="close1()"  >
+          <ion-icon name="close" class="close" id='close'  ></ion-icon>
         </span>please make floor</div>
+
+
+<div class="text-sh" id='txt-sp'  style="display: none;">
+
+
+             <span class="wn" id='wn'  > </span>
+            </div>
+
+
+<div class="text-sh" id='txt-sh'  style="display: none;">
+
+
+             <span class="wn"  > <ion-icon name="add-circle" class="close" id='add-th' onclick="addText()"  ></ion-icon> <input type="Text" name="txt" id="t-i"></span>
+            </div>
         
       <div  id="game" style =" " ondrop="drop(event)"  ondragover="allowDrop(event)"  ></div>
        <div class="stop-screen" id="stopScreen" style="display: none"></div>
 
     
     </div>
-    <div class="scroll-div" id="scroll" onscroll="scrollAct()"><div class="scroll-b"></div></div>
+    <div class="scroll-div" id="scroll" onscroll="scrollAct()"><div class="scroll-b" id="scroll-b"></div></div>
 </div>
 
     <div class="right-side side float-right">
-      <label id="t1" style="color: white;font-size: 17px;padding-left: 10px;padding-top: 10px;">{{storyNN}}</label>
+      <label id="t1" style="color: white;font-size: 17px;padding-left: 10px;padding-top: 10px;"></label>
     <!--  <div id='obj_info' style="display: none;">
       <div class="main " ><span class="arrow"></span><span class="arrow-obj" id="objName"></span></div>
     <div>
@@ -532,75 +556,60 @@
 
       
 <div style="width: 80%; margin:auto;" id='color_scroll'>
-<div style="background-color: #0FB1B3 ; margin-top: 40px; width: 100%; " >
+<div style="background-color: #0FB1B3 ; margin-top: 15px; width: 100%; " >
+  <div>
+    
+
+    <div class="slidecontainer">
+  <input type="range" min="1" max="6000" value="3000" class="slider" id="myRange">
+  <!-- <p>Value: <span id="demo"></span></p> -->
+</div>
+  </div>
 <div class="myCarousel" >
     <div >
-<div>
-    <div id='red' style="width: 40px ; height: 40px ; display: inline-block;  background-color: red;border-radius: 50% " onclick="setBackColor('red')"></div>
+<div style="padding-top: 10px;">
+    <div id='red' class="color-cir" style=" background-color: rgba(255,0,0,0.7);" onclick="setBackColor('red')" 
+    (click)="activeColor(0)">
+       <ion-icon name="star" class="star" [hidden]="colorArr[0]" ></ion-icon>
+    </div>
+    <div id='green' class="color-cir" style=" background-color: rgba(0,255,0,0.7);" onclick="setBackColor('green')"
+    (click)="activeColor(1)">
+       <ion-icon name="star" class="star" [hidden]="colorArr[1]" ></ion-icon>
+    </div>
+    <div id='blue' class="color-cir" style=" background-color: rgba(0,0,255,0.7);" onclick="setBackColor('blue')"
+    (click)="activeColor(2)">
+       <ion-icon name="star" class="star" [hidden]="colorArr[2]"></ion-icon>
+    </div>
+    <div id='gray' class="color-cir" style=" background-color: rgba(192,192,192,0.7);" onclick="setBackColor('gray')"
+    (click)="activeColor(3)">
+       <ion-icon name="star" class="star" [hidden]="colorArr[3]"></ion-icon>
+    </div>
+    <div id='yellow' class="color-cir" style=" background-color: rgba(255,255,0,0.7);" onclick="setBackColor('yellow')" (click)="activeColor(4)">
+       <ion-icon name="star" class="star" [hidden]="colorArr[4]"></ion-icon>
+    </div>
+     <div id='cerise' class="color-cir" style=" background-color: rgba(255,0,255,0.7);" onclick="setBackColor('#ff08f9')" (click)="activeColor(5)">
+        <ion-icon name="star" class="star" [hidden]="colorArr[5]"></ion-icon>
+     </div>
+      <div id='white' class="color-cir" style=" background-color: rgba(255,255,255,0.7);" onclick="setBackColor('white')" (click)="activeColor(6)">
+        <ion-icon name="star" class="star" [hidden]="colorArr[6]"></ion-icon>
+     </div>
 </div>
-</div>
-<!-- <div >
-<div>
-    <div style="width: 40px ; height: 40px ; display: inline-block;  background-color: #ffff00;border-radius: 50% " 
-    onclick="setBackColor('#ffff00')"></div>
 </div>
 
-</div>
-<div >
-<div>
-     <div style="width: 40px ; height: 40px ; display: inline-block; background-color: #66ff33;border-radius: 50% "
-     onclick="setBackColor('#66ff33')"></div>
-</div>
-
-</div>
-<div >
-<div>
-     <div style="width: 40px ; height: 40px ; display: inline-block; background-color: #00ccff;border-radius: 50% "
-     onclick="setBackColor('#00ccff')"></div>
-</div>
-
-</div>
-
-    <div >
-<div>
-    <div style="width: 40px ; height: 40px ; display: inline-block;  background-color: #ff0066;border-radius: 50% "
-    onclick="setBackColor('#ff0066')"></div>
-</div>
-</div>
-<div >
-<div>
-    <div style="width: 40px ; height: 40px ; display: inline-block;  background-color: #9900cc;border-radius: 50% "
-    onclick="setBackColor('#9900cc')"></div>
-</div>
-
-</div>
-<div >
-<div>
-     <div style="width: 40px ; height: 40px ; display: inline-block; background-color: #663300;border-radius: 50% "
-     onclick="setBackColor('#663300')"></div>
-</div>
-
-</div>
-<div >
-<div>
-     <div style="width: 40px ; height: 40px ; display: inline-block; background-color: #ff9900;border-radius: 50% "
-     onclick="setBackColor('#ff9900')"></div>
-</div>
-
-</div> -->
 </div>
 </div>
 </div>
 
-<div class="text-part">
+<div class="text-part" onclick="enableTxt()">
 <span class="create-icon"> <ion-icon name="create"></ion-icon></span> 
 <span class="create-icon">Add Text</span>
-<input type="color">
+
 </div>
 
 <div class="time-test">
   <div class="time-container">
     <span class="time" id="timer">00:00:00</span>
+    <span class="time" id="timer2" style="display: none;" >00:00:00</span>
   </div>
 
 <!-- <div class="test"><span class="span-test">test</span></div> -->

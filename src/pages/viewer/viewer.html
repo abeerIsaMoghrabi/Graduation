@@ -4,35 +4,48 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>viewer</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-  <img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null" id="img_id">
-    <h4   id="imgName">{{lastImage}}</h4>
-   <div [hidden] id='userInfo'>{{userInfo}}</div>
-  <h3 [hidden]="lastImage !== null">Please Select Image!</h3>
 
 
 
-  <button  onclick="testao()">cartoonize</button>
-  <button onclick="store()">store</button>
-   <img  style="width: 100%"   id="img_res">
+<ion-content >
+  <div style="width: 80%;margin: auto;"> <img src="{{pathForImage(lastImage)}}" style="width: 100%;margin: auto;" [hidden]="lastImage === null" id="img_id"></div>
+    <h4 [hidden] ="true" id="imgName">{{lastImage}}</h4>
+   <div [hidden]="true" id='userInfo'>{{userInfo}}</div>
+
+<div  [hidden]="lastImage != null" style="width:50%;margin: auto; text-align: center;
+    margin-top: 70%;" > <ion-icon name="camera" class="cameraa"></ion-icon></div>
+
+<div style="width:70%;margin: auto;" [hidden]="lastImage === null">
+  <button  onclick="testao()" class="btn-st">cartoonize</button>
+   <button (click)="enableB()" onclick="callLuna()" class="btn-st">backRemove</button>
+  <button onclick="store()" class="btn-st">store</button>
+</div>
+  
+ <div style="width: 80%;margin: auto;"> <img style="width: 100%;margin: auto;"   id="img_res"></div> 
   <p id="state"></p>
   <p id="demo"></p>
   <div id="backgroundT"></div>
+<!-- luanpic -->
+<title>Lunapic: URL import function</title>
+<body>
+
+<form [hidden]="backRemove" action="https://www169.lunapic.com/editor/" method="POST" id="form1">
+    <input type="hidden" name="action" value="transparent">
+    <input type="hidden" id="pic" name="url" value="">
+    <input type=submit value="Edit Photo">
+    .. redirecting
+
+</form>
+</body>
+
+<!-- lunapic -->
+
 </ion-content>
 <ion-footer>
-  <ion-toolbar color="primary">
+  <ion-toolbar >
     <ion-buttons>
-      <button ion-button icon-left (click)="presentActionSheet()">
-        <ion-icon name="camera"></ion-icon>Select Image
+      <button ion-button icon-left (click)="presentActionSheet()" style="color:#12b3b0 ">
+        <ion-icon name="camera" style="color:#12b3b0 "></ion-icon>Select Image
       </button>
 
     </ion-buttons>
