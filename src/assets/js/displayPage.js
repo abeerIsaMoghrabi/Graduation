@@ -1,3 +1,11 @@
+
+
+navigator.mediaDevices.getUserMedia({ audio: true })
+  .then(stream => {
+    const mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.start();
+  });
+
 var wx=window.innerWidth;
 var wy=window.innerHeight;
 var walls2=[];

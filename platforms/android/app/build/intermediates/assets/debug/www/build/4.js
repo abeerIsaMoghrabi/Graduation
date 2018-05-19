@@ -1,14 +1,14 @@
 webpackJsonp([4],{
 
-/***/ 511:
+/***/ 502:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MainPageModule", function() { return MainPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MovesPageModule", function() { return MovesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__main__ = __webpack_require__(520);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__moves__ = __webpack_require__(512);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var MainPageModule = (function () {
-    function MainPageModule() {
+var MovesPageModule = (function () {
+    function MovesPageModule() {
     }
-    MainPageModule = __decorate([
+    MovesPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__main__["a" /* MainPage */],
+                __WEBPACK_IMPORTED_MODULE_2__moves__["a" /* MovesPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__main__["a" /* MainPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__moves__["a" /* MovesPage */]),
             ],
         })
-    ], MainPageModule);
-    return MainPageModule;
+    ], MovesPageModule);
+    return MovesPageModule;
 }());
 
-//# sourceMappingURL=main.module.js.map
+//# sourceMappingURL=moves.module.js.map
 
 /***/ }),
 
-/***/ 520:
+/***/ 512:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MainPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MovesPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(52);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -57,41 +57,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the MainPage page.
+ * Generated class for the MovesPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var MainPage = (function () {
-    function MainPage(navCtrl, navParams) {
+var MovesPage = (function () {
+    function MovesPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.smallList = false;
     }
-    MainPage.prototype.showSmallList = function () {
-        if (this.smallList == false) {
-            this.smallList = true;
-        }
-        else if (this.smallList == true) {
-            this.smallList = false;
-        }
+    MovesPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad MovesPage');
     };
-    MainPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad MainPage');
-    };
-    MainPage.prototype.goTologin = function () {
-        this.navCtrl.push('LoginPage');
-    };
-    MainPage = __decorate([
+    MovesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-main',template:/*ion-inline-start:"C:\Users\Moghrabi\Graduation\src\pages\main\main.html"*/'<!--\n\n  Generated template for the MainPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n\n\n\n\n<ion-content>\n\n	<div class="girl-back">\n\n		<div class="cover"></div>\n\n	<div class="container-fluid header-div "  style="z-index: 1" >\n\n    <div class="container">\n\n        <!--<div class="row" >-->\n\n           <div class="logo "><a href="#">STORY</a></div>\n\n    <div class="float-right list-div ">\n\n        <!--col-sm-6 offset-4-->\n\n        <ul >\n\n            <li class="log-btn  float-right header-li" (click)="goTologin()">sign in</li>\n\n            <li class=" header-li float-right"><a   full [navPush]="userProf">Profile</a></li>\n\n            <li class=" header-li float-right"><a href="#">Studio</a></li>\n\n            <li class=" header-li float-right"><a href="#">Home</a></li>\n\n        \n\n\n\n\n\n        </ul>\n\n\n\n    </div>\n\n        <span  (click)="showSmallList()" ><ion-icon name="menu" class="menu-icon float-right"></ion-icon></span>\n\n  <ul  class="list-small" [hidden]="!smallList">\n\n            <li  class=" header-li" (click)="goTologin()" ><a >sign  in </a></li>\n\n            <li class=" header-li "><a   full [navPush]="userProf">Profile</a></li>\n\n            <li class=" header-li "><a href="#">Studio</a></li>\n\n            <li class=" header-li "><a href="#">Home</a></li>\n\n\n\n\n\n\n\n        </ul>\n\n    <div class="clearfix"></div>\n\n    <!--</div>-->\n\n    </div>\n\n</div>\n\n<div >\n\n<ion-grid>\n\n  <ion-row >\n\n<ion-col    col-xs-12 col-sm-12 col-md-7   offset-1 style="margin-top: 140px;" class="main-title">\n\n	<h1 class="title">it is your story!</h1>\n\n	<p class="second-title">animated<span style="color: #12B3B0; padding-left: 5px;">cartoon</span> </p>\n\n\n\n</ion-col>\n\n<ion-col col-xs-12 col-sm-6 col-md-3   justify-content-end class="search-body" >\n\n\n\n	<input type="text" name="search" class="search" placeholder="search ..">\n\n\n\n</ion-col>\n\n\n\n</ion-row>\n\n</ion-grid>\n\n\n\n</div>\n\n</div>\n\n\n\n\n\n<div>\n\n	<div class="container-fluid " style="padding-top: 62px;"  >\n\n    <div class="container">\n\n	<ion-grid class="container2">\n\n		<div class="pop-title"> popular stories</div>\n\n  <ion-row class="card-body" justify-content-center>\n\n\n\n  	<ion-col col-8 col-sm-6 col-md-4 col-lg-3 class="card"  >\n\n	\n\n		<div class="card-img-cover"></div>\n\n		<div class="card-img"></div>\n\n\n\n		<div class="card-info">\n\n\n\n			<label class="card-txt">storyA</label><br>\n\n			<label class="auther-name">by Abeer Moghrabi</label>\n\n		</div>\n\n	\n\n</ion-col>\n\n  	<ion-col col-8 col-sm-6 col-md-4 col-lg-3 class="card"  >\n\n	\n\n		<div class="card-img-cover"></div>\n\n		<div class="card-img"></div>\n\n\n\n		<div class="card-info">\n\n\n\n			<label class="card-txt">storyA</label><br>\n\n			<label class="auther-name">by Abeer Moghrabi</label>\n\n		</div>\n\n	\n\n</ion-col>\n\n  	<ion-col col-8 col-sm-6 col-md-4 col-lg-3 class="card"  >\n\n	\n\n		<div class="card-img-cover"></div>\n\n		<div class="card-img"></div>\n\n\n\n		<div class="card-info">\n\n\n\n			<label class="card-txt">storyA</label><br>\n\n			<label class="auther-name">by Abeer Moghrabi</label>\n\n		</div>\n\n	\n\n</ion-col>\n\n  	<ion-col col-8 col-sm-6 col-md-4 col-lg-3 class="card"  >\n\n	\n\n		<div class="card-img-cover"></div>\n\n		<div class="card-img"></div>\n\n\n\n		<div class="card-info">\n\n\n\n			<label class="card-txt">storyA</label><br>\n\n			<label class="auther-name">by Abeer Moghrabi</label>\n\n		</div>\n\n	\n\n</ion-col>\n\n  	\n\n  \n\n  </ion-row>\n\n</ion-grid>\n\n</div>\n\n</div>\n\n</div>\n\n<div class="container-fluid " style="margin-top: 62px; padding-top: 20px;padding-bottom: 20px; background-color: #12B3B0;"  >\n\n    <div class="container">\n\n      <div class="title" style="text-align: center;">about us</div>\n\n      <ion-grid>\n\n    	<ion-row justify-content-center>\n\n    		<ion-col col-sm-6>\n\n    			<ion-icon name="contact" class="we"></ion-icon>\n\n    			<div>\n\n    				<p class="txt-f">Animated cartoon is an application for parents and kindergarten teachers. It will provide a way to facilitate children\'s education by making animated stories of their games in kindergarten.  It is also help parents make stories for their children and help the child understand stories well and imagine characters. The most important aspects in our project is take a photo to the character and then convert it to a cartoon character. Then the person who will use the application will choose background and movements of character based on the story scenario. The application saves all the movements and displays them once as a story. Then add audio to the story.</p>\n\n    			</div>\n\n    		</ion-col>\n\n    	</ion-row>\n\n    </ion-grid>\n\n    </div>\n\n</div>\n\n\n\n\n\n<div class="container-fluid" style="background-color: #1e231f; height: 200px;">\n\n  <div class="container">\n\n    \n\n     \n\n      <ion-grid>\n\n    	<ion-row justify-content-center>\n\n    		<ion-col col-sm-6 class="footer-title">\n\n          GET IN TOUCH\n\n    		</ion-col>\n\n    	</ion-row>\n\n    </ion-grid>\n\n  </div>\n\n\n\n\n\n</div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Moghrabi\Graduation\src\pages\main\main.html"*/,
+            selector: 'page-moves',template:/*ion-inline-start:"C:\Users\Moghrabi\Graduation\src\pages\moves\moves.html"*/'<!--\n\n  Generated template for the MovesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>moves</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Moghrabi\Graduation\src\pages\moves\moves.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
-    ], MainPage);
-    return MainPage;
+    ], MovesPage);
+    return MovesPage;
 }());
 
-//# sourceMappingURL=main.js.map
+//# sourceMappingURL=moves.js.map
 
 /***/ })
 

@@ -17,11 +17,15 @@ import { storage,initializeApp } from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { Camera } from '@ionic-native/camera';
 import { ImageProvider } from '../providers/image/image';
+import { MediaCapture } from '@ionic-native/media-capture';
+import { Media } from '@ionic-native/media';
+
 
 import { File } from '@ionic-native/file';
 import { Transfer } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 
+import { IonicStorageModule } from '@ionic/storage';
 
 export const FIREBASE_CONFIG =
  {
@@ -45,7 +49,9 @@ export const FIREBASE_CONFIG =
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireModule
+    AngularFireModule ,
+     IonicStorageModule.forRoot()
+ 
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -60,10 +66,13 @@ export const FIREBASE_CONFIG =
     StatusBar,
     SplashScreen,
     File,
+
     Transfer,
     Camera,
     FilePath,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+      MediaCapture,
+    Media,
     AngularFireDatabase ,
     
   ]

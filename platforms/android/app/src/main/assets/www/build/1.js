@@ -1,14 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 515:
+/***/ 506:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ViewerPageModule", function() { return ViewerPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VoiceAudioPageModule", function() { return VoiceAudioPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__viewer__ = __webpack_require__(526);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__voice_audio__ = __webpack_require__(518);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,38 +18,40 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ViewerPageModule = (function () {
-    function ViewerPageModule() {
+var VoiceAudioPageModule = (function () {
+    function VoiceAudioPageModule() {
     }
-    ViewerPageModule = __decorate([
+    VoiceAudioPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__viewer__["a" /* ViewerPage */],
+                __WEBPACK_IMPORTED_MODULE_2__voice_audio__["a" /* VoiceAudioPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__viewer__["a" /* ViewerPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__voice_audio__["a" /* VoiceAudioPage */]),
             ],
         })
-    ], ViewerPageModule);
-    return ViewerPageModule;
+    ], VoiceAudioPageModule);
+    return VoiceAudioPageModule;
 }());
 
-//# sourceMappingURL=viewer.module.js.map
+//# sourceMappingURL=voice-audio.module.js.map
 
 /***/ }),
 
-/***/ 526:
+/***/ 518:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewerPage; });
+/* unused harmony export FIREBASE_CONFIG */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VoiceAudioPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__ = __webpack_require__(312);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_transfer__ = __webpack_require__(313);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_path__ = __webpack_require__(314);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase_app__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase_app__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_media_capture__ = __webpack_require__(307);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_media__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__ = __webpack_require__(303);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -66,190 +68,168 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ViewerPage = (function () {
-    // constructor(public camera: Camera,public navCtrl: NavController, public navParams: NavParams ,public loadingCtrl: LoadingController) {
-    function ViewerPage(navCtrl, camera, transfer, file, filePath, actionSheetCtrl, toastCtrl, platform, loadingCtrl, aFAuth) {
+var MEDIA_FILES_KEY = 'mediaFiles';
+var FIREBASE_CONFIG = {
+    apiKey: "AIzaSyAwzSQGq1EYiVTEAKlTlNHFtbm1IrZYbtg",
+    authDomain: "myapp-b575c.firebaseapp.com",
+    databaseURL: "https://myapp-b575c.firebaseio.com",
+    projectId: "myapp-b575c",
+    storageBucket: "myapp-b575c.appspot.com",
+    messagingSenderId: "68982032969"
+};
+/**
+ * Generated class for the VoiceAudioPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var VoiceAudioPage = (function () {
+    function VoiceAudioPage(navCtrl, mediaCapture, storage, file, media) {
         this.navCtrl = navCtrl;
-        this.camera = camera;
-        this.transfer = transfer;
+        this.mediaCapture = mediaCapture;
+        this.storage = storage;
         this.file = file;
-        this.filePath = filePath;
-        this.actionSheetCtrl = actionSheetCtrl;
-        this.toastCtrl = toastCtrl;
-        this.platform = platform;
-        this.loadingCtrl = loadingCtrl;
-        this.aFAuth = aFAuth;
-        // public base64Image: string;
-        //    mySelectedPhoto;
-        //    loading;
-        //    currentPhoto;
-        this.backRemove = true;
-        this.lastImage = null;
-        this.loadScript();
-    }
-    ViewerPage.prototype.presentActionSheet = function () {
-        var _this = this;
-        var actionSheet = this.actionSheetCtrl.create({
-            title: 'Select Image Source',
-            buttons: [
-                {
-                    text: 'Load from Library',
-                    handler: function () {
-                        _this.takePicture(_this.camera.PictureSourceType.PHOTOLIBRARY);
-                    }
-                },
-                {
-                    text: 'Use Camera',
-                    handler: function () {
-                        _this.takePicture(_this.camera.PictureSourceType.CAMERA);
-                    }
-                },
-                {
-                    text: 'Cancel',
-                    role: 'cancel'
-                }
-            ]
-        });
-        actionSheet.present();
-    };
-    ViewerPage.prototype.takePicture = function (sourceType) {
-        var _this = this;
-        // Create options for the Camera Dialog
-        var options = {
-            quality: 100,
-            sourceType: sourceType,
-            saveToPhotoAlbum: false,
-            correctOrientation: true
+        this.media = media;
+        this.hid = true;
+        this.vv = "";
+        this.mediaFiles = [];
+        this.onSuccess = function (snapshot) {
         };
-        // Get the data of an image
-        this.camera.getPicture(options).then(function (imagePath) {
-            // Special handling for Android library
-            if (_this.platform.is('android') && sourceType === _this.camera.PictureSourceType.PHOTOLIBRARY) {
-                _this.filePath.resolveNativePath(imagePath)
-                    .then(function (filePath) {
-                    var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-                    var currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
-                    _this.copyFileToLocalDir(correctPath, currentName, _this.createFileName());
-                    _this.presentToast(_this.lastImage);
-                });
-            }
-            else {
-                var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-                var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-                _this.copyFileToLocalDir(correctPath, currentName, _this.createFileName());
-                _this.presentToast(_this.lastImage);
-            }
-        }, function (err) {
-            _this.presentToast('Error while selecting image.');
-        });
-    };
-    // Create a new name for the image
-    ViewerPage.prototype.createFileName = function () {
-        var d = new Date(), n = d.getTime(), newFileName = n + ".jpg";
-        return newFileName;
-    };
-    // Copy the image to a local folder
-    ViewerPage.prototype.copyFileToLocalDir = function (namePath, currentName, newFileName) {
+        this.onErrors = function (error) {
+        };
+    }
+    VoiceAudioPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        this.file.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(function (success) {
-            _this.lastImage = newFileName;
-        }, function (error) {
-            _this.presentToast('Error while storing file.');
+        this.storage.get(MEDIA_FILES_KEY).then(function (res) {
+            _this.mediaFiles = JSON.parse(res) || [];
         });
     };
-    ViewerPage.prototype.presentToast = function (text) {
-        var toast = this.toastCtrl.create({
-            message: text,
-            duration: 3000,
-            position: 'top'
-        });
-        toast.present();
+    VoiceAudioPage.prototype.captureAudio = function () {
+        var _this = this;
+        this.mediaCapture.captureAudio().then(function (res) {
+            _this.storeMediaFiles(res);
+        }, function (err) { return console.error(err); });
     };
-    // Always get the accurate path to your apps folder
-    ViewerPage.prototype.pathForImage = function (img) {
-        if (img === null) {
-            return '';
+    VoiceAudioPage.prototype.captureVideo = function () {
+        var _this = this;
+        var options = {
+            limit: 1,
+            duration: 30
+        };
+        this.mediaCapture.captureVideo(options).then(function (res) {
+            var capturedFile = res[0];
+            var fileName = capturedFile.name;
+            var dir = capturedFile['localURL'].split('/');
+            dir.pop();
+            var fromDirectory = dir.join('/');
+            var toDirectory = _this.file.dataDirectory;
+            _this.file.copyFile(fromDirectory, fileName, toDirectory, fileName).then(function (res) {
+                _this.storeMediaFiles([{ name: fileName, size: capturedFile.size }]);
+            }, function (err) {
+                console.log('err: ', err);
+            });
+        }, function (err) { return console.error(err); });
+    };
+    // play(myFile) {
+    //   if (myFile.name.indexOf('.wav') > -1) {
+    //     const audioFile: MediaObject = this.media.create(myFile.localURL);
+    //     audioFile.play();
+    //   } else {
+    //     let path = this.file.dataDirectory + myFile.name;
+    //     let url = path.replace(/^file:\/\//, '');
+    //     let video = this.myVideo.nativeElement;
+    //     video.src = url;
+    //     video.play();
+    //   }
+    // }
+    ///////////////////////////////////////////////
+    VoiceAudioPage.prototype.play = function (myFile) {
+        if (myFile.name.indexOf('.wav') > -1) {
+            var audioFile = this.media.create(myFile.localURL);
+            audioFile.play();
         }
         else {
-            // this.presentToast("cordova.file.dataDirectory" + img);
-            return cordova.file.dataDirectory + img;
+            var path = this.file.dataDirectory + myFile.name;
+            var url = path.replace(/^file:\/\//, '');
+            var video = this.myVideo.nativeElement;
+            video.src = url;
+            video.play();
         }
     };
-    ViewerPage.prototype.ionViewDidLoad = function () {
+    VoiceAudioPage.prototype.dataURLtoBlob = function (myURL) {
+        var binary = atob(myURL.split(',')[1]);
+        var array = [];
+        for (var i = 0; i < binary.length; i++) {
+            array.push(binary.charCodeAt(i));
+        }
+        return new Blob([new Uint8Array(array)], { type: 'audio/mp3' });
+    };
+    VoiceAudioPage.prototype.upload = function () {
+        if (this.ftu) {
+            var uploadTask = __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref().child('audios/myaud.mp3').put(this.ftu);
+            uploadTask.then(this.onSuccess, this.onErrors);
+        }
+    };
+    VoiceAudioPage.prototype.storeA = function (myFile) {
+        this.hid = false;
+        //   let storageRef = firebase.storage().ref();
+        //   let metadata = {
+        //     contentType: 'audio/amr',
+        //   };
+        // //let filePath = myFile.localURL;
+        // let filePath = `${myFile.externalDataDirectory}` + `${myFile.name}`;
+        //   this.file.readAsDataURL(this.file.externalDataDirectory, myFile.name).then((file) => {
+        //     let voiceRef = storageRef.child(`voices/${myFile.name}`).putString(file, firebase.storage.StringFormat.DATA_URL);
+        //     voiceRef.on(firebase.storage.TaskEvent.STATE_CHANGED, (snapshot) => {
+        //       console.log("uploading");
+        //     }, (e) => {
+        //       console.log(JSON.stringify(e, null, 2));
+        //     }, () => {
+        //       var downloadURL = voiceRef.snapshot.downloadURL;
+        //     });
+        //   });
+        console.log("hi1");
+        __WEBPACK_IMPORTED_MODULE_2_firebase_app__["initializeApp"](FIREBASE_CONFIG);
+        var storageRef = __WEBPACK_IMPORTED_MODULE_2_firebase_app__["storage"]().ref();
+        console.log("hi2");
+        var metadata = {
+            contentType: 'audio/amr',
+        };
+        var filePath = myFile.localURL;
+        //"../../assets/KP.mp3";  
+        var voiceRef = storageRef.child("voiceB");
+        var blob = new Blob([filePath], { type: 'audio/amr' });
+        voiceRef.put(blob, metadata);
+    };
+    //////////////////////////////////////////////
+    VoiceAudioPage.prototype.storeMediaFiles = function (files) {
         var _this = this;
-        // console.log('ionViewDidLoad ViewerPage');
-        this.aFAuth.authState.subscribe(function (data) {
-            if (data && data.email && data.uid) {
-                console.log('Welcome to APP_NAME' + data.email);
-                _this.userInfo = data.uid;
+        this.storage.get(MEDIA_FILES_KEY).then(function (res) {
+            if (res) {
+                var arr = JSON.parse(res);
+                arr = arr.concat(files);
+                _this.storage.set(MEDIA_FILES_KEY, JSON.stringify(arr));
             }
             else {
-                console.log(" Could not find authentication details");
+                _this.storage.set(MEDIA_FILES_KEY, JSON.stringify(files));
             }
+            _this.mediaFiles = _this.mediaFiles.concat(files);
         });
     };
-    //   takePhoto(){
-    //   const options: CameraOptions = {
-    //     quality: 100,
-    //     targetHeight: 200,
-    //     targetWidth: 200,
-    //     destinationType: this.camera.DestinationType.DATA_URL,
-    //     encodingType: this.camera.EncodingType.JPEG,
-    //     mediaType: this.camera.MediaType.PICTURE
-    //   }
-    //  this.camera.getPicture(options).then((imageData) => {
-    //  this.loading = this.loadingCtrl.create({
-    //  content:"Taking photo wait ...."
-    //  });
-    //  this.loading.present();
-    //  this.mySelectedPhoto =
-    //  this.dataURLtoBlob('data:image/jpeg;base64,' + imageData);
-    //  this.upload();
-    // }, (err) => {
-    //  // Handle error
-    // });
-    //   }
-    //    dataURLtoBlob(myURL){
-    //       let binary = atob(myURL.split(',')[1]);
-    //   let array = [];
-    //   for (let i = 0 ; i < binary.length;i++){
-    //       array.push(binary.charCodeAt(i));
-    //   }
-    //       return new Blob([new Uint8Array(array)],{type:'image/jpeg'});
-    //   }
-    //   upload(){
-    //   if(this.mySelectedPhoto){
-    //       var uploadTask = firebase.storage().ref().child('images/myphoto.jpg').put(this.mySelectedPhoto);
-    //       uploadTask.then(this.onSuccess,this.onErrors);
-    //   }
-    //   }
-    //   onSuccess=(snapshot)=>{
-    //       this.currentPhoto = snapshot.downloadURL;
-    //       this.loading.dismiss();
-    //   }
-    //   onErrors=(error)=>{
-    //       console.log(error);
-    //       this.loading.dismiss();
-    //   }
-    ViewerPage.prototype.loadScript = function () {
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = 'assets/js/api.js';
-        document.body.appendChild(script);
-    };
-    ViewerPage.prototype.enableB = function () {
-        this.backRemove = false;
-    };
-    ViewerPage = __decorate([
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('myvideo'),
+        __metadata("design:type", Object)
+    ], VoiceAudioPage.prototype, "myVideo", void 0);
+    VoiceAudioPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-viewer',template:/*ion-inline-start:"C:\Users\Moghrabi\Graduation\src\pages\viewer\viewer.html"*/'<!--\n\n  Generated template for the ViewerPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n\n\n\n\n<ion-content >\n\n  <div style="width: 80%;margin: auto;"> <img src="{{pathForImage(lastImage)}}" style="width: 100%;margin: auto;" [hidden]="lastImage === null" id="img_id"></div>\n\n    <h4 [hidden] ="true" id="imgName">{{lastImage}}</h4>\n\n   <div [hidden]="true" id=\'userInfo\'>{{userInfo}}</div>\n\n\n\n<div  [hidden]="lastImage != null" style="width:50%;margin: auto; text-align: center;\n\n    margin-top: 70%;" > <ion-icon name="camera" class="cameraa"></ion-icon></div>\n\n\n\n<div style="width:70%;margin: auto;" [hidden]="lastImage === null">\n\n  <button  onclick="testao()" class="btn-st">cartoonize</button>\n\n   <button (click)="enableB()" onclick="callLuna()" class="btn-st">backRemove</button>\n\n  <button onclick="store()" class="btn-st">store</button>\n\n</div>\n\n  \n\n <div style="width: 80%;margin: auto;"> <img style="width: 100%;margin: auto;"   id="img_res"></div> \n\n  <p id="state"></p>\n\n  <p id="demo"></p>\n\n  <div id="backgroundT"></div>\n\n<!-- luanpic -->\n\n<title>Lunapic: URL import function</title>\n\n<body>\n\n\n\n<form [hidden]="backRemove" action="https://www169.lunapic.com/editor/" method="POST" id="form1">\n\n    <input type="hidden" name="action" value="transparent">\n\n    <input type="hidden" id="pic" name="url" value="">\n\n    <input type=submit value="Edit Photo">\n\n    .. redirecting\n\n\n\n</form>\n\n</body>\n\n\n\n<!-- lunapic -->\n\n\n\n</ion-content>\n\n<ion-footer>\n\n  <ion-toolbar >\n\n    <ion-buttons>\n\n      <button ion-button icon-left (click)="presentActionSheet()" style="color:#12b3b0 ">\n\n        <ion-icon name="camera" style="color:#12b3b0 "></ion-icon>Select Image\n\n      </button>\n\n\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\Moghrabi\Graduation\src\pages\viewer\viewer.html"*/,
+            selector: 'page-voice-audio',template:/*ion-inline-start:"C:\Users\Moghrabi\Graduation\src\pages\voice-audio\voice-audio.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Ionic Media Capture\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n \n<ion-content>\n  <ion-row>\n    <ion-col>\n      <button ion-button full (click)="captureAudio()">Capture Audio</button>\n    </ion-col>\n    <ion-col>\n      <button ion-button full (click)="captureVideo()">Capture Video</button>\n    </ion-col>\n        <ion-col>\n      <button ion-button full (click)="storeA()">store</button>\n    </ion-col>\n  </ion-row>\n \n  <ion-list>\n    <ion-item *ngFor="let file of mediaFiles" tappable (click)="storeA(file)" text-wrap>\n      {{ file.name }}\n      <p >{{file.localURL}}</p>\n      <p>{{ file.size / 1000 / 1000 | number }} MB</p>\n    </ion-item>\n  </ion-list>\n \n  <video controls autoplay #myvideo>\n  </video>\n</ion-content>'/*ion-inline-end:"C:\Users\Moghrabi\Graduation\src\pages\voice-audio\voice-audio.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_transfer__["a" /* Transfer */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__["a" /* File */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_path__["a" /* FilePath */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__["a" /* AngularFireAuth */]])
-    ], ViewerPage);
-    return ViewerPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_media_capture__["a" /* MediaCapture */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__["a" /* File */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_media__["a" /* Media */]])
+    ], VoiceAudioPage);
+    return VoiceAudioPage;
 }());
 
-//# sourceMappingURL=viewer.js.map
+//# sourceMappingURL=voice-audio.js.map
 
 /***/ })
 

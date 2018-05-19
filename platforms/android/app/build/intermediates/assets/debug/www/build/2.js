@@ -1,14 +1,14 @@
 webpackJsonp([2],{
 
-/***/ 513:
+/***/ 505:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterPageModule", function() { return RegisterPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ViewerPageModule", function() { return ViewerPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register__ = __webpack_require__(522);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__viewer__ = __webpack_require__(517);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,34 +18,38 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var RegisterPageModule = (function () {
-    function RegisterPageModule() {
+var ViewerPageModule = (function () {
+    function ViewerPageModule() {
     }
-    RegisterPageModule = __decorate([
+    ViewerPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__register__["a" /* RegisterPage */],
+                __WEBPACK_IMPORTED_MODULE_2__viewer__["a" /* ViewerPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__register__["a" /* RegisterPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__viewer__["a" /* ViewerPage */]),
             ],
         })
-    ], RegisterPageModule);
-    return RegisterPageModule;
+    ], ViewerPageModule);
+    return ViewerPageModule;
 }());
 
-//# sourceMappingURL=register.module.js.map
+//# sourceMappingURL=viewer.module.js.map
 
 /***/ }),
 
-/***/ 522:
+/***/ 517:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewerPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_transfer__ = __webpack_require__(305);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_path__ = __webpack_require__(306);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__ = __webpack_require__(152);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -55,92 +59,200 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 
 
 
-/**
- * Generated class for the RegisterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var RegisterPage = (function () {
-    function RegisterPage(aFAuth, navCtrl, navParams) {
-        this.aFAuth = aFAuth;
+
+
+
+
+var ViewerPage = (function () {
+    // constructor(public camera: Camera,public navCtrl: NavController, public navParams: NavParams ,public loadingCtrl: LoadingController) {
+    function ViewerPage(navCtrl, camera, transfer, file, filePath, actionSheetCtrl, toastCtrl, platform, loadingCtrl, aFAuth) {
         this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.user = {};
+        this.camera = camera;
+        this.transfer = transfer;
+        this.file = file;
+        this.filePath = filePath;
+        this.actionSheetCtrl = actionSheetCtrl;
+        this.toastCtrl = toastCtrl;
+        this.platform = platform;
+        this.loadingCtrl = loadingCtrl;
+        this.aFAuth = aFAuth;
+        // public base64Image: string;
+        //    mySelectedPhoto;
+        //    loading;
+        //    currentPhoto;
+        this.backRemove = true;
+        this.lastImage = null;
+        this.loadScript();
     }
-    RegisterPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad RegisterPage');
-    };
-    RegisterPage.prototype.register = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var result, e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.aFAuth.auth.createUserWithEmailAndPassword(this.user.email, this.user.password)];
-                    case 1:
-                        result = _a.sent();
-                        if (result) { }
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.error(e_1);
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+    ViewerPage.prototype.presentActionSheet = function () {
+        var _this = this;
+        var actionSheet = this.actionSheetCtrl.create({
+            title: 'Select Image Source',
+            buttons: [
+                {
+                    text: 'Load from Library',
+                    handler: function () {
+                        _this.takePicture(_this.camera.PictureSourceType.PHOTOLIBRARY);
+                    }
+                },
+                {
+                    text: 'Use Camera',
+                    handler: function () {
+                        _this.takePicture(_this.camera.PictureSourceType.CAMERA);
+                    }
+                },
+                {
+                    text: 'Cancel',
+                    role: 'cancel'
                 }
-            });
+            ]
+        });
+        actionSheet.present();
+    };
+    ViewerPage.prototype.takePicture = function (sourceType) {
+        var _this = this;
+        // Create options for the Camera Dialog
+        var options = {
+            quality: 100,
+            sourceType: sourceType,
+            saveToPhotoAlbum: false,
+            correctOrientation: true
+        };
+        // Get the data of an image
+        this.camera.getPicture(options).then(function (imagePath) {
+            // Special handling for Android library
+            if (_this.platform.is('android') && sourceType === _this.camera.PictureSourceType.PHOTOLIBRARY) {
+                _this.filePath.resolveNativePath(imagePath)
+                    .then(function (filePath) {
+                    var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+                    var currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
+                    _this.copyFileToLocalDir(correctPath, currentName, _this.createFileName());
+                    _this.presentToast(_this.lastImage);
+                });
+            }
+            else {
+                var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
+                var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+                _this.copyFileToLocalDir(correctPath, currentName, _this.createFileName());
+                _this.presentToast(_this.lastImage);
+            }
+        }, function (err) {
+            _this.presentToast('Error while selecting image.');
         });
     };
-    RegisterPage = __decorate([
+    // Create a new name for the image
+    ViewerPage.prototype.createFileName = function () {
+        var d = new Date(), n = d.getTime(), newFileName = n + ".jpg";
+        return newFileName;
+    };
+    // Copy the image to a local folder
+    ViewerPage.prototype.copyFileToLocalDir = function (namePath, currentName, newFileName) {
+        var _this = this;
+        this.file.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(function (success) {
+            _this.lastImage = newFileName;
+        }, function (error) {
+            _this.presentToast('Error while storing file.');
+        });
+    };
+    ViewerPage.prototype.presentToast = function (text) {
+        var toast = this.toastCtrl.create({
+            message: text,
+            duration: 3000,
+            position: 'top'
+        });
+        toast.present();
+    };
+    // Always get the accurate path to your apps folder
+    ViewerPage.prototype.pathForImage = function (img) {
+        if (img === null) {
+            return '';
+        }
+        else {
+            // this.presentToast("cordova.file.dataDirectory" + img);
+            return cordova.file.dataDirectory + img;
+        }
+    };
+    ViewerPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        // console.log('ionViewDidLoad ViewerPage');
+        this.aFAuth.authState.subscribe(function (data) {
+            if (data && data.email && data.uid) {
+                console.log('Welcome to APP_NAME' + data.email);
+                _this.userInfo = data.uid;
+            }
+            else {
+                console.log(" Could not find authentication details");
+            }
+        });
+    };
+    //   takePhoto(){
+    //   const options: CameraOptions = {
+    //     quality: 100,
+    //     targetHeight: 200,
+    //     targetWidth: 200,
+    //     destinationType: this.camera.DestinationType.DATA_URL,
+    //     encodingType: this.camera.EncodingType.JPEG,
+    //     mediaType: this.camera.MediaType.PICTURE
+    //   }
+    //  this.camera.getPicture(options).then((imageData) => {
+    //  this.loading = this.loadingCtrl.create({
+    //  content:"Taking photo wait ...."
+    //  });
+    //  this.loading.present();
+    //  this.mySelectedPhoto =
+    //  this.dataURLtoBlob('data:image/jpeg;base64,' + imageData);
+    //  this.upload();
+    // }, (err) => {
+    //  // Handle error
+    // });
+    //   }
+    //    dataURLtoBlob(myURL){
+    //       let binary = atob(myURL.split(',')[1]);
+    //   let array = [];
+    //   for (let i = 0 ; i < binary.length;i++){
+    //       array.push(binary.charCodeAt(i));
+    //   }
+    //       return new Blob([new Uint8Array(array)],{type:'image/jpeg'});
+    //   }
+    //   upload(){
+    //   if(this.mySelectedPhoto){
+    //       var uploadTask = firebase.storage().ref().child('images/myphoto.jpg').put(this.mySelectedPhoto);
+    //       uploadTask.then(this.onSuccess,this.onErrors);
+    //   }
+    //   }
+    //   onSuccess=(snapshot)=>{
+    //       this.currentPhoto = snapshot.downloadURL;
+    //       this.loading.dismiss();
+    //   }
+    //   onErrors=(error)=>{
+    //       console.log(error);
+    //       this.loading.dismiss();
+    //   }
+    ViewerPage.prototype.loadScript = function () {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'assets/js/api.js';
+        document.body.appendChild(script);
+    };
+    ViewerPage.prototype.enableB = function () {
+        this.backRemove = false;
+    };
+    ViewerPage.prototype.goToA = function () {
+        this.navCtrl.push('VoiceAudioPage');
+    };
+    ViewerPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-register',template:/*ion-inline-start:"C:\Users\Moghrabi\Graduation\src\pages\register\register.html"*/'<!--\n\n  Generated template for the RegisterPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>register</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-item>\n\n  <ion-label floating>Email Address</ion-label>\n\n  <ion-input type="text" [(ngModel)]="user.email"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label floating>Password</ion-label>\n\n    <ion-input type="password" [(ngModel)]="user.password"></ion-input>\n\n  </ion-item>\n\n\n\n  <button ion-button color="light" (click)="register(user)">Register</button>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Moghrabi\Graduation\src\pages\register\register.html"*/,
+            selector: 'page-viewer',template:/*ion-inline-start:"C:\Users\Moghrabi\Graduation\src\pages\viewer\viewer.html"*/'<!--\n\n  Generated template for the ViewerPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n\n\n\n\n<ion-content >\n\n  <div style="width: 80%;margin: auto;"> <img src="{{pathForImage(lastImage)}}" style="width: 100%;margin: auto;" [hidden]="lastImage === null" id="img_id"></div>\n\n    <h4 [hidden] ="true" id="imgName">{{lastImage}}</h4>\n\n   <div [hidden]="true" id=\'userInfo\'>{{userInfo}}</div>\n\n\n\n<div  [hidden]="lastImage != null" style="width:50%;margin: auto; text-align: center;\n\n    margin-top: 70%;" > <ion-icon name="camera" class="cameraa"></ion-icon></div>\n\n<!-- [hidden]="lastImage === null" -->\n\n<div style="width:70%;margin: auto;" >\n\n  <button  onclick="testao()" class="btn-st">cartoonize</button>\n\n   <button (click)="enableB()" onclick="callLuna()" class="btn-st">backRemove</button>\n\n  <button onclick="store()" class="btn-st">store</button>\n\n   <button (click)="goToA()" class="btn-st">audio</button>\n\n</div>\n\n  \n\n <div style="width: 80%;margin: auto;"> <img style="width: 100%;margin: auto;"   id="img_res"></div> \n\n  <p id="state"></p>\n\n  <p id="demo"></p>\n\n  <div id="backgroundT"></div>\n\n<!-- luanpic -->\n\n<title>Lunapic: URL import function</title>\n\n<body>\n\n\n\n<form [hidden]="backRemove" action="https://www169.lunapic.com/editor/" method="POST" id="form1">\n\n    <input type="hidden" name="action" value="transparent">\n\n    <input type="hidden" id="pic" name="url" value="">\n\n    <input type=submit value="Edit Photo">\n\n    .. redirecting\n\n\n\n</form>\n\n</body>\n\n\n\n<!-- lunapic -->\n\n\n\n</ion-content>\n\n<ion-footer>\n\n  <ion-toolbar >\n\n    <ion-buttons>\n\n      <button ion-button icon-left (click)="presentActionSheet()" style="color:#12b3b0 ">\n\n        <ion-icon name="camera" style="color:#12b3b0 "></ion-icon>Select Image\n\n      </button>\n\n\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\Moghrabi\Graduation\src\pages\viewer\viewer.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
-    ], RegisterPage);
-    return RegisterPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_transfer__["a" /* Transfer */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__["a" /* File */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_path__["a" /* FilePath */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__["a" /* AngularFireAuth */]])
+    ], ViewerPage);
+    return ViewerPage;
 }());
 
-//# sourceMappingURL=register.js.map
+//# sourceMappingURL=viewer.js.map
 
 /***/ })
 

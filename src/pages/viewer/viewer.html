@@ -14,11 +14,12 @@
 
 <div  [hidden]="lastImage != null" style="width:50%;margin: auto; text-align: center;
     margin-top: 70%;" > <ion-icon name="camera" class="cameraa"></ion-icon></div>
-
-<div style="width:70%;margin: auto;" [hidden]="lastImage === null">
+<!-- [hidden]="lastImage === null" -->
+<div style="width:70%;margin: auto;" >
   <button  onclick="testao()" class="btn-st">cartoonize</button>
    <button (click)="enableB()" onclick="callLuna()" class="btn-st">backRemove</button>
   <button onclick="store()" class="btn-st">store</button>
+   <button (click)="goToA()" class="btn-st">audio</button>
 </div>
   
  <div style="width: 80%;margin: auto;"> <img style="width: 100%;margin: auto;"   id="img_res"></div> 

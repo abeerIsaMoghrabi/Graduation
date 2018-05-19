@@ -11,10 +11,10 @@ INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\Androi
 	android:name
 		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:12:127-181
 manifest
-ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
-INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
-INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
-INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
+ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
 MERGED from [com.android.support:appcompat-v7:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\09bc24de20bed83e18ad16e6eb8701ae\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-v4:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-v4-25.4.0.aar\d21c5bb63b344c7b56f64ce9c52608b0\AndroidManifest.xml:17:1-31:12
 MERGED from [:CordovaLib] C:\Users\Moghrabi\Graduation\platforms\android\CordovaLib\build\intermediates\manifests\full\debug\AndroidManifest.xml:20:1-27:12
@@ -25,9 +25,9 @@ MERGED from [com.android.support:support-core-ui:25.4.0] C:\Users\Moghrabi\.grad
 MERGED from [com.android.support:support-media-compat:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.4.0.aar\7d0c562a4f6835ef79dde7e11628496e\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-core-utils:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.4.0.aar\fca0b6bb2e52fc698c963f82a365465c\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-compat:25.4.0] C:\Users\Moghrabi\.gradle\caches\transforms-1\files-1.1\support-compat-25.4.0.aar\271e62b3f5a0388f645eee2e67bb26f5\AndroidManifest.xml:17:1-31:12
-INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
-INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
-INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
 	package
 		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:2:98-124
 		INJECTED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml
@@ -152,6 +152,22 @@ uses-permission#android.permission.READ_EXTERNAL_STORAGE
 ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:18:5-80
 	android:name
 		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:18:22-77
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:19:5-71
+	android:name
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:19:22-68
+uses-permission#android.permission.RECORD_VIDEO
+ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:20:5-71
+	android:name
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:20:22-68
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:21:5-80
+	android:name
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:21:22-77
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:22:5-75
+	android:name
+		ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:22:22-72
 meta-data#android.support.FILE_PROVIDER_PATHS
 ADDED from C:\Users\Moghrabi\Graduation\platforms\android\app\src\main\AndroidManifest.xml:13:13-116
 	android:resource

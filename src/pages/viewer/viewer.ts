@@ -215,7 +215,9 @@ export class ViewerPage {
        this.backRemove=false;
    }
 
-   
+   goToA(){
+       this.navCtrl.push('VoiceAudioPage');
+   }
 
   
 }

@@ -1,15 +1,15 @@
 [
     {
-        "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_textfield_activated_mtrl_alpha.9.png.flat",
-        "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\drawable-xxhdpi-v4\\abc_textfield_activated_mtrl_alpha.9.png"
+        "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_text_select_handle_left_mtrl_dark.png.flat",
+        "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\drawable-xxxhdpi-v4\\abc_text_select_handle_left_mtrl_dark.png"
     },
     {
         "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_divider_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\drawable-hdpi-v4\\abc_list_divider_mtrl_alpha.9.png"
     },
     {
-        "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_text_select_handle_left_mtrl_dark.png.flat",
-        "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\drawable-xxxhdpi-v4\\abc_text_select_handle_left_mtrl_dark.png"
+        "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_textfield_activated_mtrl_alpha.9.png.flat",
+        "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\drawable-xxhdpi-v4\\abc_textfield_activated_mtrl_alpha.9.png"
     },
     {
         "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
@@ -184,12 +184,12 @@
         "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\layout-v11\\notification_template_big_media.xml"
     },
     {
-        "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxhdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
-        "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\drawable-ldrtl-xxhdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png"
-    },
-    {
         "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ab_share_pack_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\drawable-hdpi-v4\\abc_ab_share_pack_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxhdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
+        "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\drawable-ldrtl-xxhdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
         "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
@@ -528,12 +528,12 @@
         "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\drawable-mdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png"
     },
     {
-        "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_normal_pressed.9.png.flat",
-        "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png"
-    },
-    {
         "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
         "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\drawable-xhdpi-v4\\abc_list_pressed_holo_dark.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png"
     },
     {
         "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_list_menu_item_layout.xml.flat",
@@ -596,12 +596,12 @@
         "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\layout\\abc_activity_chooser_view.xml"
     },
     {
-        "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notify_panel_notification_icon_bg.png.flat",
-        "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\drawable-hdpi-v4\\notify_panel_notification_icon_bg.png"
-    },
-    {
         "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",
         "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\drawable-xhdpi-v4\\abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notify_panel_notification_icon_bg.png.flat",
+        "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\drawable-hdpi-v4\\notify_panel_notification_icon_bg.png"
     },
     {
         "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-mdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
@@ -624,12 +624,12 @@
         "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\layout\\abc_screen_content_include.xml"
     },
     {
-        "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_tint_switch_thumb.xml.flat",
-        "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\color-v23\\abc_tint_switch_thumb.xml"
-    },
-    {
         "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",
         "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\drawable-xhdpi-v4\\notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_tint_switch_thumb.xml.flat",
+        "source": "C:\\Users\\Moghrabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\09bc24de20bed83e18ad16e6eb8701ae\\res\\color-v23\\abc_tint_switch_thumb.xml"
     },
     {
         "merged": "C:\\Users\\Moghrabi\\Graduation\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_notification_action_background.xml.flat",
