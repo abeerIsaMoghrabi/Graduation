@@ -8,20 +8,25 @@
 
 
 <ion-content >
+  <div style="width:50%;margin: auto; text-align: center;">
+ <button (click)="goToA()" class="btn-st">audio</button>
+  <button (click)="takePhoto(0)" class="btn-st">store</button> 
+</div>
   <div style="width: 80%;margin: auto;"> <img src="{{pathForImage(lastImage)}}" style="width: 100%;margin: auto;" [hidden]="lastImage === null" id="img_id"></div>
     <h4 [hidden] ="true" id="imgName">{{lastImage}}</h4>
    <div [hidden]="true" id='userInfo'>{{userInfo}}</div>
 
 <div  [hidden]="lastImage != null" style="width:50%;margin: auto; text-align: center;
-    margin-top: 70%;" > <ion-icon name="camera" class="cameraa"></ion-icon></div>
+       margin-top: 22%;" > <ion-icon name="camera" class="cameraa"></ion-icon></div>
 <!-- [hidden]="lastImage === null" -->
-<div style="width:70%;margin: auto;" >
+<div style="width:70%;margin: auto;" [hidden]="lastImage === null" >
   <button  onclick="testao()" class="btn-st">cartoonize</button>
    <button (click)="enableB()" onclick="callLuna()" class="btn-st">backRemove</button>
-  <button onclick="store()" class="btn-st">store</button>
-   <button (click)="goToA()" class="btn-st">audio</button>
-</div>
   
+   
+</div>
+
+
  <div style="width: 80%;margin: auto;"> <img style="width: 100%;margin: auto;"   id="img_res"></div> 
   <p id="state"></p>
   <p id="demo"></p>

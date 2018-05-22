@@ -1,3 +1,4 @@
+
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -19,7 +20,7 @@ import { Camera } from '@ionic-native/camera';
 import { ImageProvider } from '../providers/image/image';
 import { MediaCapture } from '@ionic-native/media-capture';
 import { Media } from '@ionic-native/media';
-
+import { NativeAudio } from '@ionic-native/native-audio';
 
 import { File } from '@ionic-native/file';
 import { Transfer } from '@ionic-native/transfer';
@@ -50,7 +51,8 @@ export const FIREBASE_CONFIG =
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireModule ,
-     IonicStorageModule.forRoot()
+     IonicStorageModule.forRoot(),
+    
  
   ],
   bootstrap: [IonicApp],
@@ -66,7 +68,7 @@ export const FIREBASE_CONFIG =
     StatusBar,
     SplashScreen,
     File,
-
+NativeAudio,
     Transfer,
     Camera,
     FilePath,

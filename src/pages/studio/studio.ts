@@ -76,7 +76,9 @@ export class StudioPage {
     imgSource34;
     imgSource35;
     imgSource36;
-
+  imgSource55;
+imgSource56;
+imgSource57;
     imgSource37;
     imgSource38;
     imgSource39;
@@ -90,6 +92,16 @@ export class StudioPage {
     imgSource47;
      imgSource48;
 
+       imgSource49;
+    imgSource50;
+    imgSource51;
+    imgSource52;
+    imgSource53;
+     imgSource54;
+imgSource58;
+imgSource59;
+imgSource60;
+imgSource61;
   constructor( public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
 
   this.getMyURL();
@@ -191,6 +203,15 @@ this.loadScript();
           firebase.storage().ref().child('bg/s1.png').getDownloadURL().then((url)=>{
           this.imgSource27 = url;
           })
+           firebase.storage().ref().child('bg/imageedit_11_7709009449.png').getDownloadURL().then((url)=>{
+          this.imgSource55 = url;
+          })
+             firebase.storage().ref().child('bg/imageedit_24_3672429159.png').getDownloadURL().then((url)=>{
+          this.imgSource61 = url;
+          })
+            firebase.storage().ref().child('bg/gg.PNG').getDownloadURL().then((url)=>{
+          this.imgSource56 = url;
+          })
           firebase.storage().ref().child('obj/a1.png').getDownloadURL().then((url)=>{
           this.imgSource28 = url;
           })
@@ -256,8 +277,35 @@ this.loadScript();
          firebase.storage().ref().child('bg/groung1.png').getDownloadURL().then((url)=>{
           this.imgSource48 = url;
           })
+          firebase.storage().ref().child('bg/imageedit_18_6246276166.png').getDownloadURL().then((url)=>{
+          this.imgSource58 = url;
+          })
+           firebase.storage().ref().child('bg/imageedit_20_7479302737.png').getDownloadURL().then((url)=>{
+          this.imgSource59 = url;
+          })
+             firebase.storage().ref().child('bg/imageedit_22_5659267894.png').getDownloadURL().then((url)=>{
+          this.imgSource60 = url;
+          })
+          firebase.storage().ref().child('obj/imageedit_14_5453407336.png').getDownloadURL().then((url)=>{
+          this.imgSource57 = url;
+          })
+///////////////////////////////
 
-
+firebase.storage().ref().child('ENSrXjtl0JdGvoXeHlSTmSBoEIb2/imageedit_1_6300314240.png').getDownloadURL().then((url)=>{
+          this.imgSource50 = url;
+          })
+firebase.storage().ref().child('ENSrXjtl0JdGvoXeHlSTmSBoEIb2/imageedit_3_5396431971.png').getDownloadURL().then((url)=>{
+          this.imgSource51 = url;
+          })
+firebase.storage().ref().child('ENSrXjtl0JdGvoXeHlSTmSBoEIb2/imageedit_5_5989166460.png').getDownloadURL().then((url)=>{
+          this.imgSource52 = url;
+          })
+firebase.storage().ref().child('ENSrXjtl0JdGvoXeHlSTmSBoEIb2/imageedit_7_4051595021.png').getDownloadURL().then((url)=>{
+          this.imgSource53 = url;
+          })
+firebase.storage().ref().child('ENSrXjtl0JdGvoXeHlSTmSBoEIb2/imageedit_9_6495039310.png').getDownloadURL().then((url)=>{
+          this.imgSource54 = url;
+          })
 
   }
 
@@ -304,4 +352,8 @@ this.navCtrl.push('BackgroundPage');
          async b1() {
 this.navCtrl.push('DisplayPage');
   } 
+
+  GP(){
+    this.navCtrl.push('HomePage');
+  }
 }

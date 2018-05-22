@@ -1,11 +1,6 @@
 
 
-navigator.mediaDevices.getUserMedia({ audio: true })
-  .then(stream => {
-    const mediaRecorder = new MediaRecorder(stream);
-    mediaRecorder.start();
-  });
-
+var gColor2;
 var wx=window.innerWidth;
 var wy=window.innerHeight;
 var walls2=[];
@@ -45,8 +40,41 @@ down:true,
 left:true,
 right:true
 };
-var sh=wy/480;
-var x=wy-480;
+// var sh=wy/480;
+// var x=wy-480;
+///////////////////////
+var s1=wy/480;
+var s2=wx/2000;
+
+function doOnOrientationChange() {
+    switch(window.orientation) {  
+      case -90 || 90:
+        
+        sh=s2;
+         Crafty.viewport.scale(sh);
+        // alert(sh);
+        break; 
+      default:
+      sh=s1;
+       
+         Crafty.viewport.scale(sh);
+       //  alert(sh);
+        break; 
+    }
+}
+  
+window.addEventListener('orientationchange', doOnOrientationChange);
+  
+// Initial execution if needed
+doOnOrientationChange();
+
+
+
+
+
+////////////////////
+
+
 var vv;
 var l1;
 var l2;
@@ -130,6 +158,7 @@ that.objList=p.objList;
 //that.len=p.len;
 that.natu=p.natu;
 that.textArr=p.textArr;
+that.Scolor=p.Scolor;
 return that;
 }
 
@@ -146,7 +175,7 @@ return that;
 console.log("wx="+wx+"wy="+wy);
 
 Crafty.init(3000,wy, document.getElementById('game1'));
-    Crafty.viewport.scale(sh);
+    
 Game2=document.getElementById('game1');
 var config = {
     apiKey: "AIzaSyAwzSQGq1EYiVTEAKlTlNHFtbm1IrZYbtg",
@@ -159,7 +188,7 @@ var config = {
   firebase.initializeApp(config);
   
 
-
+Crafty.viewport.mouselook(true);
 
 var l=[];
 var l2=[]; 
@@ -199,10 +228,12 @@ var story = firebase.database().ref(userId).child(" "+name2+"/").on("value",func
       //actionAEnt2=data.val().StoryObj.actionAEnt;
       natu2=data.val().StoryObj.natu;
      txts2=data.val().StoryObj.textArr;
+     gColor2=data.val().StoryObj.Scolor;
       console.log(objList2);
       console.log(actionA2);
       //console.log(actionAEnt2);
       //alert (actionAEnt2.length);
+       Crafty.background(gColor2);
       console.log(natu2);
       var nat;
 //       Crafty.sprite(102,95, 'assets/imgs/paly2.png', {play2:[0,0]});
@@ -238,6 +269,7 @@ if(Number(objList2[z].id)==Number(natu2[w].id)){
     x:b.x,
     y:b.y
                });
+    Crafty.viewport.scale(sh);
 
     bg.setName(b.id);
     //alert(bg.getName());
@@ -296,7 +328,8 @@ if(g!=null){
     w:g[j].w,
     h:3
   }).color('green');;
-  line.addComponent('Floor');  
+  line.addComponent('Floor'); 
+  line.visible=false; 
 }
 }
 //bg.setName(b.id);
@@ -569,8 +602,18 @@ function leftMove2(stopT,xff,yff,entt,act){
   // var count=amount;
       
          var myVar = setInterval(function () {
+      Crafty.viewport.width=wx;
+     Crafty.viewport.height=wy;
+    
+     Crafty.viewport.clampToEntites=false;
+     //entt.addComponent("Solid");
+     //Crafty.viewport.scale(1);
+    Crafty.one("CameraAnimationDone",function(){
+    Crafty.viewport.follow(entt,0,0);
+    });
+   Crafty.viewport.centerOn(entt,0); 
                  console.log("leftMovee");
-                entt.x-=2.7;
+                entt.x-=4;
               
               //  count = count - 1;
                 if (stopT==document.getElementById("timer").innerHTML||entt.x<=xff ) {
@@ -630,7 +673,7 @@ function rightMove2(stopT,xff,yff,entt,act){
     });
    Crafty.viewport.centerOn(entt,0); 
                  console.log("rightMovee");
-                 entt.x+=2.7;
+                 entt.x+=4;
               
                // count = count - 1;
                if (stopT==document.getElementById("timer").innerHTML ||entt.x>=xff) {
@@ -669,7 +712,7 @@ function rightMove2(stopT,xff,yff,entt,act){
      }
 
 function upMove2(stopT,xff,yff,entt,act){
-      
+       entt.antigravity();
        var myVar = setInterval(function () {
         Crafty.viewport.width=wx;
      Crafty.viewport.height=wy;
@@ -803,7 +846,7 @@ function leftMoveF2(stopT,xff,yff,entt,act){
     });
     Crafty.viewport.centerOn(entt,0); 
                  console.log("leftMovee");
-                entt.x-=2;
+                entt.x-=2.3;
               
               //  count = count - 1;
                 if (stopT==document.getElementById("timer").innerHTML||entt.x<=xff ) {
@@ -901,6 +944,15 @@ function rightMoveF2(stopT,xff,yff,entt){
 function startStory(){
    document.getElementById("playd").style.display="none";
      document.getElementById("pausee2").style.display="inline-block";
+     var x = document.getElementById("myAudio"); 
+
+// console.log("hi audio");
+//     x.play(); 
+var audio = new Audio();
+audio.src = "assets/st.mp3";
+audio.load();
+audio.play();
+
      startTest2();
 
 }

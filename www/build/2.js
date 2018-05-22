@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 505:
+/***/ 506:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ViewerPageModule", function() { return ViewerPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__viewer__ = __webpack_require__(515);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__viewer__ = __webpack_require__(518);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,18 +38,20 @@ var ViewerPageModule = (function () {
 
 /***/ }),
 
-/***/ 515:
+/***/ 518:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewerPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__ = __webpack_require__(303);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_transfer__ = __webpack_require__(308);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_path__ = __webpack_require__(309);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_transfer__ = __webpack_require__(304);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_path__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase_app__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_firebase_app__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__ = __webpack_require__(153);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -66,9 +68,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ViewerPage = (function () {
     // constructor(public camera: Camera,public navCtrl: NavController, public navParams: NavParams ,public loadingCtrl: LoadingController) {
     function ViewerPage(navCtrl, camera, transfer, file, filePath, actionSheetCtrl, toastCtrl, platform, loadingCtrl, aFAuth) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.camera = camera;
         this.transfer = transfer;
@@ -79,12 +83,18 @@ var ViewerPage = (function () {
         this.platform = platform;
         this.loadingCtrl = loadingCtrl;
         this.aFAuth = aFAuth;
-        // public base64Image: string;
-        //    mySelectedPhoto;
-        //    loading;
-        //    currentPhoto;
+        this.count = 0;
+        // BlobURL;
         this.backRemove = true;
         this.lastImage = null;
+        this.onSuccess = function (snapshot) {
+            _this.mySelectedPhoto = snapshot.downloadURL;
+            _this.loading.dismiss();
+        };
+        this.onErrors = function (error) {
+            console.log(error);
+            _this.loading.dismiss();
+        };
         this.loadScript();
     }
     ViewerPage.prototype.presentActionSheet = function () {
@@ -188,49 +198,44 @@ var ViewerPage = (function () {
             }
         });
     };
-    //   takePhoto(){
-    //   const options: CameraOptions = {
-    //     quality: 100,
-    //     targetHeight: 200,
-    //     targetWidth: 200,
-    //     destinationType: this.camera.DestinationType.DATA_URL,
-    //     encodingType: this.camera.EncodingType.JPEG,
-    //     mediaType: this.camera.MediaType.PICTURE
-    //   }
-    //  this.camera.getPicture(options).then((imageData) => {
-    //  this.loading = this.loadingCtrl.create({
-    //  content:"Taking photo wait ...."
-    //  });
-    //  this.loading.present();
-    //  this.mySelectedPhoto =
-    //  this.dataURLtoBlob('data:image/jpeg;base64,' + imageData);
-    //  this.upload();
-    // }, (err) => {
-    //  // Handle error
-    // });
-    //   }
-    //    dataURLtoBlob(myURL){
-    //       let binary = atob(myURL.split(',')[1]);
-    //   let array = [];
-    //   for (let i = 0 ; i < binary.length;i++){
-    //       array.push(binary.charCodeAt(i));
-    //   }
-    //       return new Blob([new Uint8Array(array)],{type:'image/jpeg'});
-    //   }
-    //   upload(){
-    //   if(this.mySelectedPhoto){
-    //       var uploadTask = firebase.storage().ref().child('images/myphoto.jpg').put(this.mySelectedPhoto);
-    //       uploadTask.then(this.onSuccess,this.onErrors);
-    //   }
-    //   }
-    //   onSuccess=(snapshot)=>{
-    //       this.currentPhoto = snapshot.downloadURL;
-    //       this.loading.dismiss();
-    //   }
-    //   onErrors=(error)=>{
-    //       console.log(error);
-    //       this.loading.dismiss();
-    //   }
+    ViewerPage.prototype.takePhoto = function () {
+        var _this = this;
+        var options = {
+            quality: 100,
+            targetHeight: 200,
+            targetWidth: 200,
+            destinationType: this.camera.DestinationType.DATA_URL,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE,
+            sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+        };
+        this.camera.getPicture(options).then(function (imageData) {
+            _this.loading = _this.loadingCtrl.create({
+                content: "Taking photo wait ...."
+            });
+            _this.loading.present();
+            _this.mySelectedPhoto =
+                _this.dataURLtoBlob('data:image/jpeg;base64,' + imageData);
+            _this.upload();
+        }, function (err) {
+            // Handle error
+        });
+    };
+    ViewerPage.prototype.dataURLtoBlob = function (myURL) {
+        var binary = atob(myURL.split(',')[1]);
+        var array = [];
+        for (var i = 0; i < binary.length; i++) {
+            array.push(binary.charCodeAt(i));
+        }
+        return new Blob([new Uint8Array(array)], { type: 'image/jpeg' });
+    };
+    ViewerPage.prototype.upload = function () {
+        if (this.mySelectedPhoto) {
+            var uploadTask = __WEBPACK_IMPORTED_MODULE_6_firebase_app__["storage"]().ref().child(this.userInfo + '/' + this.count + '.jpg').put(this.mySelectedPhoto);
+            this.count++;
+            uploadTask.then(this.onSuccess, this.onErrors);
+        }
+    };
     ViewerPage.prototype.loadScript = function () {
         var script = document.createElement('script');
         script.type = 'text/javascript';
@@ -241,13 +246,15 @@ var ViewerPage = (function () {
         this.backRemove = false;
     };
     ViewerPage.prototype.goToA = function () {
-        this.navCtrl.push('VoiceAudioPage');
+        this.navCtrl.push('VoiceAudioPage', {
+            data: this.userInfo.replace(/\s/g, "")
+        });
     };
     ViewerPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-viewer',template:/*ion-inline-start:"C:\Users\Moghrabi\Graduation\src\pages\viewer\viewer.html"*/'<!--\n\n  Generated template for the ViewerPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n\n\n\n\n<ion-content >\n\n  <div style="width: 80%;margin: auto;"> <img src="{{pathForImage(lastImage)}}" style="width: 100%;margin: auto;" [hidden]="lastImage === null" id="img_id"></div>\n\n    <h4 [hidden] ="true" id="imgName">{{lastImage}}</h4>\n\n   <div [hidden]="true" id=\'userInfo\'>{{userInfo}}</div>\n\n\n\n<div  [hidden]="lastImage != null" style="width:50%;margin: auto; text-align: center;\n\n    margin-top: 70%;" > <ion-icon name="camera" class="cameraa"></ion-icon></div>\n\n<!-- [hidden]="lastImage === null" -->\n\n<div style="width:70%;margin: auto;" >\n\n  <button  onclick="testao()" class="btn-st">cartoonize</button>\n\n   <button (click)="enableB()" onclick="callLuna()" class="btn-st">backRemove</button>\n\n  <button onclick="store()" class="btn-st">store</button>\n\n   <button (click)="goToA()" class="btn-st">audio</button>\n\n</div>\n\n  \n\n <div style="width: 80%;margin: auto;"> <img style="width: 100%;margin: auto;"   id="img_res"></div> \n\n  <p id="state"></p>\n\n  <p id="demo"></p>\n\n  <div id="backgroundT"></div>\n\n<!-- luanpic -->\n\n<title>Lunapic: URL import function</title>\n\n<body>\n\n\n\n<form [hidden]="backRemove" action="https://www169.lunapic.com/editor/" method="POST" id="form1">\n\n    <input type="hidden" name="action" value="transparent">\n\n    <input type="hidden" id="pic" name="url" value="">\n\n    <input type=submit value="Edit Photo">\n\n    .. redirecting\n\n\n\n</form>\n\n</body>\n\n\n\n<!-- lunapic -->\n\n\n\n</ion-content>\n\n<ion-footer>\n\n  <ion-toolbar >\n\n    <ion-buttons>\n\n      <button ion-button icon-left (click)="presentActionSheet()" style="color:#12b3b0 ">\n\n        <ion-icon name="camera" style="color:#12b3b0 "></ion-icon>Select Image\n\n      </button>\n\n\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\Moghrabi\Graduation\src\pages\viewer\viewer.html"*/,
+            selector: 'page-viewer',template:/*ion-inline-start:"C:\Users\Moghrabi\Graduation\src\pages\viewer\viewer.html"*/'<!--\n\n  Generated template for the ViewerPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n\n\n\n\n<ion-content >\n\n  <div style="width:50%;margin: auto; text-align: center;">\n\n <button (click)="goToA()" class="btn-st">audio</button>\n\n  <button (click)="takePhoto(0)" class="btn-st">store</button> \n\n</div>\n\n  <div style="width: 80%;margin: auto;"> <img src="{{pathForImage(lastImage)}}" style="width: 100%;margin: auto;" [hidden]="lastImage === null" id="img_id"></div>\n\n    <h4 [hidden] ="true" id="imgName">{{lastImage}}</h4>\n\n   <div [hidden]="true" id=\'userInfo\'>{{userInfo}}</div>\n\n\n\n<div  [hidden]="lastImage != null" style="width:50%;margin: auto; text-align: center;\n\n       margin-top: 22%;" > <ion-icon name="camera" class="cameraa"></ion-icon></div>\n\n<!-- [hidden]="lastImage === null" -->\n\n<div style="width:70%;margin: auto;" [hidden]="lastImage === null" >\n\n  <button  onclick="testao()" class="btn-st">cartoonize</button>\n\n   <button (click)="enableB()" onclick="callLuna()" class="btn-st">backRemove</button>\n\n  \n\n   \n\n</div>\n\n\n\n\n\n <div style="width: 80%;margin: auto;"> <img style="width: 100%;margin: auto;"   id="img_res"></div> \n\n  <p id="state"></p>\n\n  <p id="demo"></p>\n\n  <div id="backgroundT"></div>\n\n<!-- luanpic -->\n\n<title>Lunapic: URL import function</title>\n\n<body>\n\n\n\n<form [hidden]="backRemove" action="https://www169.lunapic.com/editor/" method="POST" id="form1">\n\n    <input type="hidden" name="action" value="transparent">\n\n    <input type="hidden" id="pic" name="url" value="">\n\n    <input type=submit value="Edit Photo">\n\n    .. redirecting\n\n\n\n</form>\n\n</body>\n\n\n\n<!-- lunapic -->\n\n\n\n</ion-content>\n\n<ion-footer>\n\n  <ion-toolbar >\n\n    <ion-buttons>\n\n      <button ion-button icon-left (click)="presentActionSheet()" style="color:#12b3b0 ">\n\n        <ion-icon name="camera" style="color:#12b3b0 "></ion-icon>Select Image\n\n      </button>\n\n\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\Moghrabi\Graduation\src\pages\viewer\viewer.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_transfer__["a" /* Transfer */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__["a" /* File */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_path__["a" /* FilePath */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__["a" /* AngularFireAuth */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_transfer__["a" /* Transfer */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__["a" /* File */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_path__["a" /* FilePath */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__["a" /* AngularFireAuth */]])
     ], ViewerPage);
     return ViewerPage;
 }());

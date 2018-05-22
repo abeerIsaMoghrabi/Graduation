@@ -8,7 +8,9 @@ import { Media, MediaObject } from '@ionic-native/media';
 import { File } from '@ionic-native/file';
 
 import { storage } from 'firebase';
+import { Observable } from 'rxjs/Observable';
 
+import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database-deprecated";
 const MEDIA_FILES_KEY = 'mediaFiles';
 export const FIREBASE_CONFIG =
  {
@@ -38,12 +40,17 @@ vv="";
 start=0;
 mp3file: MediaObject = this.media.create(this.file.dataDirectory+'recording.mp3');
 mediaFiles = [];
-
+userInfo;
+peopleList : FirebaseListObservable<any>;
   @ViewChild('myvideo') myVideo: any;
   ftu:any;
-  constructor(public navCtrl: NavController, private mediaCapture: MediaCapture, private storage: Storage, private file: File, private media: Media) {
+  constructor(public navCtrl: NavController,public navParams: NavParams,  private mediaCapture: MediaCapture, private storage: Storage, private file: File, private media: Media ,   private af: AngularFireDatabase) {
+  	
+ this.userInfo = navParams.get('data');
   	this.loadScript();
   	this.rec();
+
+this.peopleList = this.af.list('/'+this.userInfo);
   }
  
   ionViewDidLoad() {
@@ -96,12 +103,17 @@ mediaFiles = [];
 
  play(myFile) {
 
- 
+ this.createPerson(myFile.localURL);
     if (myFile.name.indexOf('.wav') > -1) {
+
       const audioFile: MediaObject = this.media.create(myFile.localURL);
+      
       audioFile.play();
+
     } else {
       let path = this.file.dataDirectory + myFile.name;
+      // this.createPerson(path);
+
       let url = path.replace(/^file:\/\//, '');
       let video = this.myVideo.nativeElement;
       video.src = url;
@@ -111,6 +123,14 @@ mediaFiles = [];
   
 
   }
+
+  createPerson(ur){
+    this.peopleList.push({
+       path:ur
+        }).then(newPerson =>{
+    
+    },error=>{console.log(error);});
+}
 
 dataURLtoBlob(myURL){
       let binary = atob(myURL.split(',')[1]);

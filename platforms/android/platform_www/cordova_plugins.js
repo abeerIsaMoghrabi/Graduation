@@ -336,6 +336,14 @@ module.exports = [
     "clobbers": [
       "window.Media"
     ]
+  },
+  {
+    "id": "cordova-plugin-nativeaudio.nativeaudio",
+    "file": "plugins/cordova-plugin-nativeaudio/www/nativeaudio.js",
+    "pluginId": "cordova-plugin-nativeaudio",
+    "clobbers": [
+      "window.plugins.NativeAudio"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -351,7 +359,8 @@ module.exports.metadata =
   "cordova-plugin-splashscreen": "5.0.2",
   "cordova-plugin-whitelist": "1.3.3",
   "cordova-plugin-media-capture": "3.0.2",
-  "cordova-plugin-media": "5.0.2"
+  "cordova-plugin-media": "5.0.2",
+  "cordova-plugin-nativeaudio": "3.0.9"
 };
 // BOTTOM OF METADATA
 });

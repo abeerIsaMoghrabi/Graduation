@@ -27,10 +27,12 @@ declare var cordova: any;
 })
 export class ViewerPage {
 
-	// public base64Image: string;
- //    mySelectedPhoto;
- //    loading;
- //    currentPhoto;
+	public base64Image: string;////
+    mySelectedPhoto;////
+   
+    currentPhoto;////
+    count=0;
+ // BlobURL;
  backRemove=true;
   lastImage: string = null;
     loading: Loading
@@ -153,58 +155,61 @@ export class ViewerPage {
     });
   }
 
-//   takePhoto(){
+  takePhoto(){
 
-//   const options: CameraOptions = {
-//     quality: 100,
-//     targetHeight: 200,
-//     targetWidth: 200,
-//     destinationType: this.camera.DestinationType.DATA_URL,
-//     encodingType: this.camera.EncodingType.JPEG,
-//     mediaType: this.camera.MediaType.PICTURE
-//   }
+  const options: CameraOptions = {
+    quality: 100,
+    targetHeight: 200,
+    targetWidth: 200,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE,
+    sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+  }
 
 
-//  this.camera.getPicture(options).then((imageData) => {
-//  this.loading = this.loadingCtrl.create({
-//  content:"Taking photo wait ...."
-//  });
-//  this.loading.present();
-//  this.mySelectedPhoto =
-//  this.dataURLtoBlob('data:image/jpeg;base64,' + imageData);
-//  this.upload();
+ this.camera.getPicture(options).then((imageData) => {
+ this.loading = this.loadingCtrl.create({
+ content:"Taking photo wait ...."
+ });
+ this.loading.present();
+ this.mySelectedPhoto =
+ this.dataURLtoBlob('data:image/jpeg;base64,' + imageData);
+ this.upload();
 
-// }, (err) => {
-//  // Handle error
-// });
+}, (err) => {
+ // Handle error
+});
 
-//   }
+  }
 
-//    dataURLtoBlob(myURL){
-//       let binary = atob(myURL.split(',')[1]);
-//   let array = [];
-//   for (let i = 0 ; i < binary.length;i++){
-//       array.push(binary.charCodeAt(i));
-//   }
-//       return new Blob([new Uint8Array(array)],{type:'image/jpeg'});
-//   }
+   dataURLtoBlob(myURL){
+      let binary = atob(myURL.split(',')[1]);
+  let array = [];
+  for (let i = 0 ; i < binary.length;i++){
+      array.push(binary.charCodeAt(i));
+  }
+      return new Blob([new Uint8Array(array)],{type:'image/jpeg'});
+  }
 
-//   upload(){
-//   if(this.mySelectedPhoto){
-//       var uploadTask = firebase.storage().ref().child('images/myphoto.jpg').put(this.mySelectedPhoto);
-//       uploadTask.then(this.onSuccess,this.onErrors);
-//   }
-//   }
+  upload(){
+  if(this.mySelectedPhoto){
+      var uploadTask = firebase.storage().ref().child(this.userInfo+'/'+this.count+'.jpg').put(this.mySelectedPhoto);
 
-//   onSuccess=(snapshot)=>{
-//       this.currentPhoto = snapshot.downloadURL;
-//       this.loading.dismiss();
-//   }
+      this.count++;
+      uploadTask.then(this.onSuccess,this.onErrors);
+  }
+  }
 
-//   onErrors=(error)=>{
-//       console.log(error);
-//       this.loading.dismiss();
-//   }
+  onSuccess=(snapshot)=>{
+      this.mySelectedPhoto = snapshot.downloadURL;
+      this.loading.dismiss();
+  }
+
+  onErrors=(error)=>{
+      console.log(error);
+      this.loading.dismiss();
+  }
 
   loadScript () { var script = document.createElement('script');
    script.type = 'text/javascript'; 
@@ -216,8 +221,18 @@ export class ViewerPage {
    }
 
    goToA(){
-       this.navCtrl.push('VoiceAudioPage');
+       this.navCtrl.push('VoiceAudioPage', {
+
+      data:this.userInfo.replace(/\s/g, "")
+
+    });
    }
+   // store(){
+   // const  ImgURL="../../assets/imgs/face.jpg"
+   // //this.pathForImage(this.lastImage);
+   // this. BlobURL= this.dataURLtoBlob('data:image/jpeg;base64,' + ImgURL);
+   // this.upload();
+   // }
 
   
 }

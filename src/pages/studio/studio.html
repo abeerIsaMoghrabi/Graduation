@@ -70,7 +70,7 @@
         <!--col-sm-6 offset-4-->
         <ul >
             <li class="log-btn  float-right header-li" onclick="store()">sign out</li>
-            <li class=" header-li float-right"><a   full [navPush]="userProf">Profile</a></li>
+            <li class=" header-li float-right"><a   (click)="GP()">Profile</a></li>
             <li class=" header-li float-right"><a href="#">Studio</a></li>
             <li class=" header-li float-right"><a href="#">Home</a></li>
 
@@ -154,7 +154,9 @@
     <ion-segment-button value="b3">
       3
     </ion-segment-button>
-
+  <ion-segment-button value="b4">
+      4
+    </ion-segment-button>
   </ion-segment>
 </div>
 
@@ -325,6 +327,38 @@
         <img src= {{imgSource48}} draggable="true" id='48'ondragstart="drag(event)">
       </ion-thumbnail>
     </ion-item>
+      <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource55}} draggable="true" id='55'ondragstart="drag(event)">
+      </ion-thumbnail>
+    </ion-item>
+      <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource56}} draggable="true" id='56'ondragstart="drag(event)">
+      </ion-thumbnail>
+    </ion-item>
+     <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource58}} draggable="true" id='58'ondragstart="drag(event)">
+      </ion-thumbnail>
+       
+    </ion-item>
+     <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource61}} draggable="true" id='61'ondragstart="drag(event)">
+      </ion-thumbnail>
+       
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource59}} draggable="true" id='59'ondragstart="drag(event)">
+      </ion-thumbnail>
+    </ion-item>
+      <ion-item>
+      <ion-thumbnail item-start>
+        <img src= {{imgSource60}} draggable="true" id='60'ondragstart="drag(event)">
+      </ion-thumbnail>
+    </ion-item>
   </ion-list>
 
   <ion-list *ngSwitchCase="'b2'">
@@ -430,15 +464,19 @@
         <img src= {{imgSource47}} draggable="true" id='47'ondragstart="drag(event)">
       </ion-thumbnail>
     </ion-item>
-
+  <ion-item>
+<ion-thumbnail item-start>
+        <img src= {{imgSource57}} draggable="true" id='57'ondragstart="drag(event)">
+      </ion-thumbnail>
+    </ion-item>
   </ion-list>
-
-  <ion-list *ngSwitchCase="'b3'" id="yourObjList">
-  <h3><span>&#8203;</span><span>&#8203;</span> <span>&#8203;</span> Your Toys</h3>
+  
+  <ion-list *ngSwitchCase="'b4'" id="Templates">
+  <h3><span>&#8203;</span><span>&#8203;</span> <span>&#8203;</span>Templates</h3>
     <ion-item>
     
       <ion-thumbnail item-start>
-        <img src="../../assets/imgs/b1c.jpeg" draggable="true" id='48' ondragstart="drag(event)" >
+        <img src="../../assets/imgs/m1.jpg" draggable="true" id='62' ondragstart="drag(event)" >
       </ion-thumbnail>
       
     </ion-item>
@@ -446,10 +484,79 @@
  <ion-item>
     
       <ion-thumbnail item-start>
-        <img  draggable="true" id='49' ondragstart="drag(event)" onclick =" document.getElementById(49).src=toyObj[0]; ">
-        
+        <img src="../../assets/imgs/m2.jpg" draggable="true" id='63' ondragstart="drag(event)" >
       </ion-thumbnail>
       
+    </ion-item>
+
+
+    <ion-item>
+    
+      <ion-thumbnail item-start>
+        <img src="../../assets/imgs/m3.jpg" draggable="true" id='64' ondragstart="drag(event)" >
+      </ion-thumbnail>
+      
+    </ion-item>
+
+    <ion-item>
+    
+      <ion-thumbnail item-start>
+        <img src="../../assets/imgs/m4.jpg" draggable="true" id='65' ondragstart="drag(event)" >
+      </ion-thumbnail>
+      
+    </ion-item>
+
+    <ion-item>
+    
+      <ion-thumbnail item-start>
+        <img src="../../assets/imgs/m5.jpg" draggable="true" id='66' ondragstart="drag(event)" >
+      </ion-thumbnail>
+      
+    </ion-item>
+
+    <ion-item>
+    
+      <ion-thumbnail item-start>
+        <img src="../../assets/imgs/m6.jpg" draggable="true" id='67' ondragstart="drag(event)" >
+      </ion-thumbnail>
+      
+    </ion-item>
+    
+  </ion-list>
+
+
+
+  <ion-list *ngSwitchCase="'b3'" id="yourObjList">
+  <h3><span>&#8203;</span><span>&#8203;</span> <span>&#8203;</span> Your Toys</h3>
+    
+
+  
+
+<ion-item>
+    <ion-thumbnail item-start>
+        <img src= {{imgSource50}} draggable="true" id='50'ondragstart="drag(event)">
+      </ion-thumbnail>
+    </ion-item>
+
+<ion-item>
+    <ion-thumbnail item-start>
+        <img src= {{imgSource51}} draggable="true" id='51'ondragstart="drag(event)">
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+    <ion-thumbnail item-start>
+        <img src= {{imgSource52}} draggable="true" id='52'ondragstart="drag(event)">
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+    <ion-thumbnail item-start>
+        <img src= {{imgSource53}} draggable="true" id='53'ondragstart="drag(event)">
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+    <ion-thumbnail item-start>
+        <img src= {{imgSource54}} draggable="true" id='54'ondragstart="drag(event)">
+      </ion-thumbnail>
     </ion-item>
     
   </ion-list>
@@ -525,7 +632,7 @@
 </div>
 
     <div class="right-side side float-right">
-      <label id="t1" style="color: white;font-size: 17px;padding-left: 10px;padding-top: 10px;"></label>
+      
     <!--  <div id='obj_info' style="display: none;">
       <div class="main " ><span class="arrow"></span><span class="arrow-obj" id="objName"></span></div>
     <div>
@@ -576,7 +683,7 @@
     (click)="activeColor(1)">
        <ion-icon name="star" class="star" [hidden]="colorArr[1]" ></ion-icon>
     </div>
-    <div id='blue' class="color-cir" style=" background-color: rgba(0,0,255,0.7);" onclick="setBackColor('blue')"
+    <div id='blue' class="color-cir" style=" background-color: rgba(0,0,255,0.7);" onclick="setBackColor('#9dd5f0')"
     (click)="activeColor(2)">
        <ion-icon name="star" class="star" [hidden]="colorArr[2]"></ion-icon>
     </div>
@@ -600,9 +707,8 @@
 </div>
 </div>
 
-<div class="text-part" onclick="enableTxt()">
-<span class="create-icon"> <ion-icon name="create"></ion-icon></span> 
-<span class="create-icon">Add Text</span>
+<div class="text-part" onclick="enableTxt()" style="text-align: center;">
+<label id="t1" style="color: white;font-size: 17px;padding-left: 10px;padding-top: 10px; text-align: center;"></label>
 
 </div>
 

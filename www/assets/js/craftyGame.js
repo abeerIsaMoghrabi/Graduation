@@ -9,6 +9,8 @@
   var NNN=false;
   var pauseeF=true;
   var isTest=false;
+var gColor="white";
+
   var aF=true;
   var lenObj=function(p){
  var that={};
@@ -36,6 +38,7 @@ that.objList=p.objList;
 that.natu=p.natu;
  that.textArr=p.textArr;
  that.isPublic=p.isPublic;
+ that.Scolor=p.Scolor;
 return that;
 }
 
@@ -219,7 +222,7 @@ right:true
 console.log("canvas width"+cropPx(document.getElementById('canvas-div').style.width));
 
 /////////////////////////////////////new code for viewport////////////////////////////////////////////
-
+Crafty.viewport.mouselook(true);
 
   selectedEntity=Crafty.e('2D,DOM').attr({
   w:0,
@@ -253,7 +256,7 @@ square.visible=false;
           Crafty.sprite(2000,2000, 'assets/imgs/copy2.png', {c:[0,0]});
            Crafty.sprite(512,512, 'assets/imgs/freez.png', {a:[0,0]});
             Crafty.sprite(199,150, 'assets/imgs/collison3.png', {co:[0,0]});
-            Crafty.sprite(261,193, 'assets/imgs/gravity.png', {gravity:[0,0]});
+            Crafty.sprite(261,193, 'assets/imgs/gravity.png', {gravityy:[0,0]});
             Crafty.sprite(512,512, 'assets/imgs/apple.png', {apple:[0,0]});
             Crafty.sprite(300,300, 'assets/imgs/circle.png', {cir:[0,0]});
 
@@ -610,6 +613,7 @@ cirList.length=0;
   //getInit();
 
     Crafty.background(col);
+    gColor=col;
     //document.getElementById(col).style.border(2px solid white);
 
  }
@@ -770,7 +774,7 @@ var freez = Crafty.e("2D, DOM, a,Mouse").attr({
    x:rootm.x+165,
      y:rootm.y-29
               });
-var gravity = Crafty.e("2D, DOM, gravity,Mouse").attr({
+var gravity = Crafty.e("2D, DOM, gravityy,Mouse").attr({
 
   w:20,
   h:20,
@@ -2536,7 +2540,7 @@ if(e.key == Crafty.keys.DOWN_ARROW){
  
      Crafty.viewport.width=700;
      Crafty.viewport.height=480;
-    
+    selectedEntity.gravityConst(2000);
     Crafty.viewport.clampToEntites=false;
      selectedEntity.addComponent("Solid");
    //Crafty.viewport.scale(1);
@@ -3122,8 +3126,23 @@ if(vv<min){
       for(var i=0;i<objList.length;i++){
   console.log("bb="+objList[i].x);
   objList[i].x=objList[i].x-min;
+
+  ////////////////////////////////////
+  for(var m=0;m<objList[i].gravity.length;m++){
+  console.log("line x="+objList[i].gravity[m].x);
+  objList[i].gravity[m].x=objList[i].gravity[m].x-min;
+ 
+ 
+}
+  //////////////////////////////////
   console.log("aa="+objList[i].x);
 }
+for(var i=0;i<actionA.length;i++){
+  actionA[i].x=actionA[i].x-min;
+   actionA[i].xf=actionA[i].xf-min;
+}
+
+
   }
 
 
@@ -3827,10 +3846,12 @@ function upMove(stopT,xff,yff,entt,act){
                  console.log("rightMovee");
                  entt.y-=1.3;
               entt.x+=1.5;
+              entt.antigravity();
                // count = count - 1;
                if (stopT==document.getElementById("timer2").innerHTML||entt.y<=yff&& entt.x>=xff) {
                   // console.log("add gravity");
-                  // selectedEntity.gravity();
+                   selectedEntity.gravity();
+                   entt.gravityConst(2000);
                     clearInterval(myVarr);
                    
                 }
@@ -3867,6 +3888,8 @@ function downMove(stopT,xff,yff,entt,act){
       
        var myVarr = setInterval(function () {
                  console.log("rightMovee");
+                    entt.addComponent("gravity");
+                 entt.gravityConst(2000);
                  entt.y+=1.3;
                 entt.x+=1.5;
                // count = count - 1;
@@ -4102,7 +4125,7 @@ var s=new StoryObj({
     natu:natu ,
      textArr:txts,
      isPublic:false,          
-
+      Scolor:gColor
       });
 
 

@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 503:
+/***/ 507:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VoiceAudioPageModule", function() { return VoiceAudioPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__voice_audio__ = __webpack_require__(513);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__voice_audio__ = __webpack_require__(519);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var VoiceAudioPageModule = (function () {
 
 /***/ }),
 
-/***/ 513:
+/***/ 519:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46,12 +46,13 @@ var VoiceAudioPageModule = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VoiceAudioPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase_app__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase_app__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase_app__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_media_capture__ = __webpack_require__(305);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(306);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_media__ = __webpack_require__(307);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_media_capture__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(310);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_media__ = __webpack_require__(305);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_database_deprecated__ = __webpack_require__(155);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61,6 +62,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -84,12 +86,14 @@ var FIREBASE_CONFIG = {
  * Ionic pages and navigation.
  */
 var VoiceAudioPage = (function () {
-    function VoiceAudioPage(navCtrl, mediaCapture, storage, file, media) {
+    function VoiceAudioPage(navCtrl, navParams, mediaCapture, storage, file, media, af) {
         this.navCtrl = navCtrl;
+        this.navParams = navParams;
         this.mediaCapture = mediaCapture;
         this.storage = storage;
         this.file = file;
         this.media = media;
+        this.af = af;
         this.hid = true;
         this.vv = "";
         this.start = 0;
@@ -99,8 +103,10 @@ var VoiceAudioPage = (function () {
         };
         this.onErrors = function (error) {
         };
+        this.userInfo = navParams.get('data');
         this.loadScript();
         this.rec();
+        this.peopleList = this.af.list('/' + this.userInfo);
     }
     VoiceAudioPage.prototype.ionViewDidLoad = function () {
         var _this = this;
@@ -148,17 +154,25 @@ var VoiceAudioPage = (function () {
     // }
     ///////////////////////////////////////////////
     VoiceAudioPage.prototype.play = function (myFile) {
+        this.createPerson(myFile.localURL);
         if (myFile.name.indexOf('.wav') > -1) {
             var audioFile = this.media.create(myFile.localURL);
             audioFile.play();
         }
         else {
             var path = this.file.dataDirectory + myFile.name;
+            // this.createPerson(path);
             var url = path.replace(/^file:\/\//, '');
             var video = this.myVideo.nativeElement;
             video.src = url;
             video.play();
         }
+    };
+    VoiceAudioPage.prototype.createPerson = function (ur) {
+        this.peopleList.push({
+            path: ur
+        }).then(function (newPerson) {
+        }, function (error) { console.log(error); });
     };
     VoiceAudioPage.prototype.dataURLtoBlob = function (myURL) {
         var binary = atob(myURL.split(',')[1]);
@@ -248,12 +262,11 @@ var VoiceAudioPage = (function () {
     ], VoiceAudioPage.prototype, "myVideo", void 0);
     VoiceAudioPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-voice-audio',template:/*ion-inline-start:"C:\Users\Moghrabi\Graduation\src\pages\voice-audio\voice-audio.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Ionic Media Capture\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n \n<ion-content>\n  <ion-row>\n    <ion-col>\n      <button ion-button full (click)="captureAudio()">Capture Audio</button>\n    </ion-col>\n    <ion-col>\n      <button ion-button full (click)="captureVideo()">Capture Video</button>\n    </ion-col>\n        <ion-col>\n      <button ion-button full (click)="storeA()">store</button>\n    </ion-col>\n  </ion-row>\n \n  <ion-list>\n    <ion-item *ngFor="let file of mediaFiles" tappable (click)="storeA(file)" text-wrap>\n      {{ file.name }}\n      <p >{{file.localURL}}</p>\n      <p>{{ file.size / 1000 / 1000 | number }} MB</p>\n    </ion-item>\n  </ion-list>\n \n  <video controls autoplay #myvideo>\n  </video>\n</ion-content>'/*ion-inline-end:"C:\Users\Moghrabi\Graduation\src\pages\voice-audio\voice-audio.html"*/,
+            selector: 'page-voice-audio',template:/*ion-inline-start:"C:\Users\Moghrabi\Graduation\src\pages\voice-audio\voice-audio.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Ionic Media Capture\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n \n<ion-content>\n  <ion-row>\n    <ion-col>\n      <button ion-button full (click)="captureAudio()">Capture Audio</button>\n    </ion-col>\n    <ion-col>\n      <button ion-button full (click)="captureVideo()">Capture Video</button>\n    </ion-col>\n        <ion-col>\n      <button ion-button full (click)="storeA()">store</button>\n    </ion-col>\n  </ion-row>\n \n  <ion-list>\n    <ion-item *ngFor="let file of mediaFiles" tappable (click)="play(file)" text-wrap>\n      {{ file.name }}\n      <p >{{file.localURL}}</p>\n      <p>{{ file.size / 1000 / 1000 | number }} MB</p>\n    </ion-item>\n  </ion-list>\n <input type="text" name="sname" value="rubittAndTr">\n  <video controls autoplay #myvideo>\n  </video>\n</ion-content>'/*ion-inline-end:"C:\Users\Moghrabi\Graduation\src\pages\voice-audio\voice-audio.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_media_capture__["a" /* MediaCapture */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_media_capture__["a" /* MediaCapture */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__["a" /* File */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__["a" /* File */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_media__["a" /* Media */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_media__["a" /* Media */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_media_capture__["a" /* MediaCapture */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__["a" /* File */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_media__["a" /* Media */], __WEBPACK_IMPORTED_MODULE_7_angularfire2_database_deprecated__["a" /* AngularFireDatabase */]])
     ], VoiceAudioPage);
     return VoiceAudioPage;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=voice-audio.js.map

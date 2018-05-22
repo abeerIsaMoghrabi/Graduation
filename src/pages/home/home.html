@@ -96,16 +96,20 @@
 
 
 <ion-list>
-<ion-item  *ngFor="let item of storiesN" class="story" (click)="disp(item.key)">
+<ion-item  *ngFor="let item of storiesN"  style="display: inline-block;    width: 300px;
+    height: 255px;">
+  <div  class="story" (click)="disp(item.key)" >
    <p style="display: none" id="story-label">{{item.key}}</p>
    <p  style="display: none" id="UI">{{userInfo}}</p>
         <div class="story-label"  >
-          <!--  <ion-icon name="star" [style.color]="getStyleLColor(item)" class="float-left" style="padding-left: 15px; font-size: 30px"  onclick="activeS()"></ion-icon> -->
+         
 
          {{item.key}}
 
         </div>
        <div class="clearfix" ></div>
+             </div>
+               <ion-icon name="star" [style.color]="getStyleLColor(item)" class="float-left starr" style="padding-left: 15px; font-size: 30px"  onclick="activeS()"></ion-icon>
       </ion-item>
 
     </ion-list>
